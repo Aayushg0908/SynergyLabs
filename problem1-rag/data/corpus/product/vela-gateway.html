@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Vela Field Gateway — Product Overview</title>
+<meta name="department" content="product">
+<meta name="doc_type" content="product">
+</head>
+<body>
+<nav><a href="/">Home</a> | <a href="/products">Products</a> | <a href="/support">Support</a></nav>
+<main>
+<h1>Vela Field Gateway</h1>
+<p>The Vela gateway is a ruggedized edge device that collects telemetry from up to
+<strong>16 KX-series drones</strong> at once and forwards it to Kestrel Cloud. It is
+designed for remote farms and construction sites with poor connectivity.</p>
+
+<h2>Connectivity</h2>
+<ul>
+<li>Uplink: LTE Cat-12, Ethernet, or optional satellite modem (Iridium Certus).</li>
+<li>Drone link: 900 MHz long-range radio, range up to 10 km with the high-gain antenna.</li>
+<li>Automatic failover between uplinks in under 5 seconds.</li>
+</ul>
+
+<h2>Local buffering</h2>
+<p>When the uplink is lost, Vela stores telemetry on its internal 256 GB SSD. The buffer
+holds up to <strong>6 hours</strong> of telemetry from a full fleet of 16 drones. When the
+buffer is full, the oldest data is overwritten first. Buffered data is uploaded
+automatically and in order once the uplink returns.</p>
+
+<h2>Power and environment</h2>
+<table>
+<tr><th>Specification</th><th>Value</th></tr>
+<tr><td>Power input</td><td>12–48 V DC or optional 120 W solar kit</td></tr>
+<tr><td>Typical power draw</td><td>18 W</td></tr>
+<tr><td>Internal backup battery</td><td>4 hours of operation</td></tr>
+<tr><td>Operating temperature</td><td>-30 °C to 60 °C</td></tr>
+<tr><td>Ingress protection</td><td>IP67</td></tr>
+<tr><td>Weight</td><td>2.4 kg</td></tr>
+</table>
+
+<h2>Security</h2>
+<p>All traffic between Vela and Kestrel Cloud is encrypted with TLS 1.3 using mutual
+certificate authentication. Device certificates rotate automatically every 90 days.
+Firmware images are signed and verified at boot.</p>
+
+<h2>Pricing and subscription</h2>
+<p>The Vela gateway costs <strong>$3,200</strong>. A Kestrel Cloud connectivity
+subscription is required: $45 per gateway per month, which includes 50 GB of LTE data.
+Additional LTE data is billed at $6 per GB.</p>
+</main>
+<footer>© 2026 Kestrel Labs.</footer>
+</body>
+</html>

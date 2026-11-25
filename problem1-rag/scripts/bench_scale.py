@@ -175,12 +175,14 @@ def main() -> None:
                "bytes_per_vector_total": round(sz["total_bytes"] / n, 1),
                **measure(conn, exact_conn, queries, args.recall_queries)}
         runs.append(res)
-        print(json.dumps(res, indent=2))
+        print(json.dumps(res, indent=2), flush=True)
+        save(server, runs)  # after every size, so an interrupted long run keeps finished sizes
 
     if not args.keep:
         conn.execute("DROP TABLE IF EXISTS bench_vectors")
-        conn.commit()
 
+
+def save(server: dict, runs: list[dict]) -> None:
     report = {"hardware": {"host_cpu": platform.processor(), "docker_vm": "20 vCPU, 3.9 GB RAM (Docker Desktop, WSL2)",
                            "os": platform.platform()},
               "postgres": server, "dim": DIM, "k": K, "index": "hnsw m=16 ef_construction=64, cosine", "runs": runs}

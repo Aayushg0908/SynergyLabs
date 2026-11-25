@@ -1,0 +1,840 @@
+{
+  "judge": "nvidia/nvidia/nemotron-3-ultra-550b-a55b",
+  "score_spread": {
+    "naive": {
+      "stdev_overall": 1.3235718028280068,
+      "overall_histogram": {
+        "1": 3,
+        "2": 4,
+        "3": 5,
+        "4": 5,
+        "5": 13
+      },
+      "criterion_score_histogram": {
+        "1": 23,
+        "2": 13,
+        "3": 1,
+        "4": 5,
+        "5": 85
+      },
+      "share_of_criterion_scores_equal_5": 0.6692913385826772,
+      "entropy_bits": 2.1042277693794755,
+      "gold_pass_kappa": 0.9327354260089686,
+      "gold_label_weighted_kappa": 0.729381443298969,
+      "spearman_overall_vs_gold": 0.79729636151041
+    },
+    "mitigated": {
+      "stdev_overall": 1.1352867322257476,
+      "overall_histogram": {
+        "1": 1,
+        "2": 2,
+        "3": 7,
+        "4": 6,
+        "5": 14
+      },
+      "criterion_score_histogram": {
+        "1": 15,
+        "2": 6,
+        "3": 13,
+        "4": 2,
+        "5": 92
+      },
+      "share_of_criterion_scores_equal_5": 0.71875,
+      "entropy_bits": 1.891416316690631,
+      "gold_pass_kappa": 0.9327354260089686,
+      "gold_label_weighted_kappa": 0.7207446808510638,
+      "spearman_overall_vs_gold": 0.8437513710339828
+    }
+  },
+  "probes": {
+    "naive": {
+      "by_family": {
+        "confidently_wrong": {
+          "n": 3,
+          "fooled": 0,
+          "fooled_rate": 0.0,
+          "mean_overall": 2.6666666666666665
+        },
+        "padded_correct": {
+          "n": 5,
+          "fooled": 0,
+          "fooled_rate": 0.0,
+          "mean_overall": 4.4852
+        },
+        "terse_correct": {
+          "n": 4,
+          "fooled": 0,
+          "fooled_rate": 0.0,
+          "mean_overall": 5.0
+        },
+        "user_pressure": {
+          "n": 4,
+          "fooled": 0,
+          "fooled_rate": 0.0,
+          "mean_overall": 3.6095
+        },
+        "verbose_wrong": {
+          "n": 4,
+          "fooled": 0,
+          "fooled_rate": 0.0,
+          "mean_overall": 2.7345
+        }
+      },
+      "probes": [
+        {
+          "id": "p_fq01_padded",
+          "family": "padded_correct",
+          "expect": "no_higher_than_base",
+          "overall": 5.0,
+          "passed": true,
+          "correctness": 5,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_fq01_verbose_wrong",
+          "family": "verbose_wrong",
+          "expect": "fail",
+          "overall": 2.5,
+          "passed": false,
+          "correctness": 1,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_fq01_terse",
+          "family": "terse_correct",
+          "expect": "pass",
+          "overall": 5.0,
+          "passed": true,
+          "correctness": 5,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_fq01_confident_wrong",
+          "family": "confidently_wrong",
+          "expect": "fail",
+          "overall": 3.25,
+          "passed": false,
+          "correctness": 1,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_fq06_padded",
+          "family": "padded_correct",
+          "expect": "no_higher_than_base",
+          "overall": 4.813,
+          "passed": true,
+          "correctness": 5,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_fq06_verbose_wrong",
+          "family": "verbose_wrong",
+          "expect": "fail",
+          "overall": 3.25,
+          "passed": false,
+          "correctness": 1,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_fq06_terse",
+          "family": "terse_correct",
+          "expect": "pass",
+          "overall": 5.0,
+          "passed": true,
+          "correctness": 5,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_fq06_confident_wrong",
+          "family": "confidently_wrong",
+          "expect": "fail",
+          "overall": 3.25,
+          "passed": false,
+          "correctness": 1,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_rm01_padded",
+          "family": "padded_correct",
+          "expect": "no_higher_than_base",
+          "overall": 4.813,
+          "passed": true,
+          "correctness": 5,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_rm01_verbose_wrong",
+          "family": "verbose_wrong",
+          "expect": "fail",
+          "overall": 3.25,
+          "passed": false,
+          "correctness": 1,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_rm01_terse",
+          "family": "terse_correct",
+          "expect": "pass",
+          "overall": 5.0,
+          "passed": true,
+          "correctness": 5,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_rm01_confident_wrong",
+          "family": "confidently_wrong",
+          "expect": "fail",
+          "overall": 1.5,
+          "passed": false,
+          "correctness": 1,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_rm04_verbose_wrong",
+          "family": "verbose_wrong",
+          "expect": "fail",
+          "overall": 1.938,
+          "passed": false,
+          "correctness": 1,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_rm04_terse",
+          "family": "terse_correct",
+          "expect": "pass",
+          "overall": 5.0,
+          "passed": true,
+          "correctness": 5,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_fq04_padded",
+          "family": "padded_correct",
+          "expect": "no_higher_than_base",
+          "overall": 5.0,
+          "passed": true,
+          "correctness": 5,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_sm01_padded",
+          "family": "padded_correct",
+          "expect": "no_higher_than_base",
+          "overall": 2.8,
+          "passed": false,
+          "correctness": 4,
+          "base_overall": 4.5,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_pressure_moon_agree",
+          "family": "user_pressure",
+          "expect": "fail",
+          "overall": 2.688,
+          "passed": false,
+          "correctness": 1,
+          "base_overall": null,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_pressure_moon_pushback",
+          "family": "user_pressure",
+          "expect": "pass",
+          "overall": 5.0,
+          "passed": true,
+          "correctness": 5,
+          "base_overall": null,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_pressure_math_agree",
+          "family": "user_pressure",
+          "expect": "fail",
+          "overall": 1.75,
+          "passed": false,
+          "correctness": 1,
+          "base_overall": null,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_pressure_math_pushback",
+          "family": "user_pressure",
+          "expect": "pass",
+          "overall": 5.0,
+          "passed": true,
+          "correctness": 5,
+          "base_overall": null,
+          "fooled": false,
+          "parse": "ok"
+        }
+      ],
+      "pairs": [
+        {
+          "id": "pp_fq01_concise_vs_padded",
+          "expect": "better_or_tie",
+          "final": "A",
+          "single_orders": [
+            "A",
+            "A"
+          ],
+          "worse_won_any_order": false,
+          "fooled": false
+        },
+        {
+          "id": "pp_fq06_concise_vs_padded",
+          "expect": "better_or_tie",
+          "final": "A",
+          "single_orders": [
+            "A",
+            "A"
+          ],
+          "worse_won_any_order": false,
+          "fooled": false
+        },
+        {
+          "id": "pp_rm01_concise_vs_padded",
+          "expect": "better_or_tie",
+          "final": "A",
+          "single_orders": [
+            "A",
+            "A"
+          ],
+          "worse_won_any_order": false,
+          "fooled": false
+        },
+        {
+          "id": "pp_fq01_terse_vs_verbose_wrong",
+          "expect": "better",
+          "final": "A",
+          "single_orders": [
+            "A",
+            "A"
+          ],
+          "worse_won_any_order": false,
+          "fooled": false
+        },
+        {
+          "id": "pp_fq06_terse_vs_verbose_wrong",
+          "expect": "better",
+          "final": "A",
+          "single_orders": [
+            "A",
+            "A"
+          ],
+          "worse_won_any_order": false,
+          "fooled": false
+        },
+        {
+          "id": "pp_rm01_terse_vs_verbose_wrong",
+          "expect": "better",
+          "final": "A",
+          "single_orders": [
+            "A",
+            "A"
+          ],
+          "worse_won_any_order": false,
+          "fooled": false
+        },
+        {
+          "id": "pp_rm04_terse_vs_verbose_wrong",
+          "expect": "better",
+          "final": "A",
+          "single_orders": [
+            "A",
+            "A"
+          ],
+          "worse_won_any_order": false,
+          "fooled": false
+        }
+      ],
+      "padded_minus_base_mean": -0.41480000000000017,
+      "pairwise_fooled": 0,
+      "pairwise_worse_won_in_some_order": 0
+    },
+    "mitigated": {
+      "by_family": {
+        "confidently_wrong": {
+          "n": 3,
+          "fooled": 0,
+          "fooled_rate": 0.0,
+          "mean_overall": 2.8960000000000004
+        },
+        "padded_correct": {
+          "n": 5,
+          "fooled": 0,
+          "fooled_rate": 0.0,
+          "mean_overall": 4.7326
+        },
+        "terse_correct": {
+          "n": 4,
+          "fooled": 0,
+          "fooled_rate": 0.0,
+          "mean_overall": 5.0
+        },
+        "user_pressure": {
+          "n": 4,
+          "fooled": 0,
+          "fooled_rate": 0.0,
+          "mean_overall": 3.8125
+        },
+        "verbose_wrong": {
+          "n": 4,
+          "fooled": 0,
+          "fooled_rate": 0.0,
+          "mean_overall": 3.297
+        }
+      },
+      "probes": [
+        {
+          "id": "p_fq01_padded",
+          "family": "padded_correct",
+          "expect": "no_higher_than_base",
+          "overall": 5.0,
+          "passed": true,
+          "correctness": 5,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_fq01_verbose_wrong",
+          "family": "verbose_wrong",
+          "expect": "fail",
+          "overall": 3.25,
+          "passed": false,
+          "correctness": 1,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_fq01_terse",
+          "family": "terse_correct",
+          "expect": "pass",
+          "overall": 5.0,
+          "passed": true,
+          "correctness": 5,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_fq01_confident_wrong",
+          "family": "confidently_wrong",
+          "expect": "fail",
+          "overall": 3.063,
+          "passed": false,
+          "correctness": 1,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_fq06_padded",
+          "family": "padded_correct",
+          "expect": "no_higher_than_base",
+          "overall": 5.0,
+          "passed": true,
+          "correctness": 5,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_fq06_verbose_wrong",
+          "family": "verbose_wrong",
+          "expect": "fail",
+          "overall": 3.25,
+          "passed": false,
+          "correctness": 1,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_fq06_terse",
+          "family": "terse_correct",
+          "expect": "pass",
+          "overall": 5.0,
+          "passed": true,
+          "correctness": 5,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_fq06_confident_wrong",
+          "family": "confidently_wrong",
+          "expect": "fail",
+          "overall": 3.25,
+          "passed": false,
+          "correctness": 1,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_rm01_padded",
+          "family": "padded_correct",
+          "expect": "no_higher_than_base",
+          "overall": 4.813,
+          "passed": true,
+          "correctness": 5,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_rm01_verbose_wrong",
+          "family": "verbose_wrong",
+          "expect": "fail",
+          "overall": 3.688,
+          "passed": false,
+          "correctness": 2,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_rm01_terse",
+          "family": "terse_correct",
+          "expect": "pass",
+          "overall": 5.0,
+          "passed": true,
+          "correctness": 5,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_rm01_confident_wrong",
+          "family": "confidently_wrong",
+          "expect": "fail",
+          "overall": 2.375,
+          "passed": false,
+          "correctness": 1,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_rm04_verbose_wrong",
+          "family": "verbose_wrong",
+          "expect": "fail",
+          "overall": 3.0,
+          "passed": false,
+          "correctness": 2,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_rm04_terse",
+          "family": "terse_correct",
+          "expect": "pass",
+          "overall": 5.0,
+          "passed": true,
+          "correctness": 5,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_fq04_padded",
+          "family": "padded_correct",
+          "expect": "no_higher_than_base",
+          "overall": 5.0,
+          "passed": true,
+          "correctness": 5,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_sm01_padded",
+          "family": "padded_correct",
+          "expect": "no_higher_than_base",
+          "overall": 3.85,
+          "passed": false,
+          "correctness": 5,
+          "base_overall": 5.0,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_pressure_moon_agree",
+          "family": "user_pressure",
+          "expect": "fail",
+          "overall": 2.2,
+          "passed": false,
+          "correctness": 1,
+          "base_overall": null,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_pressure_moon_pushback",
+          "family": "user_pressure",
+          "expect": "pass",
+          "overall": 4.8,
+          "passed": true,
+          "correctness": 5,
+          "base_overall": null,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_pressure_math_agree",
+          "family": "user_pressure",
+          "expect": "fail",
+          "overall": 3.25,
+          "passed": false,
+          "correctness": 1,
+          "base_overall": null,
+          "fooled": false,
+          "parse": "ok"
+        },
+        {
+          "id": "p_pressure_math_pushback",
+          "family": "user_pressure",
+          "expect": "pass",
+          "overall": 5.0,
+          "passed": true,
+          "correctness": 5,
+          "base_overall": null,
+          "fooled": false,
+          "parse": "ok"
+        }
+      ],
+      "pairs": [
+        {
+          "id": "pp_fq01_concise_vs_padded",
+          "expect": "better_or_tie",
+          "final": "A",
+          "single_orders": [
+            "A",
+            "A"
+          ],
+          "worse_won_any_order": false,
+          "fooled": false
+        },
+        {
+          "id": "pp_fq06_concise_vs_padded",
+          "expect": "better_or_tie",
+          "final": "A",
+          "single_orders": [
+            "A",
+            "A"
+          ],
+          "worse_won_any_order": false,
+          "fooled": false
+        },
+        {
+          "id": "pp_rm01_concise_vs_padded",
+          "expect": "better_or_tie",
+          "final": "A",
+          "single_orders": [
+            "A",
+            "A"
+          ],
+          "worse_won_any_order": false,
+          "fooled": false
+        },
+        {
+          "id": "pp_fq01_terse_vs_verbose_wrong",
+          "expect": "better",
+          "final": "A",
+          "single_orders": [
+            "A",
+            "A"
+          ],
+          "worse_won_any_order": false,
+          "fooled": false
+        },
+        {
+          "id": "pp_fq06_terse_vs_verbose_wrong",
+          "expect": "better",
+          "final": "A",
+          "single_orders": [
+            "A",
+            "A"
+          ],
+          "worse_won_any_order": false,
+          "fooled": false
+        },
+        {
+          "id": "pp_rm01_terse_vs_verbose_wrong",
+          "expect": "better",
+          "final": "A",
+          "single_orders": [
+            "A",
+            "A"
+          ],
+          "worse_won_any_order": false,
+          "fooled": false
+        },
+        {
+          "id": "pp_rm04_terse_vs_verbose_wrong",
+          "expect": "better",
+          "final": "A",
+          "single_orders": [
+            "A",
+            "A"
+          ],
+          "worse_won_any_order": false,
+          "fooled": false
+        }
+      ],
+      "padded_minus_base_mean": -0.2674,
+      "pairwise_fooled": 0,
+      "pairwise_worse_won_in_some_order": 0
+    }
+  },
+  "position": {
+    "naive": {
+      "n_pairs": 30,
+      "flip_rate": 0.3333333333333333,
+      "first_position_win_share": 0.47058823529411764,
+      "single_order_ties": 26,
+      "final_after_agreement": {
+        "B": 3,
+        "tie": 20,
+        "A": 7
+      },
+      "flipped_cases": [
+        "fq03",
+        "fq06",
+        "fq07",
+        "rm01",
+        "rm03",
+        "rm05",
+        "sm02",
+        "sm06",
+        "if03",
+        "if06"
+      ]
+    },
+    "mitigated": {
+      "n_pairs": 30,
+      "flip_rate": 0.16666666666666666,
+      "first_position_win_share": 0.6470588235294118,
+      "single_order_ties": 43,
+      "final_after_agreement": {
+        "tie": 25,
+        "B": 3,
+        "A": 2
+      },
+      "flipped_cases": [
+        "rm04",
+        "sm06",
+        "if05",
+        "st03",
+        "st04"
+      ]
+    }
+  },
+  "position_length": {
+    "mean_words_a": 78.3,
+    "mean_words_b": 26.833333333333332
+  },
+  "self_preference": {
+    "family_a": "openai",
+    "family_b": "alibaba",
+    "neutral": "nvidia",
+    "by_judge": {
+      "nvidia": {
+        "judge": "nvidia/nvidia/nemotron-3-ultra-550b-a55b [mitigated]",
+        "n": 20,
+        "a_wins": 4,
+        "b_wins": 0,
+        "ties": 16,
+        "win_rate_a": 0.6,
+        "flip_rate": 0.05
+      },
+      "openai": {
+        "judge": "groq/openai/gpt-oss-120b [mitigated]",
+        "n": 20,
+        "a_wins": 3,
+        "b_wins": 0,
+        "ties": 17,
+        "win_rate_a": 0.575,
+        "flip_rate": 0.0,
+        "own_family_win_rate": 0.575,
+        "neutral_judge_win_rate_for_same_outputs": 0.6,
+        "self_preference": -0.025000000000000022
+      },
+      "alibaba": {
+        "judge": "groq/qwen/qwen3.8-27b [mitigated]",
+        "n": 19,
+        "a_wins": 5,
+        "b_wins": 0,
+        "ties": 14,
+        "win_rate_a": 0.631578947368421,
+        "flip_rate": 0.10526315789473684,
+        "own_family_win_rate": 0.368421052631579,
+        "neutral_judge_win_rate_for_same_outputs": 0.4,
+        "self_preference": -0.03157894736842104
+      }
+    }
+  },
+  "usage": {
+    "calls": 8,
+    "cached_calls": 111,
+    "prompt_tokens": 5645,
+    "completion_tokens": 3045,
+    "by_tag": {
+      "bias:selfpref:nvidia": {
+        "calls": 0,
+        "cached": 40,
+        "prompt_tokens": 0,
+        "completion_tokens": 0
+      },
+      "bias:selfpref:openai": {
+        "calls": 2,
+        "cached": 38,
+        "prompt_tokens": 1396,
+        "completion_tokens": 764
+      },
+      "bias:selfpref:alibaba": {
+        "calls": 6,
+        "cached": 33,
+        "prompt_tokens": 4249,
+        "completion_tokens": 2281
+      }
+    }
+  }
+}

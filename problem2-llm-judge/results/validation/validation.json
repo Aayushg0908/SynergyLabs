@@ -1,0 +1,228 @@
+{
+  "judge": "nvidia/nvidia/nemotron-3-ultra-550b-a55b [mitigated]",
+  "gold_agreement": {
+    "n": 30,
+    "pass_fail_agreement": 0.9666666666666667,
+    "pass_fail_kappa": 0.9327354260089686,
+    "label_agreement": 0.8,
+    "label_weighted_kappa": 0.7207446808510638,
+    "spearman_overall_vs_gold": 0.8437513710339828,
+    "confusion_gold_rows_judge_cols": {
+      "bad": {
+        "bad": 3,
+        "partial": 5,
+        "good": 1
+      },
+      "partial": {
+        "bad": 0,
+        "partial": 8,
+        "good": 0
+      },
+      "good": {
+        "bad": 0,
+        "partial": 0,
+        "good": 13
+      }
+    },
+    "false_pass": [
+      "st02"
+    ],
+    "false_fail": []
+  },
+  "test_retest": {
+    "0.0": {
+      "repeats": 2,
+      "pass_fail_flip_rate": 0.0,
+      "label_flip_rate": 0.0,
+      "mean_abs_overall_delta": 0.09958333333333333,
+      "max_abs_overall_delta": 1.3119999999999998,
+      "kappa_vs_gold_per_run": [
+        0.9327354260089686,
+        0.9327354260089686
+      ],
+      "flipped_cases": []
+    },
+    "0.7": {
+      "repeats": 2,
+      "pass_fail_flip_rate": 0.0,
+      "label_flip_rate": 0.016666666666666666,
+      "mean_abs_overall_delta": 0.11643333333333332,
+      "max_abs_overall_delta": 1.3119999999999998,
+      "kappa_vs_gold_per_run": [
+        0.9327354260089686,
+        0.9327354260089686
+      ],
+      "flipped_cases": []
+    }
+  },
+  "secondary_judge": "groq/qwen/qwen3.8-27b [mitigated]",
+  "secondary_gold_agreement": {
+    "n": 30,
+    "pass_fail_agreement": 0.9333333333333333,
+    "pass_fail_kappa": 0.8617511520737328,
+    "label_agreement": 0.6,
+    "label_weighted_kappa": 0.6880570409982174,
+    "spearman_overall_vs_gold": 0.9072652845833844,
+    "confusion_gold_rows_judge_cols": {
+      "bad": {
+        "bad": 3,
+        "partial": 6,
+        "good": 0
+      },
+      "partial": {
+        "bad": 1,
+        "partial": 4,
+        "good": 0
+      },
+      "good": {
+        "bad": 0,
+        "partial": 0,
+        "good": 11
+      }
+    },
+    "false_pass": [],
+    "false_fail": [
+      "sm06",
+      "if04"
+    ]
+  },
+  "ensemble_gold_agreement": {
+    "n": 30,
+    "pass_fail_agreement": 1.0,
+    "pass_fail_kappa": 1.0,
+    "label_agreement": 0.7666666666666667,
+    "label_weighted_kappa": 0.7236842105263157,
+    "spearman_overall_vs_gold": 0.9146810971662226,
+    "confusion_gold_rows_judge_cols": {
+      "bad": {
+        "bad": 3,
+        "partial": 6,
+        "good": 0
+      },
+      "partial": {
+        "bad": 1,
+        "partial": 7,
+        "good": 0
+      },
+      "good": {
+        "bad": 0,
+        "partial": 0,
+        "good": 13
+      }
+    },
+    "false_pass": [],
+    "false_fail": []
+  },
+  "judge_vs_judge": {
+    "pass_fail_kappa": 0.7963800904977376,
+    "overall_pearson": 0.9121134868569184
+  },
+  "adversarial": {
+    "naive": {
+      "confidently_wrong": {
+        "n": 3,
+        "fooled": 0,
+        "fooled_rate": 0.0,
+        "mean_overall": 2.6666666666666665
+      },
+      "padded_correct": {
+        "n": 5,
+        "fooled": 0,
+        "fooled_rate": 0.0,
+        "mean_overall": 4.4852
+      },
+      "terse_correct": {
+        "n": 4,
+        "fooled": 0,
+        "fooled_rate": 0.0,
+        "mean_overall": 5.0
+      },
+      "user_pressure": {
+        "n": 4,
+        "fooled": 0,
+        "fooled_rate": 0.0,
+        "mean_overall": 3.6095
+      },
+      "verbose_wrong": {
+        "n": 4,
+        "fooled": 0,
+        "fooled_rate": 0.0,
+        "mean_overall": 2.7345
+      }
+    },
+    "mitigated": {
+      "confidently_wrong": {
+        "n": 3,
+        "fooled": 0,
+        "fooled_rate": 0.0,
+        "mean_overall": 2.8960000000000004
+      },
+      "padded_correct": {
+        "n": 5,
+        "fooled": 0,
+        "fooled_rate": 0.0,
+        "mean_overall": 4.7326
+      },
+      "terse_correct": {
+        "n": 4,
+        "fooled": 0,
+        "fooled_rate": 0.0,
+        "mean_overall": 5.0
+      },
+      "user_pressure": {
+        "n": 4,
+        "fooled": 0,
+        "fooled_rate": 0.0,
+        "mean_overall": 3.8125
+      },
+      "verbose_wrong": {
+        "n": 4,
+        "fooled": 0,
+        "fooled_rate": 0.0,
+        "mean_overall": 3.297
+      }
+    }
+  },
+  "adversarial_pairs": {
+    "naive": {
+      "fooled": 0,
+      "n": 7
+    },
+    "mitigated": {
+      "fooled": 0,
+      "n": 7
+    }
+  },
+  "usage": {
+    "calls": 145,
+    "cached_calls": 30,
+    "prompt_tokens": 189657,
+    "completion_tokens": 176332,
+    "by_tag": {
+      "suite": {
+        "calls": 0,
+        "cached": 30,
+        "prompt_tokens": 0,
+        "completion_tokens": 0
+      },
+      "retest:t0.0": {
+        "calls": 60,
+        "cached": 0,
+        "prompt_tokens": 78314,
+        "completion_tokens": 85505
+      },
+      "retest:t0.7": {
+        "calls": 60,
+        "cached": 0,
+        "prompt_tokens": 78314,
+        "completion_tokens": 80997
+      },
+      "secondary": {
+        "calls": 25,
+        "cached": 0,
+        "prompt_tokens": 33029,
+        "completion_tokens": 9830
+      }
+    }
+  }
+}

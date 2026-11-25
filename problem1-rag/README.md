@@ -115,6 +115,13 @@ usage, and a latency breakdown (embedding, retrieval, generation, total).
 .\.venv\Scripts\python.exe scripts\cost_model.py          # -> results/cost_comparison.md
 ```
 
+**Evidence screenshots** (`docs/screenshots/`, rendered from the real output of
+`scripts/demo_query.ps1` and `scripts/demo_reingest.ps1`):
+
+| End-to-end query: latency per stage, chunk count, tokens | Idempotent re-ingest: 28 vectors before and after |
+|---|---|
+| ![query](docs/screenshots/p1_end_to_end_query.png) | ![reingest](docs/screenshots/p1_idempotent_reingest.png) |
+
 ## 3. Corpus and evaluation set
 
 - **Corpus** (`data/corpus/`): 12 documents about a fictional drone company, "Kestrel Labs". There

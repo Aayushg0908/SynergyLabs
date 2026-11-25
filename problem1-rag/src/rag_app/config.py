@@ -19,8 +19,9 @@ class Settings(BaseSettings):
     llm_temperature: float = 0.0
 
     # Judge LLM (used by the evaluation harness only): groq | gemini | mistral
-    judge_provider: str = "mistral"
-    judge_model: str = "mistral-medium-2604"
+    # Default: Qwen3 (Alibaba family) on Groq — a different family from the gpt-oss (OpenAI) generator.
+    judge_provider: str = "groq"
+    judge_model: str = "qwen/qwen3.8-27b"
     judge_api_key: str = ""
 
     # Embeddings

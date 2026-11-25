@@ -65,6 +65,7 @@ Return JSON in exactly this shape:
 
 def parse_json_loose(text: str) -> dict:
     """Parse a JSON object from a model response, tolerating code fences and surrounding prose."""
+    text = re.sub(r"<think>.*?</think>", "", text, flags=re.S)  # reasoning models may leak thoughts
     cleaned = re.sub(r"^```(?:json)?\s*|\s*```$", "", text.strip(), flags=re.S)
     try:
         return json.loads(cleaned)

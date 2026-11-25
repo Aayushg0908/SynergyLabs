@@ -57,6 +57,10 @@ class LLMClient:
             kwargs = {}
             if self.model.startswith("openai/gpt-oss"):
                 kwargs["reasoning_effort"] = "low"  # keep hidden reasoning short: lower latency + cost
+            elif self.model.startswith("qwen/"):
+                # Qwen3 thinks by default and puts <think>...</think> in the content; keep the
+                # reasoning but return it separately so content is clean (required for JSON mode).
+                kwargs["reasoning_format"] = "hidden"
             if json_mode:
                 kwargs["response_format"] = {"type": "json_object"}
             resp = self._client.chat.completions.create(

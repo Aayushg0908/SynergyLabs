@@ -12,6 +12,7 @@ def test_parse_json_loose_variants():
     assert parse_json_loose('{"a": 1}') == {"a": 1}
     assert parse_json_loose('```json\n{"a": 1}\n```') == {"a": 1}
     assert parse_json_loose('Here is my verdict: {"a": {"b": 2}} Thanks!') == {"a": {"b": 2}}
+    assert parse_json_loose('<think>score {"x": 0}?</think>\n{"a": 1}') == {"a": 1}
     with pytest.raises(json.JSONDecodeError):
         parse_json_loose("no json here")
 

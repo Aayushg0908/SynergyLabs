@@ -182,7 +182,7 @@ def judge_summary(rows: list[dict], judge: AnswerJudge) -> dict:
 
 def make_judge(svc: RAGService) -> AnswerJudge:
     s = svc.settings
-    return AnswerJudge(LLMClient(s.judge_provider, s.judge_model, s.judge_api_key, max_tokens=8192),
+    return AnswerJudge(LLMClient(s.judge_provider, s.judge_model, s.judge_api_key, max_tokens=4096),
                        s.log_dir / "judge_calls.jsonl")
 
 

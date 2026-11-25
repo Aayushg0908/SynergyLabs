@@ -40,6 +40,11 @@ def main(argv: list[str] | None = None) -> None:
     r.add_argument("--yes", action="store_true")
 
     args = parser.parse_args(argv)
+    # On Windows, piped stdout defaults to cp1252, which cannot encode characters LLMs emit
+    # (non-breaking hyphens, narrow spaces) -> UnicodeEncodeError. Always write UTF-8.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8", errors="replace")
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")
     for noisy in ("httpx", "httpx2", "sentence_transformers", "huggingface_hub"):
         logging.getLogger(noisy).setLevel(logging.WARNING)

@@ -5,3 +5,6 @@ __pycache__/
 .pytest_cache/
 .cache/
 logs/
+
+# Problem 2: the judge call log is a deliverable (auditable + replay cache)
+!problem2-llm-judge/logs/

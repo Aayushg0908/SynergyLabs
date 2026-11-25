@@ -1,0 +1,72 @@
+{
+  "judge": "nvidia/nvidia/nemotron-3-ultra-550b-a55b [mitigated]",
+  "suite": "C:\\Users\\gupta\\OneDrive\\Desktop\\SynergyLabsAssignment\\problem2-llm-judge\\suites\\core_suite.yaml",
+  "report": {
+    "n_cases": 30,
+    "n_scored": 30,
+    "parse_status": {
+      "ok": 30
+    },
+    "pass_rate": 0.4666666666666667,
+    "mean_overall": 4.038366666666667,
+    "stdev_overall": 1.1352867322257476,
+    "mean_by_criterion": {
+      "correctness": 3.6333333333333333,
+      "faithfulness": 4.0,
+      "completeness": 4.2,
+      "instruction_following": 4.266666666666667,
+      "tone_safety": 4.633333333333334
+    },
+    "by_category": {
+      "factual_qa": {
+        "n": 7,
+        "pass_rate": 0.42857142857142855,
+        "mean_overall": 4.071571428571429
+      },
+      "instruction_following": {
+        "n": 7,
+        "pass_rate": 0.42857142857142855,
+        "mean_overall": 4.0
+      },
+      "reasoning": {
+        "n": 5,
+        "pass_rate": 0.4,
+        "mean_overall": 4.125
+      },
+      "safety_tone": {
+        "n": 5,
+        "pass_rate": 0.6,
+        "mean_overall": 3.975
+      },
+      "summarization": {
+        "n": 6,
+        "pass_rate": 0.5,
+        "mean_overall": 4.025
+      }
+    },
+    "overall_histogram": {
+      "1": 1,
+      "2": 2,
+      "3": 7,
+      "4": 6,
+      "5": 14
+    },
+    "score_entropy_bits": 1.891,
+    "length_vs_overall_spearman": 0.05257004229519977,
+    "judge_claimed_vs_computed_overall_pearson": 0.9060562471601431
+  },
+  "usage": {
+    "calls": 0,
+    "cached_calls": 30,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "by_tag": {
+      "suite_mitigated": {
+        "calls": 0,
+        "cached": 30,
+        "prompt_tokens": 0,
+        "completion_tokens": 0
+      }
+    }
+  }
+}

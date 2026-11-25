@@ -1,0 +1,73 @@
+{
+  "config_a": "prompt_v1",
+  "config_b": "prompt_v2",
+  "n_pairs": 30,
+  "pairwise": {
+    "wins_a": 2,
+    "wins_b": 3,
+    "ties": 25,
+    "win_rate_a": 0.48333333333333334,
+    "win_rate_b": 0.5166666666666667,
+    "sign_test_p": 1.0,
+    "position_flip_rate": 0.16666666666666666
+  },
+  "pointwise": {
+    "a": {
+      "pass_rate": 0.9333333333333333,
+      "mean_overall": 4.897933333333333,
+      "mean_by_criterion": {
+        "correctness": 4.9,
+        "faithfulness": 4.857142857142857,
+        "completeness": 4.833333333333333,
+        "instruction_following": 4.9,
+        "tone_safety": 5.0
+      }
+    },
+    "b": {
+      "pass_rate": 0.9666666666666667,
+      "mean_overall": 4.943733333333333,
+      "mean_by_criterion": {
+        "correctness": 4.966666666666667,
+        "faithfulness": 5.0,
+        "completeness": 4.866666666666666,
+        "instruction_following": 4.933333333333334,
+        "tone_safety": 5.0
+      }
+    },
+    "mean_overall_diff_b_minus_a": 0.0458,
+    "bootstrap_95ci": [
+      -0.029199999999999983,
+      0.14579999999999999
+    ]
+  },
+  "winner": null,
+  "leaning": "prompt_v2",
+  "decision": "no significant winner; leaning prompt_v2 (p=1)",
+  "judge": "nvidia/nvidia/nemotron-3-ultra-550b-a55b [mitigated]",
+  "usage": {
+    "calls": 112,
+    "cached_calls": 9,
+    "prompt_tokens": 118720,
+    "completion_tokens": 136866,
+    "by_tag": {
+      "ab:pointwise": {
+        "calls": 55,
+        "cached": 5,
+        "prompt_tokens": 75437,
+        "completion_tokens": 67189
+      },
+      "ab:pairwise": {
+        "calls": 56,
+        "cached": 4,
+        "prompt_tokens": 41978,
+        "completion_tokens": 66315
+      },
+      "ab:pairwise:repair": {
+        "calls": 1,
+        "cached": 0,
+        "prompt_tokens": 1305,
+        "completion_tokens": 3362
+      }
+    }
+  }
+}

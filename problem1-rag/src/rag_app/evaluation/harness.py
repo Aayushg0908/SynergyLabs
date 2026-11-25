@@ -198,7 +198,7 @@ def rejudge(svc: RAGService, judge_interval: float = 7.0, out_dir: Path = RESULT
     for row in rows:
         if row["type"] == "unanswerable" or row["no_answer"]:
             continue
-        if not all_rows and row.get("judge") and not row["judge"].get("judge_error"):
+        if not all_rows and row.get("judge") and not (row.get("judge") or {}).get("judge_error"):
             continue
         q = questions[row["id"]]
         if "context_passages" not in row:
@@ -207,6 +207,17 @@ def rejudge(svc: RAGService, judge_interval: float = 7.0, out_dir: Path = RESULT
         log.info("judging %s", row["id"])
         row["judge"] = judge.judge(row["id"], q["question"], row["answer"], q["gold"], row["context_passages"])
         time.sleep(judge_interval)
+    # Recompute gold-answer metrics with the current normaliser so the file stays consistent with the code.
+    for row in rows:
+        if row["type"] != "unanswerable":
+            gold = questions[row["id"]]["gold"]
+            row["em"], row["contains_gold"], row["f1"] = (M.exact_match(row["answer"], gold),
+                                                          M.contains_gold(row["answer"], gold),
+                                                          M.token_f1(row["answer"], gold))
+    ans = [r for r in rows if r["type"] != "unanswerable"]
+    full["answers"].update(exact_match=M.mean([r["em"] for r in ans]),
+                           contains_gold=M.mean([r["contains_gold"] for r in ans]),
+                           token_f1=M.mean([r["f1"] for r in ans]))
     full["answers"]["judge"] = judge_summary(rows, judge)
     path.write_text(json.dumps(full, indent=2, default=float), encoding="utf-8")
     (out_dir / f"{tag}_report.md").write_text(render_report(full, rows), encoding="utf-8")

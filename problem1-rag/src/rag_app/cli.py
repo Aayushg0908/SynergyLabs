@@ -31,6 +31,9 @@ def main(argv: list[str] | None = None) -> None:
     e.add_argument("--gen-interval", type=float, default=2.0, help="seconds between generator calls (rate limits)")
     e.add_argument("--judge-interval", type=float, default=7.0, help="seconds between judge calls (rate limits)")
     e.add_argument("--tag", default="eval", help="output file prefix in results/")
+    e.add_argument("--rejudge", action="store_true",
+                   help="only (re)judge answers in results/<tag>_results.json whose verdict is missing or failed")
+    e.add_argument("--rejudge-all", action="store_true", help="re-judge every answer of the saved run")
 
     sub.add_parser("stats", help="show document/vector counts")
     r = sub.add_parser("reset", help="drop all tables")
@@ -59,8 +62,11 @@ def main(argv: list[str] | None = None) -> None:
         result.pop("documents") if len(result["documents"]) > 30 else None
         print(json.dumps(result, indent=2))
     elif args.cmd == "eval":
-        from .evaluation.harness import run
+        from .evaluation.harness import rejudge, run
 
+        if args.rejudge or args.rejudge_all:
+            print(json.dumps(rejudge(svc, args.judge_interval, tag=args.tag, all_rows=args.rejudge_all), indent=2))
+            return
         result = run(svc, args.k, use_judge=not args.no_judge, retrieval_only=args.retrieval_only,
                      latency_reps=args.latency_reps, gen_interval=args.gen_interval,
                      judge_interval=args.judge_interval, tag=args.tag)

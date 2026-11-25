@@ -128,9 +128,9 @@ def eval_answers(svc: RAGService, questions: list[dict], labels: dict, k: int, j
             row["contains_gold"] = M.contains_gold(resp["answer"], q["gold"])
             row["f1"] = M.token_f1(resp["answer"], q["gold"])
             row["citation_correct"] = any(c["chunk_id"] in relevant for c in resp["citations"]) if resp["citations"] else False
+            row["context_passages"] = [r["text"] for r in resp["retrieved"] if r["in_context"]]
             if judge and not resp["no_answer"]:
-                passages = [r["text"] for r in resp["retrieved"] if r["in_context"]]
-                row["judge"] = judge.judge(q["id"], q["question"], resp["answer"], q["gold"], passages)
+                row["judge"] = judge.judge(q["id"], q["question"], resp["answer"], q["gold"], row["context_passages"])
                 time.sleep(judge_interval)
         rows.append(row)
         if resp["usage"]["total_tokens"]:
@@ -160,17 +160,57 @@ def eval_answers(svc: RAGService, questions: list[dict], labels: dict, k: int, j
             "completion": M.mean([r["usage"]["completion_tokens"] for r in rows if r["usage"]["total_tokens"]])},
     }
     if judge:
-        summary["judge"] = {
-            "model": f"{judge.client.provider}/{judge.client.model}",
-            "n_judged": len(judged), "judge_errors": sum(1 for r in answered if r.get("judge", {}).get("judge_error")),
-            "faithfulness": M.mean([j["faithfulness"] for j in judged]),
-            "answers_with_unsupported_claim": M.mean([float(j["n_supported"] < j["n_claims"]) for j in judged]),
-            "answer_relevance_1to5": M.mean([j["answer_relevance"] for j in judged]),
-            "answer_relevance_norm": M.mean([(j["answer_relevance"] - 1) / 4 for j in judged]),
-            "correctness_1to5": M.mean([j["correctness"] for j in judged]),
-            "judge_calls": judge.calls, "judge_tokens": judge.tokens,
-        }
+        summary["judge"] = judge_summary(rows, judge)
     return summary, rows
+
+
+def judge_summary(rows: list[dict], judge: AnswerJudge) -> dict:
+    answered = [r for r in rows if r["type"] != "unanswerable" and not r["no_answer"]]
+    judged = [r["judge"] for r in answered if r.get("judge") and not r["judge"].get("judge_error")]
+    return {
+        "model": f"{judge.client.provider}/{judge.client.model}",
+        "n_answered": len(answered), "n_judged": len(judged),
+        "judge_errors": sum(1 for r in answered if (r.get("judge") or {}).get("judge_error")),
+        "faithfulness": M.mean([j["faithfulness"] for j in judged]),
+        "answers_with_unsupported_claim": M.mean([float(j["n_supported"] < j["n_claims"]) for j in judged]),
+        "answer_relevance_1to5": M.mean([j["answer_relevance"] for j in judged]),
+        "answer_relevance_norm": M.mean([(j["answer_relevance"] - 1) / 4 for j in judged]),
+        "correctness_1to5": M.mean([j["correctness"] for j in judged]),
+        "judge_calls": judge.calls, "judge_tokens": judge.tokens,
+    }
+
+
+def make_judge(svc: RAGService) -> AnswerJudge:
+    s = svc.settings
+    return AnswerJudge(LLMClient(s.judge_provider, s.judge_model, s.judge_api_key, max_tokens=8192),
+                       s.log_dir / "judge_calls.jsonl")
+
+
+def rejudge(svc: RAGService, judge_interval: float = 7.0, out_dir: Path = RESULTS_DIR, tag: str = "eval",
+            all_rows: bool = False) -> dict:
+    """Judge answers from a saved run whose verdict is missing or failed (or all, with all_rows),
+    without regenerating them. Passages are re-retrieved when an older run did not save them."""
+    path = out_dir / f"{tag}_results.json"
+    full = json.loads(path.read_text(encoding="utf-8"))
+    rows = full["per_question"]["answers"]
+    questions = {q["id"]: q for q in load_questions()}
+    judge = make_judge(svc)
+    for row in rows:
+        if row["type"] == "unanswerable" or row["no_answer"]:
+            continue
+        if not all_rows and row.get("judge") and not row["judge"].get("judge_error"):
+            continue
+        q = questions[row["id"]]
+        if "context_passages" not in row:
+            hits, _ = svc.retrieve(q["question"], full["config"]["k"], q.get("doc_type"))
+            row["context_passages"] = [h.content for h in hits if h.score >= svc.settings.min_score]
+        log.info("judging %s", row["id"])
+        row["judge"] = judge.judge(row["id"], q["question"], row["answer"], q["gold"], row["context_passages"])
+        time.sleep(judge_interval)
+    full["answers"]["judge"] = judge_summary(rows, judge)
+    path.write_text(json.dumps(full, indent=2, default=float), encoding="utf-8")
+    (out_dir / f"{tag}_report.md").write_text(render_report(full, rows), encoding="utf-8")
+    return full["answers"]["judge"]
 
 
 def _count(items):
@@ -204,11 +244,7 @@ def run(svc: RAGService, k: int | None = None, use_judge: bool = True, retrieval
     result["latency"] = eval_latency(svc, questions, k, latency_reps)
     answer_rows = []
     if not retrieval_only:
-        judge = None
-        if use_judge:
-            s = svc.settings
-            judge = AnswerJudge(LLMClient(s.judge_provider, s.judge_model, s.judge_api_key, max_tokens=8192),
-                                s.log_dir / "judge_calls.jsonl")
+        judge = make_judge(svc) if use_judge else None
         log.info("answer layer (judge=%s)", bool(judge))
         result["answers"], answer_rows = eval_answers(svc, questions, labels, k, judge, gen_interval, judge_interval)
 
@@ -262,6 +298,8 @@ def render_report(r: dict, answer_rows: list[dict]) -> str:
         f"| Retrieval total (embed + search) | {lat['embed_plus_search_ms']['p50']} | {lat['embed_plus_search_ms']['p95']} |",
         f"| LLM generation | {ans['generation_ms']['p50']} | {ans['generation_ms']['p95']} |",
         f"| End-to-end (LLM-answered queries) | {ans['end_to_end_ms']['p50']} | {ans['end_to_end_ms']['p95']} |", "",
+        f"Judge: {j.get('n_judged', 0)}/{j.get('n_answered', 0)} answered questions judged, "
+        f"{j.get('judge_errors', 0)} judge errors, {j.get('judge_calls', 0)} calls, {j.get('judge_tokens', 0)} tokens.", "",
         "## Per-question answers", "",
         "| id | type | gold | answer | F1 | faithful | correct |", "|---|---|---|---|---|---|---|",
     ]

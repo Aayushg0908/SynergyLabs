@@ -51,6 +51,7 @@ def test_answer_metrics():
     assert exact_match("$1,490 per drone per year.", "$1,490 per drone per year") == 1.0
     assert contains_gold("Care+ costs $1,490 per drone per year [1].", "$1,490 per drone per year") == 1.0
     assert contains_gold("It is 0.5% [2].", "0.5%") == 1.0
+    assert contains_gold("exceeds 0.5 % of devices", "0.5%") == 1.0
     assert contains_gold("SEV‑2 [1]", "SEV-2") == 1.0
     # articles are dropped: pred has 5 tokens, gold 9, overlap 5 -> P=1, R=5/9, F1=10/14
     assert token_f1("the release captain and QA lead", "the release captain, the QA lead and the head of flight safety") \

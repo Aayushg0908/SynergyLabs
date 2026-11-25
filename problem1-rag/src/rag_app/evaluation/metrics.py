@@ -80,6 +80,7 @@ def normalize_answer(text: str) -> str:
     text = unicodedata.normalize("NFKC", text).translate(_DASHES).lower()
     text = re.sub(r"\[\d+\]", " ", text)  # drop citation markers
     text = text.replace(",", "")          # 1,490 == 1490
+    text = re.sub(r"(\d)\s+%", r"\1%", text)  # "0.5 %" == "0.5%"
     text = "".join(ch for ch in text if ch not in set(string.punctuation) - {"$", "%", "."} )
     text = re.sub(r"(?<!\d)\.|\.(?!\d)", " ", text)  # keep decimal points only
     text = _ARTICLES.sub(" ", text)

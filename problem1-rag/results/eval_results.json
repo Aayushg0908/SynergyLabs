@@ -1,0 +1,2481 @@
+{
+  "timestamp": "2026-11-25T07:38:55+00:00",
+  "config": {
+    "k": 5,
+    "min_score": 0.5,
+    "chunk_size": 256,
+    "chunk_overlap": 32,
+    "embedding_model": "BAAI/bge-small-en-v1.5",
+    "embedding_dim": 384,
+    "llm": "groq/openai/gpt-oss-120b",
+    "vector_store": "postgres+pgvector (HNSW, cosine)",
+    "documents": 12,
+    "vectors": 28,
+    "n_questions": 27
+  },
+  "retrieval": {
+    "k": 5,
+    "min_score": 0.5,
+    "n": 24,
+    "hit_rate": 1.0,
+    "recall": 0.9791666666666666,
+    "mrr": 0.9375,
+    "ndcg": 0.9224614509367068,
+    "precision_at_k": 0.21666666666666676,
+    "context_precision_ap": 0.8958333333333334,
+    "in_context_precision": 0.2333333333333334,
+    "by_type": {
+      "multi_doc": {
+        "n": 2,
+        "hit_rate": 1.0,
+        "recall": 0.75,
+        "mrr": 0.75,
+        "ndcg": 0.6320340612862955,
+        "precision_at_k": 0.30000000000000004,
+        "context_precision_ap": 0.5,
+        "in_context_precision": 0.30000000000000004
+      },
+      "single": {
+        "n": 22,
+        "hit_rate": 1.0,
+        "recall": 1.0,
+        "mrr": 0.9545454545454546,
+        "ndcg": 0.9488639409049262,
+        "precision_at_k": 0.20909090909090916,
+        "context_precision_ap": 0.9318181818181818,
+        "in_context_precision": 0.22727272727272735
+      }
+    },
+    "unanswerable_rejected_by_threshold": 0.0,
+    "relevant_top_score_mean": 0.7503708333333332,
+    "unanswerable_top_score_mean": 0.7321666666666666,
+    "questions_with_unreachable_spans": []
+  },
+  "latency": {
+    "vector_search_ms": {
+      "p50": 3.72,
+      "p95": 4.74,
+      "mean": 3.55,
+      "n": 270
+    },
+    "query_embedding_ms": {
+      "p50": 31.11,
+      "p95": 39.66,
+      "mean": 32.32,
+      "n": 270
+    },
+    "embed_plus_search_ms": {
+      "p50": 34.8,
+      "p95": 43.25,
+      "mean": 35.87,
+      "n": 270
+    },
+    "k": 5,
+    "vectors_in_index": 28,
+    "reps_per_question": 10
+  },
+  "answers": {
+    "n_answerable": 24,
+    "n_unanswerable": 3,
+    "exact_match": 0.0,
+    "contains_gold": 0.875,
+    "token_f1": 0.30667889032956114,
+    "citation_accuracy": 1.0,
+    "answerable_false_abstention_rate": 0.0,
+    "unanswerable_correct_abstention_rate": 1.0,
+    "unanswerable_abstention_by": {
+      "llm_found_context_insufficient": 3
+    },
+    "judge": {
+      "model": "groq/qwen/qwen3.8-27b",
+      "n_answered": 24,
+      "n_judged": 24,
+      "judge_errors": 0,
+      "faithfulness": 1.0,
+      "answers_with_unsupported_claim": 0.0,
+      "answer_relevance_1to5": 5.0,
+      "answer_relevance_norm": 1.0,
+      "correctness_1to5": 5.0,
+      "judge_calls": 0,
+      "judge_tokens": 0
+    },
+    "end_to_end_ms": {
+      "p50": 755.5,
+      "p95": 1187.1,
+      "n": 27
+    },
+    "generation_ms": {
+      "p50": 693.4,
+      "p95": 908.6
+    },
+    "mean_tokens_per_llm_query": {
+      "prompt": 1356.148148148148,
+      "completion": 62.666666666666664
+    }
+  },
+  "per_question": {
+    "retrieval": [
+      {
+        "id": "q01",
+        "type": "single",
+        "top_score": 0.8136,
+        "retrieved": [
+          {
+            "doc_id": "product/kx200-specifications.html",
+            "chunk_id": "fbfb85551edd2bcb66c919e3e0867b49",
+            "score": 0.8136,
+            "relevant": true
+          },
+          {
+            "doc_id": "support/customer-faq.html",
+            "chunk_id": "c09be8cb7a34cb4580627d308408116d",
+            "score": 0.7613,
+            "relevant": false
+          },
+          {
+            "doc_id": "product/kx200-specifications.html",
+            "chunk_id": "ebca2d33a22a3560939c8f047e9a762c",
+            "score": 0.714,
+            "relevant": false
+          },
+          {
+            "doc_id": "support/customer-faq.html",
+            "chunk_id": "9886b54310b304d3a9218a29fbe58e42",
+            "score": 0.7006,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/firmware-release-process.md",
+            "chunk_id": "32c4a3ec1e1b9c5d2aef396fe77509c8",
+            "score": 0.6598,
+            "relevant": false
+          }
+        ],
+        "n_relevant_in_index": 1,
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.2,
+        "ap": 1.0,
+        "in_context_precision": 0.2,
+        "unreachable_spans": []
+      },
+      {
+        "id": "q02",
+        "type": "single",
+        "top_score": 0.5952,
+        "retrieved": [
+          {
+            "doc_id": "policies/travel-and-expense-policy.pdf",
+            "chunk_id": "d4a03a5c953a4d2046d51bb3420cb0c9",
+            "score": 0.5952,
+            "relevant": true
+          },
+          {
+            "doc_id": "engineering/api-rate-limits.md",
+            "chunk_id": "092a270b8381e9f994713050139163c3",
+            "score": 0.5582,
+            "relevant": false
+          },
+          {
+            "doc_id": "policies/travel-and-expense-policy.pdf",
+            "chunk_id": "6f5e23d09b04fff4e80005140b3f18ab",
+            "score": 0.5433,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/api-rate-limits.md",
+            "chunk_id": "7a23e21d2358c3c0cdbd1cfe6a244117",
+            "score": 0.5395,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/api-rate-limits.md",
+            "chunk_id": "74020322cd628a8056ad25c5ed838257",
+            "score": 0.5316,
+            "relevant": false
+          }
+        ],
+        "n_relevant_in_index": 1,
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.2,
+        "ap": 1.0,
+        "in_context_precision": 0.2,
+        "unreachable_spans": []
+      },
+      {
+        "id": "q03",
+        "type": "single",
+        "top_score": 0.6844,
+        "retrieved": [
+          {
+            "doc_id": "engineering/api-rate-limits.md",
+            "chunk_id": "74020322cd628a8056ad25c5ed838257",
+            "score": 0.6844,
+            "relevant": true
+          },
+          {
+            "doc_id": "engineering/api-rate-limits.md",
+            "chunk_id": "092a270b8381e9f994713050139163c3",
+            "score": 0.6049,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/api-rate-limits.md",
+            "chunk_id": "7a23e21d2358c3c0cdbd1cfe6a244117",
+            "score": 0.5909,
+            "relevant": false
+          },
+          {
+            "doc_id": "finance/q3-2026-quarterly-report.pdf",
+            "chunk_id": "50786ff6d6e8a0b66869add1a466c5c7",
+            "score": 0.5732,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/firmware-release-process.md",
+            "chunk_id": "e1ed245f4355ef386c15de312501d9cc",
+            "score": 0.5443,
+            "relevant": false
+          }
+        ],
+        "n_relevant_in_index": 1,
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.2,
+        "ap": 1.0,
+        "in_context_precision": 0.2,
+        "unreachable_spans": []
+      },
+      {
+        "id": "q04",
+        "type": "single",
+        "top_score": 0.8481,
+        "retrieved": [
+          {
+            "doc_id": "engineering/api-rate-limits.md",
+            "chunk_id": "7a23e21d2358c3c0cdbd1cfe6a244117",
+            "score": 0.8481,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/api-rate-limits.md",
+            "chunk_id": "74020322cd628a8056ad25c5ed838257",
+            "score": 0.7937,
+            "relevant": true
+          },
+          {
+            "doc_id": "engineering/api-rate-limits.md",
+            "chunk_id": "092a270b8381e9f994713050139163c3",
+            "score": 0.7668,
+            "relevant": false
+          },
+          {
+            "doc_id": "policies/information-security-policy.pdf",
+            "chunk_id": "b5fa24ba93bb33119539ce2f03ead669",
+            "score": 0.673,
+            "relevant": false
+          },
+          {
+            "doc_id": "policies/information-security-policy.pdf",
+            "chunk_id": "f88519dba00296e5829f42c2841f948d",
+            "score": 0.6687,
+            "relevant": false
+          }
+        ],
+        "n_relevant_in_index": 1,
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 0.5,
+        "ndcg": 0.6309297535714575,
+        "precision": 0.2,
+        "ap": 0.5,
+        "in_context_precision": 0.2,
+        "unreachable_spans": []
+      },
+      {
+        "id": "q05",
+        "type": "single",
+        "top_score": 0.8295,
+        "retrieved": [
+          {
+            "doc_id": "policies/leave-policy.pdf",
+            "chunk_id": "0d733774e851270558c5719c4a6a82f0",
+            "score": 0.8295,
+            "relevant": true
+          },
+          {
+            "doc_id": "policies/leave-policy.pdf",
+            "chunk_id": "bf7501873de51e30208d138c6bef7a61",
+            "score": 0.6642,
+            "relevant": false
+          },
+          {
+            "doc_id": "policies/travel-and-expense-policy.pdf",
+            "chunk_id": "b50e04f6d88320112d0d45fc68c2aa25",
+            "score": 0.5913,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/engineering-onboarding.md",
+            "chunk_id": "983b03632f74505273289145c5f57af2",
+            "score": 0.5328,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/firmware-release-process.md",
+            "chunk_id": "90a6ed77ae9f97d5a58b05fc1a35d45c",
+            "score": 0.5244,
+            "relevant": false
+          }
+        ],
+        "n_relevant_in_index": 1,
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.2,
+        "ap": 1.0,
+        "in_context_precision": 0.2,
+        "unreachable_spans": []
+      },
+      {
+        "id": "q06",
+        "type": "single",
+        "top_score": 0.6954,
+        "retrieved": [
+          {
+            "doc_id": "support/customer-faq.html",
+            "chunk_id": "9886b54310b304d3a9218a29fbe58e42",
+            "score": 0.6954,
+            "relevant": false
+          },
+          {
+            "doc_id": "support/warranty-and-repairs.html",
+            "chunk_id": "37f9fe4a0b90368372ee90fd219c8f18",
+            "score": 0.6896,
+            "relevant": true
+          },
+          {
+            "doc_id": "product/kx200-specifications.html",
+            "chunk_id": "fbfb85551edd2bcb66c919e3e0867b49",
+            "score": 0.6384,
+            "relevant": false
+          },
+          {
+            "doc_id": "support/warranty-and-repairs.html",
+            "chunk_id": "c1fd40dce1490dd3210b58fe3c7680f9",
+            "score": 0.5881,
+            "relevant": false
+          },
+          {
+            "doc_id": "support/customer-faq.html",
+            "chunk_id": "c09be8cb7a34cb4580627d308408116d",
+            "score": 0.5863,
+            "relevant": false
+          }
+        ],
+        "n_relevant_in_index": 1,
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 0.5,
+        "ndcg": 0.6309297535714575,
+        "precision": 0.2,
+        "ap": 0.5,
+        "in_context_precision": 0.2,
+        "unreachable_spans": []
+      },
+      {
+        "id": "q07",
+        "type": "single",
+        "top_score": 0.6875,
+        "retrieved": [
+          {
+            "doc_id": "engineering/engineering-onboarding.md",
+            "chunk_id": "983b03632f74505273289145c5f57af2",
+            "score": 0.6875,
+            "relevant": true
+          },
+          {
+            "doc_id": "engineering/firmware-release-process.md",
+            "chunk_id": "32c4a3ec1e1b9c5d2aef396fe77509c8",
+            "score": 0.6131,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/firmware-release-process.md",
+            "chunk_id": "90a6ed77ae9f97d5a58b05fc1a35d45c",
+            "score": 0.6105,
+            "relevant": false
+          },
+          {
+            "doc_id": "policies/information-security-policy.pdf",
+            "chunk_id": "b5fa24ba93bb33119539ce2f03ead669",
+            "score": 0.5852,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/firmware-release-process.md",
+            "chunk_id": "e1ed245f4355ef386c15de312501d9cc",
+            "score": 0.5833,
+            "relevant": false
+          }
+        ],
+        "n_relevant_in_index": 2,
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "ndcg": 0.6131471927654584,
+        "precision": 0.2,
+        "ap": 0.5,
+        "in_context_precision": 0.2,
+        "unreachable_spans": []
+      },
+      {
+        "id": "q08",
+        "type": "single",
+        "top_score": 0.7384,
+        "retrieved": [
+          {
+            "doc_id": "policies/travel-and-expense-policy.pdf",
+            "chunk_id": "6f5e23d09b04fff4e80005140b3f18ab",
+            "score": 0.7384,
+            "relevant": true
+          },
+          {
+            "doc_id": "policies/travel-and-expense-policy.pdf",
+            "chunk_id": "b50e04f6d88320112d0d45fc68c2aa25",
+            "score": 0.7238,
+            "relevant": false
+          },
+          {
+            "doc_id": "policies/travel-and-expense-policy.pdf",
+            "chunk_id": "d4a03a5c953a4d2046d51bb3420cb0c9",
+            "score": 0.6662,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/engineering-onboarding.md",
+            "chunk_id": "983b03632f74505273289145c5f57af2",
+            "score": 0.5842,
+            "relevant": false
+          },
+          {
+            "doc_id": "support/warranty-and-repairs.html",
+            "chunk_id": "37f9fe4a0b90368372ee90fd219c8f18",
+            "score": 0.5661,
+            "relevant": false
+          }
+        ],
+        "n_relevant_in_index": 1,
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.2,
+        "ap": 1.0,
+        "in_context_precision": 0.2,
+        "unreachable_spans": []
+      },
+      {
+        "id": "q09",
+        "type": "single",
+        "top_score": 0.7906,
+        "retrieved": [
+          {
+            "doc_id": "engineering/runbook-telemetry-outage.md",
+            "chunk_id": "5b0e61a26f59dfe694b657529a8c43cd",
+            "score": 0.7906,
+            "relevant": true
+          },
+          {
+            "doc_id": "engineering/runbook-telemetry-outage.md",
+            "chunk_id": "bdb177b92b20ecaef3a0dea3f640319f",
+            "score": 0.7098,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/runbook-telemetry-outage.md",
+            "chunk_id": "49c9360b20f7f675067490b13f54c3e0",
+            "score": 0.6569,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/api-rate-limits.md",
+            "chunk_id": "74020322cd628a8056ad25c5ed838257",
+            "score": 0.6013,
+            "relevant": false
+          },
+          {
+            "doc_id": "policies/information-security-policy.pdf",
+            "chunk_id": "b5fa24ba93bb33119539ce2f03ead669",
+            "score": 0.5959,
+            "relevant": false
+          }
+        ],
+        "n_relevant_in_index": 1,
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.2,
+        "ap": 1.0,
+        "in_context_precision": 0.2,
+        "unreachable_spans": []
+      },
+      {
+        "id": "q10",
+        "type": "single",
+        "top_score": 0.7555,
+        "retrieved": [
+          {
+            "doc_id": "engineering/firmware-release-process.md",
+            "chunk_id": "32c4a3ec1e1b9c5d2aef396fe77509c8",
+            "score": 0.7555,
+            "relevant": true
+          },
+          {
+            "doc_id": "engineering/firmware-release-process.md",
+            "chunk_id": "e1ed245f4355ef386c15de312501d9cc",
+            "score": 0.7489,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/firmware-release-process.md",
+            "chunk_id": "90a6ed77ae9f97d5a58b05fc1a35d45c",
+            "score": 0.7091,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/runbook-telemetry-outage.md",
+            "chunk_id": "bdb177b92b20ecaef3a0dea3f640319f",
+            "score": 0.6415,
+            "relevant": false
+          },
+          {
+            "doc_id": "support/customer-faq.html",
+            "chunk_id": "9886b54310b304d3a9218a29fbe58e42",
+            "score": 0.6312,
+            "relevant": false
+          }
+        ],
+        "n_relevant_in_index": 1,
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.2,
+        "ap": 1.0,
+        "in_context_precision": 0.2,
+        "unreachable_spans": []
+      },
+      {
+        "id": "q11",
+        "type": "single",
+        "top_score": 0.8686,
+        "retrieved": [
+          {
+            "doc_id": "finance/q3-2026-quarterly-report.pdf",
+            "chunk_id": "b78e0cbee15108597bb0bb16cd387f3e",
+            "score": 0.8686,
+            "relevant": true
+          },
+          {
+            "doc_id": "finance/q3-2026-quarterly-report.pdf",
+            "chunk_id": "50786ff6d6e8a0b66869add1a466c5c7",
+            "score": 0.8341,
+            "relevant": false
+          },
+          {
+            "doc_id": "policies/travel-and-expense-policy.pdf",
+            "chunk_id": "d4a03a5c953a4d2046d51bb3420cb0c9",
+            "score": 0.6754,
+            "relevant": false
+          },
+          {
+            "doc_id": "policies/leave-policy.pdf",
+            "chunk_id": "bf7501873de51e30208d138c6bef7a61",
+            "score": 0.6339,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/api-rate-limits.md",
+            "chunk_id": "7a23e21d2358c3c0cdbd1cfe6a244117",
+            "score": 0.6331,
+            "relevant": false
+          }
+        ],
+        "n_relevant_in_index": 1,
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.2,
+        "ap": 1.0,
+        "in_context_precision": 0.2,
+        "unreachable_spans": []
+      },
+      {
+        "id": "q12",
+        "type": "single",
+        "top_score": 0.7632,
+        "retrieved": [
+          {
+            "doc_id": "support/warranty-and-repairs.html",
+            "chunk_id": "37f9fe4a0b90368372ee90fd219c8f18",
+            "score": 0.7632,
+            "relevant": true
+          },
+          {
+            "doc_id": "policies/travel-and-expense-policy.pdf",
+            "chunk_id": "d4a03a5c953a4d2046d51bb3420cb0c9",
+            "score": 0.7241,
+            "relevant": false
+          },
+          {
+            "doc_id": "product/vela-gateway.html",
+            "chunk_id": "6733a17887b86e86f9e0380123ae3d9b",
+            "score": 0.7207,
+            "relevant": false
+          },
+          {
+            "doc_id": "finance/q3-2026-quarterly-report.pdf",
+            "chunk_id": "b78e0cbee15108597bb0bb16cd387f3e",
+            "score": 0.6915,
+            "relevant": false
+          },
+          {
+            "doc_id": "policies/leave-policy.pdf",
+            "chunk_id": "bf7501873de51e30208d138c6bef7a61",
+            "score": 0.6821,
+            "relevant": false
+          }
+        ],
+        "n_relevant_in_index": 1,
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.2,
+        "ap": 1.0,
+        "in_context_precision": 0.2,
+        "unreachable_spans": []
+      },
+      {
+        "id": "q13",
+        "type": "single",
+        "top_score": 0.7752,
+        "retrieved": [
+          {
+            "doc_id": "support/customer-faq.html",
+            "chunk_id": "c09be8cb7a34cb4580627d308408116d",
+            "score": 0.7752,
+            "relevant": true
+          },
+          {
+            "doc_id": "engineering/api-rate-limits.md",
+            "chunk_id": "7a23e21d2358c3c0cdbd1cfe6a244117",
+            "score": 0.7712,
+            "relevant": false
+          },
+          {
+            "doc_id": "finance/q3-2026-quarterly-report.pdf",
+            "chunk_id": "50786ff6d6e8a0b66869add1a466c5c7",
+            "score": 0.7569,
+            "relevant": false
+          },
+          {
+            "doc_id": "finance/q3-2026-quarterly-report.pdf",
+            "chunk_id": "b78e0cbee15108597bb0bb16cd387f3e",
+            "score": 0.7311,
+            "relevant": false
+          },
+          {
+            "doc_id": "support/customer-faq.html",
+            "chunk_id": "9886b54310b304d3a9218a29fbe58e42",
+            "score": 0.7256,
+            "relevant": false
+          }
+        ],
+        "n_relevant_in_index": 1,
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.2,
+        "ap": 1.0,
+        "in_context_precision": 0.2,
+        "unreachable_spans": []
+      },
+      {
+        "id": "q14",
+        "type": "single",
+        "top_score": 0.6968,
+        "retrieved": [
+          {
+            "doc_id": "policies/information-security-policy.pdf",
+            "chunk_id": "f88519dba00296e5829f42c2841f948d",
+            "score": 0.6968,
+            "relevant": true
+          },
+          {
+            "doc_id": "policies/information-security-policy.pdf",
+            "chunk_id": "b5fa24ba93bb33119539ce2f03ead669",
+            "score": 0.6258,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/api-rate-limits.md",
+            "chunk_id": "092a270b8381e9f994713050139163c3",
+            "score": 0.5825,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/runbook-telemetry-outage.md",
+            "chunk_id": "5b0e61a26f59dfe694b657529a8c43cd",
+            "score": 0.5777,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/api-rate-limits.md",
+            "chunk_id": "74020322cd628a8056ad25c5ed838257",
+            "score": 0.5721,
+            "relevant": false
+          }
+        ],
+        "n_relevant_in_index": 1,
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.2,
+        "ap": 1.0,
+        "in_context_precision": 0.2,
+        "unreachable_spans": []
+      },
+      {
+        "id": "q15",
+        "type": "single",
+        "top_score": 0.8354,
+        "retrieved": [
+          {
+            "doc_id": "product/vela-gateway.html",
+            "chunk_id": "312feefd4448d1ff3746ad5dac1b2aec",
+            "score": 0.8354,
+            "relevant": true
+          },
+          {
+            "doc_id": "product/vela-gateway.html",
+            "chunk_id": "6733a17887b86e86f9e0380123ae3d9b",
+            "score": 0.7322,
+            "relevant": false
+          },
+          {
+            "doc_id": "support/warranty-and-repairs.html",
+            "chunk_id": "37f9fe4a0b90368372ee90fd219c8f18",
+            "score": 0.6735,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/firmware-release-process.md",
+            "chunk_id": "32c4a3ec1e1b9c5d2aef396fe77509c8",
+            "score": 0.6503,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/api-rate-limits.md",
+            "chunk_id": "7a23e21d2358c3c0cdbd1cfe6a244117",
+            "score": 0.6356,
+            "relevant": false
+          }
+        ],
+        "n_relevant_in_index": 1,
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.2,
+        "ap": 1.0,
+        "in_context_precision": 0.2,
+        "unreachable_spans": []
+      },
+      {
+        "id": "q16",
+        "type": "multi_doc",
+        "top_score": 0.732,
+        "retrieved": [
+          {
+            "doc_id": "engineering/runbook-telemetry-outage.md",
+            "chunk_id": "5b0e61a26f59dfe694b657529a8c43cd",
+            "score": 0.732,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/runbook-telemetry-outage.md",
+            "chunk_id": "49c9360b20f7f675067490b13f54c3e0",
+            "score": 0.7233,
+            "relevant": true
+          },
+          {
+            "doc_id": "engineering/runbook-telemetry-outage.md",
+            "chunk_id": "bdb177b92b20ecaef3a0dea3f640319f",
+            "score": 0.6903,
+            "relevant": false
+          },
+          {
+            "doc_id": "policies/information-security-policy.pdf",
+            "chunk_id": "b5fa24ba93bb33119539ce2f03ead669",
+            "score": 0.639,
+            "relevant": false
+          },
+          {
+            "doc_id": "policies/information-security-policy.pdf",
+            "chunk_id": "f88519dba00296e5829f42c2841f948d",
+            "score": 0.6212,
+            "relevant": false
+          }
+        ],
+        "n_relevant_in_index": 2,
+        "hit": 1.0,
+        "recall": 0.5,
+        "rr": 0.5,
+        "ndcg": 0.38685280723454163,
+        "precision": 0.2,
+        "ap": 0.25,
+        "in_context_precision": 0.2,
+        "unreachable_spans": []
+      },
+      {
+        "id": "q17",
+        "type": "multi_doc",
+        "top_score": 0.7499,
+        "retrieved": [
+          {
+            "doc_id": "product/vela-gateway.html",
+            "chunk_id": "6733a17887b86e86f9e0380123ae3d9b",
+            "score": 0.7499,
+            "relevant": true
+          },
+          {
+            "doc_id": "product/vela-gateway.html",
+            "chunk_id": "312feefd4448d1ff3746ad5dac1b2aec",
+            "score": 0.7402,
+            "relevant": false
+          },
+          {
+            "doc_id": "support/warranty-and-repairs.html",
+            "chunk_id": "37f9fe4a0b90368372ee90fd219c8f18",
+            "score": 0.7286,
+            "relevant": false
+          },
+          {
+            "doc_id": "product/kx200-specifications.html",
+            "chunk_id": "ebca2d33a22a3560939c8f047e9a762c",
+            "score": 0.7098,
+            "relevant": true
+          },
+          {
+            "doc_id": "product/kx200-specifications.html",
+            "chunk_id": "fbfb85551edd2bcb66c919e3e0867b49",
+            "score": 0.7074,
+            "relevant": false
+          }
+        ],
+        "n_relevant_in_index": 2,
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "ndcg": 0.8772153153380493,
+        "precision": 0.4,
+        "ap": 0.75,
+        "in_context_precision": 0.4,
+        "unreachable_spans": []
+      },
+      {
+        "id": "q18",
+        "type": "single",
+        "top_score": 0.6726,
+        "retrieved": [
+          {
+            "doc_id": "policies/leave-policy.pdf",
+            "chunk_id": "0d733774e851270558c5719c4a6a82f0",
+            "score": 0.6726,
+            "relevant": true
+          },
+          {
+            "doc_id": "engineering/engineering-onboarding.md",
+            "chunk_id": "983b03632f74505273289145c5f57af2",
+            "score": 0.6162,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/runbook-telemetry-outage.md",
+            "chunk_id": "5b0e61a26f59dfe694b657529a8c43cd",
+            "score": 0.6148,
+            "relevant": false
+          },
+          {
+            "doc_id": "policies/travel-and-expense-policy.pdf",
+            "chunk_id": "6f5e23d09b04fff4e80005140b3f18ab",
+            "score": 0.6014,
+            "relevant": false
+          },
+          {
+            "doc_id": "policies/leave-policy.pdf",
+            "chunk_id": "bf7501873de51e30208d138c6bef7a61",
+            "score": 0.598,
+            "relevant": false
+          }
+        ],
+        "n_relevant_in_index": 1,
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.2,
+        "ap": 1.0,
+        "in_context_precision": 0.2,
+        "unreachable_spans": []
+      },
+      {
+        "id": "q19",
+        "type": "single",
+        "top_score": 0.7797,
+        "retrieved": [
+          {
+            "doc_id": "policies/information-security-policy.pdf",
+            "chunk_id": "b5fa24ba93bb33119539ce2f03ead669",
+            "score": 0.7797,
+            "relevant": true
+          },
+          {
+            "doc_id": "engineering/runbook-telemetry-outage.md",
+            "chunk_id": "5b0e61a26f59dfe694b657529a8c43cd",
+            "score": 0.6365,
+            "relevant": false
+          },
+          {
+            "doc_id": "policies/information-security-policy.pdf",
+            "chunk_id": "f88519dba00296e5829f42c2841f948d",
+            "score": 0.6176,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/engineering-onboarding.md",
+            "chunk_id": "983b03632f74505273289145c5f57af2",
+            "score": 0.6097,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/runbook-telemetry-outage.md",
+            "chunk_id": "49c9360b20f7f675067490b13f54c3e0",
+            "score": 0.5928,
+            "relevant": false
+          }
+        ],
+        "n_relevant_in_index": 1,
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.2,
+        "ap": 1.0,
+        "in_context_precision": 0.2,
+        "unreachable_spans": []
+      },
+      {
+        "id": "q20",
+        "type": "single",
+        "top_score": 0.7674,
+        "retrieved": [
+          {
+            "doc_id": "product/kx200-specifications.html",
+            "chunk_id": "fbfb85551edd2bcb66c919e3e0867b49",
+            "score": 0.7674,
+            "relevant": true
+          },
+          {
+            "doc_id": "product/kx200-specifications.html",
+            "chunk_id": "ebca2d33a22a3560939c8f047e9a762c",
+            "score": 0.6768,
+            "relevant": false
+          },
+          {
+            "doc_id": "support/customer-faq.html",
+            "chunk_id": "c09be8cb7a34cb4580627d308408116d",
+            "score": 0.6759,
+            "relevant": false
+          },
+          {
+            "doc_id": "support/customer-faq.html",
+            "chunk_id": "9886b54310b304d3a9218a29fbe58e42",
+            "score": 0.6455,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/api-rate-limits.md",
+            "chunk_id": "7a23e21d2358c3c0cdbd1cfe6a244117",
+            "score": 0.6219,
+            "relevant": false
+          }
+        ],
+        "n_relevant_in_index": 1,
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.2,
+        "ap": 1.0,
+        "in_context_precision": 0.2,
+        "unreachable_spans": []
+      },
+      {
+        "id": "q21",
+        "type": "single",
+        "top_score": 0.7562,
+        "retrieved": [
+          {
+            "doc_id": "policies/travel-and-expense-policy.pdf",
+            "chunk_id": "6f5e23d09b04fff4e80005140b3f18ab",
+            "score": 0.7562,
+            "relevant": true
+          },
+          {
+            "doc_id": "policies/travel-and-expense-policy.pdf",
+            "chunk_id": "d4a03a5c953a4d2046d51bb3420cb0c9",
+            "score": 0.6642,
+            "relevant": true
+          },
+          {
+            "doc_id": "policies/travel-and-expense-policy.pdf",
+            "chunk_id": "b50e04f6d88320112d0d45fc68c2aa25",
+            "score": 0.5495,
+            "relevant": false
+          },
+          {
+            "doc_id": "policies/leave-policy.pdf",
+            "chunk_id": "bf7501873de51e30208d138c6bef7a61",
+            "score": 0.5458,
+            "relevant": false
+          },
+          {
+            "doc_id": "policies/leave-policy.pdf",
+            "chunk_id": "0d733774e851270558c5719c4a6a82f0",
+            "score": 0.4761,
+            "relevant": false
+          }
+        ],
+        "n_relevant_in_index": 2,
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.4,
+        "ap": 1.0,
+        "in_context_precision": 0.5,
+        "unreachable_spans": []
+      },
+      {
+        "id": "q22",
+        "type": "single",
+        "top_score": 0.7789,
+        "retrieved": [
+          {
+            "doc_id": "engineering/firmware-release-process.md",
+            "chunk_id": "90a6ed77ae9f97d5a58b05fc1a35d45c",
+            "score": 0.7789,
+            "relevant": true
+          },
+          {
+            "doc_id": "engineering/firmware-release-process.md",
+            "chunk_id": "e1ed245f4355ef386c15de312501d9cc",
+            "score": 0.6763,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/firmware-release-process.md",
+            "chunk_id": "32c4a3ec1e1b9c5d2aef396fe77509c8",
+            "score": 0.6604,
+            "relevant": false
+          },
+          {
+            "doc_id": "support/customer-faq.html",
+            "chunk_id": "9886b54310b304d3a9218a29fbe58e42",
+            "score": 0.6267,
+            "relevant": false
+          },
+          {
+            "doc_id": "policies/information-security-policy.pdf",
+            "chunk_id": "f88519dba00296e5829f42c2841f948d",
+            "score": 0.605,
+            "relevant": false
+          }
+        ],
+        "n_relevant_in_index": 1,
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.2,
+        "ap": 1.0,
+        "in_context_precision": 0.2,
+        "unreachable_spans": []
+      },
+      {
+        "id": "q23",
+        "type": "single",
+        "top_score": 0.7445,
+        "retrieved": [
+          {
+            "doc_id": "engineering/firmware-release-process.md",
+            "chunk_id": "e1ed245f4355ef386c15de312501d9cc",
+            "score": 0.7445,
+            "relevant": true
+          },
+          {
+            "doc_id": "engineering/firmware-release-process.md",
+            "chunk_id": "32c4a3ec1e1b9c5d2aef396fe77509c8",
+            "score": 0.7022,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/runbook-telemetry-outage.md",
+            "chunk_id": "bdb177b92b20ecaef3a0dea3f640319f",
+            "score": 0.6684,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/firmware-release-process.md",
+            "chunk_id": "90a6ed77ae9f97d5a58b05fc1a35d45c",
+            "score": 0.6683,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/runbook-telemetry-outage.md",
+            "chunk_id": "5b0e61a26f59dfe694b657529a8c43cd",
+            "score": 0.6582,
+            "relevant": false
+          }
+        ],
+        "n_relevant_in_index": 1,
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.2,
+        "ap": 1.0,
+        "in_context_precision": 0.2,
+        "unreachable_spans": []
+      },
+      {
+        "id": "q24",
+        "type": "single",
+        "top_score": 0.6503,
+        "retrieved": [
+          {
+            "doc_id": "engineering/engineering-onboarding.md",
+            "chunk_id": "983b03632f74505273289145c5f57af2",
+            "score": 0.6503,
+            "relevant": true
+          },
+          {
+            "doc_id": "engineering/engineering-onboarding.md",
+            "chunk_id": "cc06d54213cabf3a1565cca33dd052ee",
+            "score": 0.55,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/api-rate-limits.md",
+            "chunk_id": "092a270b8381e9f994713050139163c3",
+            "score": 0.4964,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/api-rate-limits.md",
+            "chunk_id": "74020322cd628a8056ad25c5ed838257",
+            "score": 0.4807,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/firmware-release-process.md",
+            "chunk_id": "90a6ed77ae9f97d5a58b05fc1a35d45c",
+            "score": 0.4802,
+            "relevant": false
+          }
+        ],
+        "n_relevant_in_index": 1,
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.2,
+        "ap": 1.0,
+        "in_context_precision": 0.5,
+        "unreachable_spans": []
+      },
+      {
+        "id": "q25",
+        "type": "unanswerable",
+        "top_score": 0.749,
+        "retrieved": [
+          {
+            "doc_id": "policies/travel-and-expense-policy.pdf",
+            "chunk_id": "d4a03a5c953a4d2046d51bb3420cb0c9",
+            "score": 0.749,
+            "relevant": false
+          },
+          {
+            "doc_id": "policies/information-security-policy.pdf",
+            "chunk_id": "f88519dba00296e5829f42c2841f948d",
+            "score": 0.7129,
+            "relevant": false
+          },
+          {
+            "doc_id": "policies/leave-policy.pdf",
+            "chunk_id": "bf7501873de51e30208d138c6bef7a61",
+            "score": 0.7066,
+            "relevant": false
+          },
+          {
+            "doc_id": "engineering/api-rate-limits.md",
+            "chunk_id": "7a23e21d2358c3c0cdbd1cfe6a244117",
+            "score": 0.7003,
+            "relevant": false
+          },
+          {
+            "doc_id": "policies/information-security-policy.pdf",
+            "chunk_id": "b5fa24ba93bb33119539ce2f03ead669",
+            "score": 0.6868,
+            "relevant": false
+          }
+        ],
+        "rejected_by_threshold": false
+      },
+      {
+        "id": "q26",
+        "type": "unanswerable",
+        "top_score": 0.6845,
+        "retrieved": [
+          {
+            "doc_id": "finance/q3-2026-quarterly-report.pdf",
+            "chunk_id": "b78e0cbee15108597bb0bb16cd387f3e",
+            "score": 0.6845,
+            "relevant": false
+          },
+          {
+            "doc_id": "finance/q3-2026-quarterly-report.pdf",
+            "chunk_id": "50786ff6d6e8a0b66869add1a466c5c7",
+            "score": 0.6745,
+            "relevant": false
+          },
+          {
+            "doc_id": "policies/information-security-policy.pdf",
+            "chunk_id": "b5fa24ba93bb33119539ce2f03ead669",
+            "score": 0.604,
+            "relevant": false
+          },
+          {
+            "doc_id": "policies/information-security-policy.pdf",
+            "chunk_id": "f88519dba00296e5829f42c2841f948d",
+            "score": 0.6036,
+            "relevant": false
+          },
+          {
+            "doc_id": "policies/travel-and-expense-policy.pdf",
+            "chunk_id": "d4a03a5c953a4d2046d51bb3420cb0c9",
+            "score": 0.6008,
+            "relevant": false
+          }
+        ],
+        "rejected_by_threshold": false
+      },
+      {
+        "id": "q27",
+        "type": "unanswerable",
+        "top_score": 0.763,
+        "retrieved": [
+          {
+            "doc_id": "product/kx200-specifications.html",
+            "chunk_id": "fbfb85551edd2bcb66c919e3e0867b49",
+            "score": 0.763,
+            "relevant": false
+          },
+          {
+            "doc_id": "product/kx200-specifications.html",
+            "chunk_id": "ebca2d33a22a3560939c8f047e9a762c",
+            "score": 0.7052,
+            "relevant": false
+          },
+          {
+            "doc_id": "support/warranty-and-repairs.html",
+            "chunk_id": "37f9fe4a0b90368372ee90fd219c8f18",
+            "score": 0.6945,
+            "relevant": false
+          },
+          {
+            "doc_id": "support/customer-faq.html",
+            "chunk_id": "c09be8cb7a34cb4580627d308408116d",
+            "score": 0.675,
+            "relevant": false
+          },
+          {
+            "doc_id": "support/customer-faq.html",
+            "chunk_id": "9886b54310b304d3a9218a29fbe58e42",
+            "score": 0.6625,
+            "relevant": false
+          }
+        ],
+        "rejected_by_threshold": false
+      }
+    ],
+    "answers": [
+      {
+        "id": "q01",
+        "type": "single",
+        "question": "How long can the KX-200 fly when carrying its maximum payload?",
+        "gold": "31 minutes",
+        "answer": "The KX\u2011200 can fly for about **31\u202fminutes** when carrying its maximum 1.5\u202fkg payload[1].",
+        "no_answer": false,
+        "no_answer_reason": null,
+        "citations": [
+          "product/kx200-specifications.html"
+        ],
+        "latency_ms": {
+          "embed_ms": 31.1,
+          "retrieval_ms": 3.66,
+          "generation_ms": 981.82,
+          "total_ms": 1553.38
+        },
+        "usage": {
+          "prompt_tokens": 1474,
+          "completion_tokens": 70,
+          "total_tokens": 1544
+        },
+        "em": 0.0,
+        "contains_gold": 1.0,
+        "f1": 0.25,
+        "citation_correct": true,
+        "judge": {
+          "faithfulness": 1.0,
+          "n_claims": 1,
+          "n_supported": 1,
+          "unsupported_claims": [],
+          "answer_relevance": 5,
+          "relevance_reason": "The answer directly and completely addresses the question about flight time with maximum payload.",
+          "correctness": 5,
+          "correctness_reason": "The answer matches the reference answer exactly and is supported by the context.",
+          "judge_error": null
+        },
+        "context_passages": [
+          "KX-200 Survey Drone \u2014 Technical Specifications\nThe KX-200 is Kestrel Labs' quadcopter for agricultural and infrastructure surveying. It carries interchangeable sensor payloads and streams telemetry through a Vela gateway or directly over LTE.\nAirframe and flight performance\nSpecification | Value\nMaximum take-off weight | 6.8 kg\nEmpty weight (no battery, no payload) | 3.1 kg\nMaximum payload | 1.5 kg\nMaximum horizontal speed | 18 m/s\nMaximum wind resistance | 12 m/s\nOperating temperature | -10 \u00b0C to 45 \u00b0C\nIngress protection | IP54\nMaximum service ceiling | 4,000 m above sea level\nBattery and endurance\nThe KX-200 uses the KB-22 smart battery, a 22,000 mAh lithium-ion pack. Flight time is 42 minutes with no payload and 31 minutes with the maximum 1.5 kg payload, measured at sea level in calm conditions. A full charge with the standard charger takes 75 minutes; the fast charger reduces this to 45 minutes.\nKB-22 batteries are rated for 400 charge cycles before capacity falls below 80%. The drone refuses to arm if the battery reports more than 600 cycles.\nNavigation and communication",
+          "Frequently Asked Questions\nDo I need a pilot license to fly the KX-200?\nIn most countries, yes, for commercial use. In the United States, commercial operators need an FAA Part 107 remote pilot certificate. Kestrel does not provide licensing, but our training partners offer a 2-day course included free with every Enterprise order.\nCan the KX-200 fly in the rain?\nThe KX-200 is rated IP54, which means it tolerates light rain and splashing. Do not fly in heavy rain, snow or fog. Water damage from flying in heavy rain is not covered by the standard warranty.\nHow long is my flight data kept in Kestrel Cloud?\nTelemetry and flight logs are kept for 13 months on Starter and Team plans and for 7 years on Enterprise plans. Raw payload imagery is kept for 90 days unless you move it to archive storage, which costs $0.02 per GB per month.\nCan I export my data?\nYes. You can export telemetry as CSV or Parquet from the dashboard, or through the API. Payload imagery can be exported as GeoTIFF. Bulk exports larger than 500 GB are delivered as a download link valid for 7 days.\nWhat support hours do you offer?",
+          "The drone refuses to arm if the battery reports more than 600 cycles.\nNavigation and communication\nGNSS: GPS, GLONASS, Galileo and BeiDou, with optional RTK module for 2 cm horizontal accuracy.\nObstacle sensing: forward, rear and downward stereo vision, effective range 0.5\u201330 m.\nControl link range: up to 8 km (FCC) or 5 km (CE) line of sight.\nTelemetry: 10 Hz position and health telemetry; payload data uploaded after landing or streamed if bandwidth allows.\nPayloads\nPayload | Weight | Use\nMS-5 multispectral camera | 0.6 kg | Crop health (NDVI)\nTH-1 thermal camera | 0.5 kg | Roof and solar panel inspection\nLX-40 LiDAR | 1.4 kg | Terrain and structure mapping\nPricing\nThe KX-200 base kit (drone, two KB-22 batteries, standard charger, controller) lists at $14,900. The RTK module is an additional $1,800.",
+          "Bulk exports larger than 500 GB are delivered as a download link valid for 7 days.\nWhat support hours do you offer?\nStandard support is available by email and chat, Monday to Friday, 08:00\u201318:00 US Eastern time, with a first-response target of 1 business day. Enterprise customers get 24/7 phone support with a 1-hour first-response target for critical issues.\nCan I use third-party batteries?\nNo. The KX-200 only accepts genuine KB-22 smart batteries; it will refuse to arm with any other battery. Using modified batteries voids the warranty.\nHow do I update firmware?\nFirmware updates are delivered over the air through the Kestrel Pilot app or the Vela gateway. Customers on the Stable channel receive updates only after they reach general availability. You can also install firmware manually from a USB drive.",
+          "# Firmware Release Process\nThis document describes how firmware for the KX-200 drone and the Vela gateway moves\nfrom a merged pull request to the customer fleet.\n## Versioning\nFirmware uses semantic versioning: `MAJOR.MINOR.PATCH`. A MAJOR bump is required for any\nchange to the flight-control protocol or the on-disk log format. Release candidates are\ntagged with an `-rc.N` suffix, for example `4.2.0-rc.3`.\n## Release train\nKestrel ships a minor firmware release every **six weeks**. Code freeze happens on the\nMonday two weeks before the release date. After code freeze, only fixes approved by the\nrelease captain may be merged into the release branch.\n## Required testing\nEvery release candidate must pass, in order:\n1. The automated hardware-in-the-loop (HIL) suite on the test rack in Building C. The suite\ncontains about 1,800 test cases and takes roughly 5 hours.\n2. A **72-hour soak test** on a fleet of 20 internal drones running continuous simulated\nmissions.\n3. Field flight testing: at least **40 flight hours** across at least 3 different weather"
+        ]
+      },
+      {
+        "id": "q02",
+        "type": "single",
+        "question": "What is the nightly hotel cap in high-cost cities such as London?",
+        "gold": "$375",
+        "answer": "The nightly hotel cap in high\u2011cost cities\u2014including London\u2014is\u202f$375 per night, excluding taxes[1].",
+        "no_answer": false,
+        "no_answer_reason": null,
+        "citations": [
+          "policies/travel-and-expense-policy.pdf"
+        ],
+        "latency_ms": {
+          "embed_ms": 52.98,
+          "retrieval_ms": 3.06,
+          "generation_ms": 710.72,
+          "total_ms": 767.1
+        },
+        "usage": {
+          "prompt_tokens": 1493,
+          "completion_tokens": 79,
+          "total_tokens": 1572
+        },
+        "em": 0.0,
+        "contains_gold": 1.0,
+        "f1": 0.15384615384615385,
+        "citation_correct": true,
+        "judge": {
+          "faithfulness": 1.0,
+          "n_claims": 3,
+          "n_supported": 3,
+          "unsupported_claims": [],
+          "answer_relevance": 5,
+          "relevance_reason": "The answer directly and completely answers the specific question about the hotel cap in high-cost cities like London.",
+          "correctness": 5,
+          "correctness_reason": "The answer matches the reference value of $375 and includes the correct context regarding taxes.",
+          "judge_error": null
+        },
+        "context_passages": [
+          "Kestrel Labs Travel and Expense Policy (v3.2, effective 2026-01-01) 1. Purpose and scope\nThis policy applies to all Kestrel Labs employees and contractors who travel or incur expenses on company business. Expenses outside this policy are not reimbursed unless approved in writing by the employee's department head before they are incurred.\n2. Booking travel\nAll flights, hotels and rental cars must be booked through the company travel portal, Navan.\nBookings made outside the portal are reimbursed only if they are at least 10% cheaper than the cheapest comparable portal option, with a screenshot as proof.\nFlights must be booked at least 14 days in advance when possible. Economy class is the default.\nPremium economy is allowed for flights longer than 6 hours. Business class is allowed only for flights longer than 10 hours and requires VP approval.\n3. Hotels\nThe nightly hotel cap is $250 in standard cities and $375 in high-cost cities (New York, San\nFrancisco, London, Zurich, Tokyo and Singapore), excluding taxes.\n4. Meals and per diem\nEmployees on domestic travel receive a meal per diem of $75 per day. International travel per diem is $95 per day.",
+          "If an API key receives more than 10,000 HTTP 429 responses in a rolling 24-hour window,\nit is automatically placed in a \"cool-down\" state for 15 minutes, during which every\nrequest returns HTTP 403 with error code `KEY_COOLDOWN`. Repeated cool-downs page the\non-call API engineer.\n## Monthly quota overages\nStarter accounts that exhaust their monthly quota are hard-stopped until the first day\nof the next calendar month (UTC). Team accounts are never hard-stopped; overage is billed\nat $0.40 per additional 10,000 requests. Enterprise overage terms are defined in each\ncontract.\n## Requesting a limit increase\nTeam customers may request a temporary burst increase of up to 3x for a planned event\n(for example, a large survey flight) by opening a ticket at least 5 business days in\nadvance. Increases are approved by the API platform team lead, currently Priya Raman.\nPermanent increases require an upgrade to Enterprise.",
+          "Meals and per diem\nEmployees on domestic travel receive a meal per diem of $75 per day. International travel per diem is $95 per day. On the first and last day of travel, the per diem is 75% of the daily amount. Alcohol is not reimbursable except at approved client dinners.\nClient entertainment is capped at $120 per person, including the employee, and the names and companies of all attendees must be recorded on the expense report.\n5. Ground transport and mileage\nTaxis and ride-share are reimbursed for business trips. Personal car use is reimbursed at $0.67 per mile. Rental cars should be compact or intermediate class.\n6. Submitting expenses\nExpense reports must be submitted in Navan within 30 days of the expense date. Itemized receipts are required for every expense over $25. Reports submitted more than 60 days late are not reimbursed.\nExpense reports are approved by the employee's direct manager. Any single expense above $5,000 also requires approval from Finance. Approved reimbursements are paid in the next payroll run.\n7. Corporate cards\nEmployees who travel more than four times per year are issued a corporate card.",
+          "# Kestrel Cloud API \u2014 Rate Limits and Quotas\nThe Kestrel Cloud API is the public REST interface customers use to pull telemetry from\nKX-series drones and Vela gateways. This page is the source of truth for rate limits.\nIf a support article disagrees with this page, this page wins.\n## Plans and request limits\nRate limits are enforced per API key using a token-bucket algorithm. Each bucket refills\ncontinuously, so a client that waits will regain capacity gradually rather than all at once\nat the top of the minute.\n| Plan | Sustained rate | Burst capacity | Monthly request quota |\n|------------|-----------------------|----------------|-----------------------|\n| Starter | 60 requests / minute | 120 requests | 500,000 |\n| Team | 600 requests / minute | 1,200 requests | 10,000,000 |",
+          "| Team | 600 requests / minute | 1,200 requests | 10,000,000 |\n| Enterprise | 3,000 requests / minute | 6,000 requests | Negotiated in contract |\nThe telemetry streaming endpoint (`/v2/streams`) is not counted against the per-minute\nlimit. Instead, each plan has a cap on concurrent open streams: Starter allows 2, Team\nallows 25 and Enterprise allows 200.\n## What happens when you exceed a limit\nWhen the bucket is empty the API returns HTTP **429 Too Many Requests**. The response\nalways includes a `Retry-After` header with the number of seconds to wait, and the\nheaders `X-RateLimit-Limit`, `X-RateLimit-Remaining` and `X-RateLimit-Reset`.\nClients must back off exponentially, starting at the `Retry-After` value and doubling up\nto a maximum wait of 64 seconds, with random jitter of up to 20%. The official Python and\nGo SDKs implement this automatically and give up after 6 retries.\nIf an API key receives more than 10,000 HTTP 429 responses in a rolling 24-hour window,"
+        ]
+      },
+      {
+        "id": "q03",
+        "type": "single",
+        "question": "How many concurrent open streams does the Team plan allow?",
+        "gold": "25",
+        "answer": "The Team plan permits up to\u202f25 concurrent open streams. [1]",
+        "no_answer": false,
+        "no_answer_reason": null,
+        "citations": [
+          "engineering/api-rate-limits.md"
+        ],
+        "latency_ms": {
+          "embed_ms": 42.92,
+          "retrieval_ms": 21.89,
+          "generation_ms": 662.44,
+          "total_ms": 728.02
+        },
+        "usage": {
+          "prompt_tokens": 1327,
+          "completion_tokens": 45,
+          "total_tokens": 1372
+        },
+        "em": 0.0,
+        "contains_gold": 1.0,
+        "f1": 0.19999999999999998,
+        "citation_correct": true,
+        "judge": {
+          "faithfulness": 1.0,
+          "n_claims": 1,
+          "n_supported": 1,
+          "unsupported_claims": [],
+          "answer_relevance": 5,
+          "relevance_reason": "The answer directly and completely answers the specific question about the number of concurrent open streams for the Team plan.",
+          "correctness": 5,
+          "correctness_reason": "The answer matches the reference answer exactly and is supported by the provided context.",
+          "judge_error": null
+        },
+        "context_passages": [
+          "| Team | 600 requests / minute | 1,200 requests | 10,000,000 |\n| Enterprise | 3,000 requests / minute | 6,000 requests | Negotiated in contract |\nThe telemetry streaming endpoint (`/v2/streams`) is not counted against the per-minute\nlimit. Instead, each plan has a cap on concurrent open streams: Starter allows 2, Team\nallows 25 and Enterprise allows 200.\n## What happens when you exceed a limit\nWhen the bucket is empty the API returns HTTP **429 Too Many Requests**. The response\nalways includes a `Retry-After` header with the number of seconds to wait, and the\nheaders `X-RateLimit-Limit`, `X-RateLimit-Remaining` and `X-RateLimit-Reset`.\nClients must back off exponentially, starting at the `Retry-After` value and doubling up\nto a maximum wait of 64 seconds, with random jitter of up to 20%. The official Python and\nGo SDKs implement this automatically and give up after 6 retries.\nIf an API key receives more than 10,000 HTTP 429 responses in a rolling 24-hour window,",
+          "If an API key receives more than 10,000 HTTP 429 responses in a rolling 24-hour window,\nit is automatically placed in a \"cool-down\" state for 15 minutes, during which every\nrequest returns HTTP 403 with error code `KEY_COOLDOWN`. Repeated cool-downs page the\non-call API engineer.\n## Monthly quota overages\nStarter accounts that exhaust their monthly quota are hard-stopped until the first day\nof the next calendar month (UTC). Team accounts are never hard-stopped; overage is billed\nat $0.40 per additional 10,000 requests. Enterprise overage terms are defined in each\ncontract.\n## Requesting a limit increase\nTeam customers may request a temporary burst increase of up to 3x for a planned event\n(for example, a large survey flight) by opening a ticket at least 5 business days in\nadvance. Increases are approved by the API platform team lead, currently Priya Raman.\nPermanent increases require an upgrade to Enterprise.",
+          "# Kestrel Cloud API \u2014 Rate Limits and Quotas\nThe Kestrel Cloud API is the public REST interface customers use to pull telemetry from\nKX-series drones and Vela gateways. This page is the source of truth for rate limits.\nIf a support article disagrees with this page, this page wins.\n## Plans and request limits\nRate limits are enforced per API key using a token-bucket algorithm. Each bucket refills\ncontinuously, so a client that waits will regain capacity gradually rather than all at once\nat the top of the minute.\n| Plan | Sustained rate | Burst capacity | Monthly request quota |\n|------------|-----------------------|----------------|-----------------------|\n| Starter | 60 requests / minute | 120 requests | 500,000 |\n| Team | 600 requests / minute | 1,200 requests | 10,000,000 |",
+          "There were two SEV-1 incidents in the quarter; neither caused customer data loss. Cloud platform uptime was 99.96%.\nFirmware 4.2 reached general availability in August and reduced crash reports by 23% compared with firmware 4.1.\nHeadcount\nHeadcount was 412 at quarter end, including 188 in engineering. The company plans to hire 35 more engineers by the end of Q1 2027.\nOutlook\nFor Q4 2026, management expects revenue between $19.5 million and $20.5 million. The board approved a $6 million budget to open a European service center in Rotterdam in 2027.",
+          "missions.\n3. Field flight testing: at least **40 flight hours** across at least 3 different weather\nconditions, logged by the flight-test team.\nA release candidate that fails any step is discarded and a new `-rc` is cut.\n## Staged rollout\nApproved releases go out in four stages:\n| Stage | Share of fleet | Minimum duration |\n|-------|----------------|------------------|\n| Canary | 1% | 48 hours |\n| Early | 10% | 72 hours |\n| Broad | 50% | 72 hours |\n| General availability | 100% | \u2014 |\nCustomers enrolled in the \"Stable channel\" receive updates only at the General\navailability stage. Rollout is paused automatically if the crash-report rate in any stage\nexceeds **0.5%** of devices in that stage within 24 hours.\n## Rollback\nEvery device keeps the previous firmware image in a secondary partition (A/B\npartitioning). A rollback can be pushed to the fleet in under 30 minutes. Downgrading"
+        ]
+      },
+      {
+        "id": "q04",
+        "type": "single",
+        "question": "What HTTP status code does the Kestrel API return when a client exceeds its rate limit?",
+        "gold": "429",
+        "answer": "When a client exceeds its rate limit, the Kestrel API returns HTTP\u202f429\u202fToo\u202fMany\u202fRequests\u202f[2].",
+        "no_answer": false,
+        "no_answer_reason": null,
+        "citations": [
+          "engineering/api-rate-limits.md"
+        ],
+        "latency_ms": {
+          "embed_ms": 79.35,
+          "retrieval_ms": 12.09,
+          "generation_ms": 563.7,
+          "total_ms": 655.76
+        },
+        "usage": {
+          "prompt_tokens": 1386,
+          "completion_tokens": 80,
+          "total_tokens": 1466
+        },
+        "em": 0.0,
+        "contains_gold": 1.0,
+        "f1": 0.13333333333333333,
+        "citation_correct": true,
+        "judge": {
+          "faithfulness": 1.0,
+          "n_claims": 1,
+          "n_supported": 1,
+          "unsupported_claims": [],
+          "answer_relevance": 5,
+          "relevance_reason": "The answer directly and completely answers the specific question about the HTTP status code returned upon exceeding rate limits.",
+          "correctness": 5,
+          "correctness_reason": "The answer correctly identifies the status code 429, matching the reference answer and the provided context.",
+          "judge_error": null
+        },
+        "context_passages": [
+          "# Kestrel Cloud API \u2014 Rate Limits and Quotas\nThe Kestrel Cloud API is the public REST interface customers use to pull telemetry from\nKX-series drones and Vela gateways. This page is the source of truth for rate limits.\nIf a support article disagrees with this page, this page wins.\n## Plans and request limits\nRate limits are enforced per API key using a token-bucket algorithm. Each bucket refills\ncontinuously, so a client that waits will regain capacity gradually rather than all at once\nat the top of the minute.\n| Plan | Sustained rate | Burst capacity | Monthly request quota |\n|------------|-----------------------|----------------|-----------------------|\n| Starter | 60 requests / minute | 120 requests | 500,000 |\n| Team | 600 requests / minute | 1,200 requests | 10,000,000 |",
+          "| Team | 600 requests / minute | 1,200 requests | 10,000,000 |\n| Enterprise | 3,000 requests / minute | 6,000 requests | Negotiated in contract |\nThe telemetry streaming endpoint (`/v2/streams`) is not counted against the per-minute\nlimit. Instead, each plan has a cap on concurrent open streams: Starter allows 2, Team\nallows 25 and Enterprise allows 200.\n## What happens when you exceed a limit\nWhen the bucket is empty the API returns HTTP **429 Too Many Requests**. The response\nalways includes a `Retry-After` header with the number of seconds to wait, and the\nheaders `X-RateLimit-Limit`, `X-RateLimit-Remaining` and `X-RateLimit-Reset`.\nClients must back off exponentially, starting at the `Retry-After` value and doubling up\nto a maximum wait of 64 seconds, with random jitter of up to 20%. The official Python and\nGo SDKs implement this automatically and give up after 6 retries.\nIf an API key receives more than 10,000 HTTP 429 responses in a rolling 24-hour window,",
+          "If an API key receives more than 10,000 HTTP 429 responses in a rolling 24-hour window,\nit is automatically placed in a \"cool-down\" state for 15 minutes, during which every\nrequest returns HTTP 403 with error code `KEY_COOLDOWN`. Repeated cool-downs page the\non-call API engineer.\n## Monthly quota overages\nStarter accounts that exhaust their monthly quota are hard-stopped until the first day\nof the next calendar month (UTC). Team accounts are never hard-stopped; overage is billed\nat $0.40 per additional 10,000 requests. Enterprise overage terms are defined in each\ncontract.\n## Requesting a limit increase\nTeam customers may request a temporary burst increase of up to 3x for a planned event\n(for example, a large survey flight) by opening a ticket at least 5 business days in\nadvance. Increases are approved by the API platform team lead, currently Priya Raman.\nPermanent increases require an upgrade to Enterprise.",
+          "Access to Restricted systems is reviewed every month by the security team. Access is revoked within 4 hours of an employee's departure.\n5. Reporting incidents\nSuspected security incidents, including lost devices and phishing emails that were clicked, must be reported to security@kestrel-labs.example or the #security-incidents channel within 1 hour of discovery. Employees are never penalized for reporting in good faith.\nIf a security incident involves customer data, the security team notifies affected customers within 72 hours of confirming the incident.\n6. Third-party software\nNew SaaS tools that will handle Internal data or above require a security review before purchase.\nReviews take about 10 business days. Open-source libraries are allowed if their license is on the approved list (MIT, Apache 2.0, BSD).",
+          "Kestrel Labs Information Security Policy (v5.0) 1. Data classification\nAll company data falls into one of four classes: Public, Internal, Confidential and Restricted.\nCustomer telemetry and flight logs are classified as Confidential. Cryptographic keys, device signing keys and employee personal data are Restricted.\nRestricted data may only be stored in the approved secrets manager or the HR system. It must never be sent over email or chat, even internally.\n2. Passwords and authentication\nPasswords must be at least 14 characters long. Multi-factor authentication is mandatory for every company system; hardware security keys are required for engineering and finance staff. Passwords are not rotated on a schedule, but must be changed immediately if a compromise is suspected.\n3. Devices\nCompany laptops must use full-disk encryption and the managed endpoint agent. Screens must lock automatically after 5 minutes of inactivity. Personal devices may access email and chat only, through the managed mobile app.\n4. Access reviews\nManagers review their team's access to Confidential systems every quarter. Access to Restricted systems is reviewed every month by the security team. Access is revoked within 4 hours of an employee's departure.\n5. Reporting incidents"
+        ]
+      },
+      {
+        "id": "q05",
+        "type": "single",
+        "question": "How many weeks of paid parental leave do non-birth parents get?",
+        "gold": "16 weeks",
+        "answer": "Non-birth parents, including adoptive and foster parents, receive 16 weeks of fully paid parental leave [1].",
+        "no_answer": false,
+        "no_answer_reason": null,
+        "citations": [
+          "policies/leave-policy.pdf"
+        ],
+        "latency_ms": {
+          "embed_ms": 38.54,
+          "retrieval_ms": 10.86,
+          "generation_ms": 705.84,
+          "total_ms": 755.55
+        },
+        "usage": {
+          "prompt_tokens": 1133,
+          "completion_tokens": 57,
+          "total_tokens": 1190
+        },
+        "em": 0.0,
+        "contains_gold": 1.0,
+        "f1": 0.23529411764705882,
+        "citation_correct": true,
+        "judge": {
+          "faithfulness": 1.0,
+          "n_claims": 1,
+          "n_supported": 1,
+          "unsupported_claims": [],
+          "answer_relevance": 5,
+          "relevance_reason": "The answer directly and completely answers the question about the duration of paid parental leave for non-birth parents.",
+          "correctness": 5,
+          "correctness_reason": "The answer matches the reference answer exactly and is supported by the provided context.",
+          "judge_error": null
+        },
+        "context_passages": [
+          "4. Parental leave\nBirth parents receive 20 weeks of fully paid parental leave. Non-birth parents, including adoptive and foster parents, receive 16 weeks of fully paid leave. Parental leave must be taken within 12 months of the birth or placement and may be split into up to two blocks.\n5. Sabbatical\nAfter 7 years of continuous service, employees are eligible for a 4-week paid sabbatical, in addition to normal PTO. Sabbaticals must be taken within 2 years of becoming eligible and require 3 months' notice.\n6. Other leave\nBereavement leave is 5 paid days for an immediate family member and 2 paid days for an extended family member. Jury duty is fully paid for its duration. Employees receive 2 paid volunteer days per year.",
+          "Kestrel Labs Leave and Time-Off Policy (effective 2026-01-01) 1. Paid time off (PTO)\nFull-time employees accrue paid time off at a rate of 1.67 days per month, which is 20 days per year. After 5 years of continuous service, the accrual increases to 25 days per year.\nUp to 5 unused PTO days may be carried over into the next calendar year. Carried-over days expire on March 31 if not used. Any remaining balance above the carry-over limit is forfeited on\nDecember 31.\nPTO requests of 3 days or more must be submitted at least 2 weeks in advance and approved by the employee's manager in Workday.\n2. Company holidays\nKestrel Labs observes 11 paid company holidays per year. The company also closes between\nDecember 24 and January 1 inclusive; these days do not count against PTO.\n3. Sick leave\nEmployees receive 10 days of paid sick leave per year, separate from PTO. Sick leave does not carry over. A doctor's note is required for an absence of more than 3 consecutive working days.\n4. Parental leave\nBirth parents receive 20 weeks of fully paid parental leave.",
+          "Approved reimbursements are paid in the next payroll run.\n7. Corporate cards\nEmployees who travel more than four times per year are issued a corporate card. Personal purchases on a corporate card are prohibited; any accidental personal charge must be repaid within 15 days.",
+          "All code changes need at least **two approving reviews**, one of which must come from a\ncode owner of the files changed. Changes to flight-control code additionally require\napproval from the flight-safety team.\n## First tasks\nBy the end of week one, you should have merged a small change (a \"starter ticket\" tagged\n`good-first-issue`). By the end of week two, you should have shadowed one on-call shift.\n## On-call\nEngineers join the on-call rotation after **8 weeks**. Shifts are one week long, Monday\n10:00 to Monday 10:00 local time. On-call engineers receive a stipend of $500 per week of\nprimary on-call and $200 per week of secondary on-call. If you are paged between\nmidnight and 06:00, you may start work late the next day without using leave.\n## Learning budget\nEach engineer has an annual learning budget of **$2,000** for courses, books and\nconferences. Conference travel itself is covered by the travel and expense policy, not\nthe learning budget.",
+          "partitioning). A rollback can be pushed to the fleet in under 30 minutes. Downgrading\nacross a MAJOR version is not supported because of log-format changes.\n## Sign-off\nA release needs sign-off from three people: the release captain, the QA lead and the\nhead of flight safety. The current head of flight safety is Tom\u00e1s Okafor."
+        ]
+      },
+      {
+        "id": "q06",
+        "type": "single",
+        "question": "How long is the warranty on KB-22 batteries?",
+        "gold": "12 months or 200 charge cycles, whichever comes first",
+        "answer": "The KB\u201122 smart battery is covered by a limited warranty for 12\u202fmonths or 200 charge cycles, whichever occurs first[2].",
+        "no_answer": false,
+        "no_answer_reason": null,
+        "citations": [
+          "support/warranty-and-repairs.html"
+        ],
+        "latency_ms": {
+          "embed_ms": 32.85,
+          "retrieval_ms": 16.5,
+          "generation_ms": 714.29,
+          "total_ms": 764.01
+        },
+        "usage": {
+          "prompt_tokens": 1359,
+          "completion_tokens": 91,
+          "total_tokens": 1450
+        },
+        "em": 0.0,
+        "contains_gold": 0.0,
+        "f1": 0.5925925925925926,
+        "citation_correct": true,
+        "judge": {
+          "faithfulness": 1.0,
+          "n_claims": 1,
+          "n_supported": 1,
+          "unsupported_claims": [],
+          "answer_relevance": 5,
+          "relevance_reason": "The answer directly and completely addresses the question regarding the warranty duration for KB-22 batteries.",
+          "correctness": 5,
+          "correctness_reason": "The answer matches the reference answer exactly and is supported by the provided context.",
+          "judge_error": null
+        },
+        "context_passages": [
+          "Bulk exports larger than 500 GB are delivered as a download link valid for 7 days.\nWhat support hours do you offer?\nStandard support is available by email and chat, Monday to Friday, 08:00\u201318:00 US Eastern time, with a first-response target of 1 business day. Enterprise customers get 24/7 phone support with a 1-hour first-response target for critical issues.\nCan I use third-party batteries?\nNo. The KX-200 only accepts genuine KB-22 smart batteries; it will refuse to arm with any other battery. Using modified batteries voids the warranty.\nHow do I update firmware?\nFirmware updates are delivered over the air through the Kestrel Pilot app or the Vela gateway. Customers on the Stable channel receive updates only after they reach general availability. You can also install firmware manually from a USB drive.",
+          "Warranty and Repairs\nStandard limited warranty\nKX-200 drones and Vela gateways are covered by a 24-month limited warranty from the date of delivery. KB-22 batteries are covered for 12 months or 200 charge cycles, whichever comes first. Payloads (MS-5, TH-1 and LX-40) are covered for 12 months.\nThe warranty covers manufacturing defects and component failures under normal use. It does not cover crash damage, water damage beyond the device's IP rating, damage from unauthorized modifications, or normal wear of propellers.\nKestrel Care+\nKestrel Care+ extends the warranty to 36 months and adds accidental-damage coverage, including crashes. Care+ costs $1,490 per drone per year and must be purchased within 30 days of delivery. Each Care+ plan includes up to two accidental-damage replacements per year, each subject to a $350 service fee.\nHow to request a repair (RMA)\nOpen a support ticket with the device serial number and a description of the issue.\nUpload the flight logs for the last 3 flights; support cannot triage crashes without them.\nSupport issues a Return Merchandise Authorization (RMA) number, normally within 1 business day.\nShip the device using the prepaid label.",
+          "KX-200 Survey Drone \u2014 Technical Specifications\nThe KX-200 is Kestrel Labs' quadcopter for agricultural and infrastructure surveying. It carries interchangeable sensor payloads and streams telemetry through a Vela gateway or directly over LTE.\nAirframe and flight performance\nSpecification | Value\nMaximum take-off weight | 6.8 kg\nEmpty weight (no battery, no payload) | 3.1 kg\nMaximum payload | 1.5 kg\nMaximum horizontal speed | 18 m/s\nMaximum wind resistance | 12 m/s\nOperating temperature | -10 \u00b0C to 45 \u00b0C\nIngress protection | IP54\nMaximum service ceiling | 4,000 m above sea level\nBattery and endurance\nThe KX-200 uses the KB-22 smart battery, a 22,000 mAh lithium-ion pack. Flight time is 42 minutes with no payload and 31 minutes with the maximum 1.5 kg payload, measured at sea level in calm conditions. A full charge with the standard charger takes 75 minutes; the fast charger reduces this to 45 minutes.\nKB-22 batteries are rated for 400 charge cycles before capacity falls below 80%. The drone refuses to arm if the battery reports more than 600 cycles.\nNavigation and communication",
+          "Support issues a Return Merchandise Authorization (RMA) number, normally within 1 business day.\nShip the device using the prepaid label. Devices shipped without an RMA number are returned unopened.\nStandard repair turnaround is 10 business days from receipt. Enterprise customers receive an advance replacement unit shipped within 2 business days, before the faulty unit is returned.\nOut-of-warranty repairs\nOut-of-warranty repairs are quoted after inspection. The inspection fee is $150, which is waived if you go ahead with the repair.",
+          "Frequently Asked Questions\nDo I need a pilot license to fly the KX-200?\nIn most countries, yes, for commercial use. In the United States, commercial operators need an FAA Part 107 remote pilot certificate. Kestrel does not provide licensing, but our training partners offer a 2-day course included free with every Enterprise order.\nCan the KX-200 fly in the rain?\nThe KX-200 is rated IP54, which means it tolerates light rain and splashing. Do not fly in heavy rain, snow or fog. Water damage from flying in heavy rain is not covered by the standard warranty.\nHow long is my flight data kept in Kestrel Cloud?\nTelemetry and flight logs are kept for 13 months on Starter and Team plans and for 7 years on Enterprise plans. Raw payload imagery is kept for 90 days unless you move it to archive storage, which costs $0.02 per GB per month.\nCan I export my data?\nYes. You can export telemetry as CSV or Parquet from the dashboard, or through the API. Payload imagery can be exported as GeoTIFF. Bulk exports larger than 500 GB are delivered as a download link valid for 7 days.\nWhat support hours do you offer?"
+        ]
+      },
+      {
+        "id": "q07",
+        "type": "single",
+        "question": "How many approving code reviews does a code change need before merging?",
+        "gold": "two",
+        "answer": "Code changes require at least two approving reviews, with one review coming from a code owner of the files changed [1].",
+        "no_answer": false,
+        "no_answer_reason": null,
+        "citations": [
+          "engineering/engineering-onboarding.md"
+        ],
+        "latency_ms": {
+          "embed_ms": 64.72,
+          "retrieval_ms": 8.76,
+          "generation_ms": 545.23,
+          "total_ms": 619.18
+        },
+        "usage": {
+          "prompt_tokens": 1247,
+          "completion_tokens": 81,
+          "total_tokens": 1328
+        },
+        "em": 0.0,
+        "contains_gold": 1.0,
+        "f1": 0.10526315789473684,
+        "citation_correct": true,
+        "judge": {
+          "faithfulness": 1.0,
+          "n_claims": 2,
+          "n_supported": 2,
+          "unsupported_claims": [],
+          "answer_relevance": 5,
+          "relevance_reason": "The answer directly and completely answers the question about the number of required reviews.",
+          "correctness": 5,
+          "correctness_reason": "The answer correctly identifies the number 'two' and includes the specific condition regarding code owners, which is consistent with the reference and context.",
+          "judge_error": null
+        },
+        "context_passages": [
+          "All code changes need at least **two approving reviews**, one of which must come from a\ncode owner of the files changed. Changes to flight-control code additionally require\napproval from the flight-safety team.\n## First tasks\nBy the end of week one, you should have merged a small change (a \"starter ticket\" tagged\n`good-first-issue`). By the end of week two, you should have shadowed one on-call shift.\n## On-call\nEngineers join the on-call rotation after **8 weeks**. Shifts are one week long, Monday\n10:00 to Monday 10:00 local time. On-call engineers receive a stipend of $500 per week of\nprimary on-call and $200 per week of secondary on-call. If you are paged between\nmidnight and 06:00, you may start work late the next day without using leave.\n## Learning budget\nEach engineer has an annual learning budget of **$2,000** for courses, books and\nconferences. Conference travel itself is covered by the travel and expense policy, not\nthe learning budget.",
+          "# Firmware Release Process\nThis document describes how firmware for the KX-200 drone and the Vela gateway moves\nfrom a merged pull request to the customer fleet.\n## Versioning\nFirmware uses semantic versioning: `MAJOR.MINOR.PATCH`. A MAJOR bump is required for any\nchange to the flight-control protocol or the on-disk log format. Release candidates are\ntagged with an `-rc.N` suffix, for example `4.2.0-rc.3`.\n## Release train\nKestrel ships a minor firmware release every **six weeks**. Code freeze happens on the\nMonday two weeks before the release date. After code freeze, only fixes approved by the\nrelease captain may be merged into the release branch.\n## Required testing\nEvery release candidate must pass, in order:\n1. The automated hardware-in-the-loop (HIL) suite on the test rack in Building C. The suite\ncontains about 1,800 test cases and takes roughly 5 hours.\n2. A **72-hour soak test** on a fleet of 20 internal drones running continuous simulated\nmissions.\n3. Field flight testing: at least **40 flight hours** across at least 3 different weather",
+          "partitioning). A rollback can be pushed to the fleet in under 30 minutes. Downgrading\nacross a MAJOR version is not supported because of log-format changes.\n## Sign-off\nA release needs sign-off from three people: the release captain, the QA lead and the\nhead of flight safety. The current head of flight safety is Tom\u00e1s Okafor.",
+          "Access to Restricted systems is reviewed every month by the security team. Access is revoked within 4 hours of an employee's departure.\n5. Reporting incidents\nSuspected security incidents, including lost devices and phishing emails that were clicked, must be reported to security@kestrel-labs.example or the #security-incidents channel within 1 hour of discovery. Employees are never penalized for reporting in good faith.\nIf a security incident involves customer data, the security team notifies affected customers within 72 hours of confirming the incident.\n6. Third-party software\nNew SaaS tools that will handle Internal data or above require a security review before purchase.\nReviews take about 10 business days. Open-source libraries are allowed if their license is on the approved list (MIT, Apache 2.0, BSD).",
+          "missions.\n3. Field flight testing: at least **40 flight hours** across at least 3 different weather\nconditions, logged by the flight-test team.\nA release candidate that fails any step is discarded and a new `-rc` is cut.\n## Staged rollout\nApproved releases go out in four stages:\n| Stage | Share of fleet | Minimum duration |\n|-------|----------------|------------------|\n| Canary | 1% | 48 hours |\n| Early | 10% | 72 hours |\n| Broad | 50% | 72 hours |\n| General availability | 100% | \u2014 |\nCustomers enrolled in the \"Stable channel\" receive updates only at the General\navailability stage. Rollout is paused automatically if the crash-report rate in any stage\nexceeds **0.5%** of devices in that stage within 24 hours.\n## Rollback\nEvery device keeps the previous firmware image in a secondary partition (A/B\npartitioning). A rollback can be pushed to the fleet in under 30 minutes. Downgrading"
+        ]
+      },
+      {
+        "id": "q08",
+        "type": "single",
+        "question": "What is the reimbursement rate for using a personal car on a business trip?",
+        "gold": "$0.67 per mile",
+        "answer": "The policy reimburses personal\u2011car mileage at a rate of **$0.67 per mile** for business trips[1].",
+        "no_answer": false,
+        "no_answer_reason": null,
+        "citations": [
+          "policies/travel-and-expense-policy.pdf"
+        ],
+        "latency_ms": {
+          "embed_ms": 69.77,
+          "retrieval_ms": 10.41,
+          "generation_ms": 719.31,
+          "total_ms": 801.82
+        },
+        "usage": {
+          "prompt_tokens": 1396,
+          "completion_tokens": 63,
+          "total_tokens": 1459
+        },
+        "em": 0.0,
+        "contains_gold": 1.0,
+        "f1": 0.375,
+        "citation_correct": true,
+        "judge": {
+          "faithfulness": 1.0,
+          "n_claims": 1,
+          "n_supported": 1,
+          "unsupported_claims": [],
+          "answer_relevance": 5,
+          "relevance_reason": "The answer directly and completely addresses the question about the reimbursement rate for personal car use.",
+          "correctness": 5,
+          "correctness_reason": "The answer matches the reference answer exactly and is supported by the context.",
+          "judge_error": null
+        },
+        "context_passages": [
+          "Meals and per diem\nEmployees on domestic travel receive a meal per diem of $75 per day. International travel per diem is $95 per day. On the first and last day of travel, the per diem is 75% of the daily amount. Alcohol is not reimbursable except at approved client dinners.\nClient entertainment is capped at $120 per person, including the employee, and the names and companies of all attendees must be recorded on the expense report.\n5. Ground transport and mileage\nTaxis and ride-share are reimbursed for business trips. Personal car use is reimbursed at $0.67 per mile. Rental cars should be compact or intermediate class.\n6. Submitting expenses\nExpense reports must be submitted in Navan within 30 days of the expense date. Itemized receipts are required for every expense over $25. Reports submitted more than 60 days late are not reimbursed.\nExpense reports are approved by the employee's direct manager. Any single expense above $5,000 also requires approval from Finance. Approved reimbursements are paid in the next payroll run.\n7. Corporate cards\nEmployees who travel more than four times per year are issued a corporate card.",
+          "Approved reimbursements are paid in the next payroll run.\n7. Corporate cards\nEmployees who travel more than four times per year are issued a corporate card. Personal purchases on a corporate card are prohibited; any accidental personal charge must be repaid within 15 days.",
+          "Kestrel Labs Travel and Expense Policy (v3.2, effective 2026-01-01) 1. Purpose and scope\nThis policy applies to all Kestrel Labs employees and contractors who travel or incur expenses on company business. Expenses outside this policy are not reimbursed unless approved in writing by the employee's department head before they are incurred.\n2. Booking travel\nAll flights, hotels and rental cars must be booked through the company travel portal, Navan.\nBookings made outside the portal are reimbursed only if they are at least 10% cheaper than the cheapest comparable portal option, with a screenshot as proof.\nFlights must be booked at least 14 days in advance when possible. Economy class is the default.\nPremium economy is allowed for flights longer than 6 hours. Business class is allowed only for flights longer than 10 hours and requires VP approval.\n3. Hotels\nThe nightly hotel cap is $250 in standard cities and $375 in high-cost cities (New York, San\nFrancisco, London, Zurich, Tokyo and Singapore), excluding taxes.\n4. Meals and per diem\nEmployees on domestic travel receive a meal per diem of $75 per day. International travel per diem is $95 per day.",
+          "All code changes need at least **two approving reviews**, one of which must come from a\ncode owner of the files changed. Changes to flight-control code additionally require\napproval from the flight-safety team.\n## First tasks\nBy the end of week one, you should have merged a small change (a \"starter ticket\" tagged\n`good-first-issue`). By the end of week two, you should have shadowed one on-call shift.\n## On-call\nEngineers join the on-call rotation after **8 weeks**. Shifts are one week long, Monday\n10:00 to Monday 10:00 local time. On-call engineers receive a stipend of $500 per week of\nprimary on-call and $200 per week of secondary on-call. If you are paged between\nmidnight and 06:00, you may start work late the next day without using leave.\n## Learning budget\nEach engineer has an annual learning budget of **$2,000** for courses, books and\nconferences. Conference travel itself is covered by the travel and expense policy, not\nthe learning budget.",
+          "Warranty and Repairs\nStandard limited warranty\nKX-200 drones and Vela gateways are covered by a 24-month limited warranty from the date of delivery. KB-22 batteries are covered for 12 months or 200 charge cycles, whichever comes first. Payloads (MS-5, TH-1 and LX-40) are covered for 12 months.\nThe warranty covers manufacturing defects and component failures under normal use. It does not cover crash damage, water damage beyond the device's IP rating, damage from unauthorized modifications, or normal wear of propellers.\nKestrel Care+\nKestrel Care+ extends the warranty to 36 months and adds accidental-damage coverage, including crashes. Care+ costs $1,490 per drone per year and must be purchased within 30 days of delivery. Each Care+ plan includes up to two accidental-damage replacements per year, each subject to a $350 service fee.\nHow to request a repair (RMA)\nOpen a support ticket with the device serial number and a description of the issue.\nUpload the flight logs for the last 3 flights; support cannot triage crashes without them.\nSupport issues a Return Merchandise Authorization (RMA) number, normally within 1 business day.\nShip the device using the prepaid label."
+        ]
+      },
+      {
+        "id": "q09",
+        "type": "single",
+        "question": "What severity is a telemetry incident where ingestion lag goes above 10 minutes?",
+        "gold": "SEV-2",
+        "answer": "The incident is classified as **SEV\u20112** when telemetry ingestion lag exceeds 10\u202fminutes[1].",
+        "no_answer": false,
+        "no_answer_reason": null,
+        "citations": [
+          "engineering/runbook-telemetry-outage.md"
+        ],
+        "latency_ms": {
+          "embed_ms": 72.56,
+          "retrieval_ms": 14.96,
+          "generation_ms": 699.99,
+          "total_ms": 788.36
+        },
+        "usage": {
+          "prompt_tokens": 1427,
+          "completion_tokens": 82,
+          "total_tokens": 1509
+        },
+        "em": 0.0,
+        "contains_gold": 1.0,
+        "f1": 0.15384615384615385,
+        "citation_correct": true,
+        "judge": {
+          "faithfulness": 1.0,
+          "n_claims": 1,
+          "n_supported": 1,
+          "unsupported_claims": [],
+          "answer_relevance": 5,
+          "relevance_reason": "The answer directly and completely addresses the question by identifying the specific severity level for the described condition.",
+          "correctness": 5,
+          "correctness_reason": "The answer matches the reference answer exactly and is supported by the context.",
+          "judge_error": null
+        },
+        "context_passages": [
+          "# Runbook: Telemetry Ingestion Outage\nUse this runbook when the **telemetry-ingest** service stops accepting data from the\nfleet, or when ingestion lag exceeds the alert threshold.\n## Alert definition\nThe `TelemetryIngestLagHigh` alert fires when the 5-minute p95 ingestion lag exceeds\n**90 seconds** for 3 consecutive evaluation periods. A separate critical alert,\n`TelemetryIngestDown`, fires when the accepted-messages rate drops to zero for 2 minutes.\n## Severity\n- Lag above 90 seconds but data still flowing: **SEV-3**.\n- Lag above 10 minutes, or more than 25% of gateways disconnected: **SEV-2**.\n- `TelemetryIngestDown` firing, or any data loss confirmed: **SEV-1**.\nA SEV-1 requires an Incident Commander within 15 minutes and a status-page update within\n30 minutes. SEV-2 requires a status-page update within 60 minutes. SEV-3 needs no\nstatus-page update.\n## First five minutes\n1.",
+          "SEV-2 requires a status-page update within 60 minutes. SEV-3 needs no\nstatus-page update.\n## First five minutes\n1. Acknowledge the page in PagerDuty so it does not escalate to the secondary on-call.\n2. Open the \"Ingest Overview\" Grafana dashboard and check the Kafka consumer lag panel.\n3. Check whether the broker cluster `kafka-telemetry-prod` is healthy. If two or more\nbrokers are offline, escalate immediately to the data-platform team.\n4. Check recent deploys in the #deploys channel. More than half of past ingestion\noutages were caused by a deploy in the preceding 2 hours.\n## Common causes and fixes\n**Bad deploy.** Roll back with `kctl rollback telemetry-ingest --to previous`. Rollbacks\ntake about 4 minutes to complete across all three regions.\n**Consumer group rebalance storm.** Symptoms: lag sawtooths and consumers restart\nrepeatedly. Fix: scale the consumer deployment down to 0, wait 60 seconds, then scale\nback to the normal 24 replicas.",
+          "repeatedly. Fix: scale the consumer deployment down to 0, wait 60 seconds, then scale\nback to the normal 24 replicas.\n**Disk full on brokers.** Kafka retention is 72 hours. If disk usage exceeds 85%, reduce\nretention temporarily to 24 hours with the `retention-emergency` script. Never delete\nsegment files by hand.\n## Data loss and replay\nGateways buffer up to **6 hours** of telemetry locally (see the Vela gateway\nspecifications). If an outage lasts less than 6 hours, no data is lost: gateways replay\ntheir buffer automatically once ingestion recovers. Beyond 6 hours, the oldest buffered\ndata is overwritten and the incident must be treated as SEV-1 data loss.\n## After the incident\nA blameless post-mortem is required for every SEV-1 and SEV-2, due within 5 business\ndays. Post-mortems are filed in the Incident Reviews space and reviewed at the Thursday\nreliability meeting.",
+          "| Team | 600 requests / minute | 1,200 requests | 10,000,000 |\n| Enterprise | 3,000 requests / minute | 6,000 requests | Negotiated in contract |\nThe telemetry streaming endpoint (`/v2/streams`) is not counted against the per-minute\nlimit. Instead, each plan has a cap on concurrent open streams: Starter allows 2, Team\nallows 25 and Enterprise allows 200.\n## What happens when you exceed a limit\nWhen the bucket is empty the API returns HTTP **429 Too Many Requests**. The response\nalways includes a `Retry-After` header with the number of seconds to wait, and the\nheaders `X-RateLimit-Limit`, `X-RateLimit-Remaining` and `X-RateLimit-Reset`.\nClients must back off exponentially, starting at the `Retry-After` value and doubling up\nto a maximum wait of 64 seconds, with random jitter of up to 20%. The official Python and\nGo SDKs implement this automatically and give up after 6 retries.\nIf an API key receives more than 10,000 HTTP 429 responses in a rolling 24-hour window,",
+          "Access to Restricted systems is reviewed every month by the security team. Access is revoked within 4 hours of an employee's departure.\n5. Reporting incidents\nSuspected security incidents, including lost devices and phishing emails that were clicked, must be reported to security@kestrel-labs.example or the #security-incidents channel within 1 hour of discovery. Employees are never penalized for reporting in good faith.\nIf a security incident involves customer data, the security team notifies affected customers within 72 hours of confirming the incident.\n6. Third-party software\nNew SaaS tools that will handle Internal data or above require a security review before purchase.\nReviews take about 10 business days. Open-source libraries are allowed if their license is on the approved list (MIT, Apache 2.0, BSD)."
+        ]
+      },
+      {
+        "id": "q10",
+        "type": "single",
+        "question": "How long is the soak test a firmware release candidate must pass?",
+        "gold": "72 hours",
+        "answer": "The required soak test runs for 72\u202fhours. [1]",
+        "no_answer": false,
+        "no_answer_reason": null,
+        "citations": [
+          "engineering/firmware-release-process.md"
+        ],
+        "latency_ms": {
+          "embed_ms": 66.3,
+          "retrieval_ms": 11.87,
+          "generation_ms": 685.39,
+          "total_ms": 763.85
+        },
+        "usage": {
+          "prompt_tokens": 1259,
+          "completion_tokens": 63,
+          "total_tokens": 1322
+        },
+        "em": 0.0,
+        "contains_gold": 1.0,
+        "f1": 0.4444444444444445,
+        "citation_correct": true,
+        "judge": {
+          "faithfulness": 1.0,
+          "n_claims": 1,
+          "n_supported": 1,
+          "unsupported_claims": [],
+          "answer_relevance": 5,
+          "relevance_reason": "The answer directly and completely answers the question about the duration of the soak test.",
+          "correctness": 5,
+          "correctness_reason": "The answer matches the reference answer exactly.",
+          "judge_error": null
+        },
+        "context_passages": [
+          "# Firmware Release Process\nThis document describes how firmware for the KX-200 drone and the Vela gateway moves\nfrom a merged pull request to the customer fleet.\n## Versioning\nFirmware uses semantic versioning: `MAJOR.MINOR.PATCH`. A MAJOR bump is required for any\nchange to the flight-control protocol or the on-disk log format. Release candidates are\ntagged with an `-rc.N` suffix, for example `4.2.0-rc.3`.\n## Release train\nKestrel ships a minor firmware release every **six weeks**. Code freeze happens on the\nMonday two weeks before the release date. After code freeze, only fixes approved by the\nrelease captain may be merged into the release branch.\n## Required testing\nEvery release candidate must pass, in order:\n1. The automated hardware-in-the-loop (HIL) suite on the test rack in Building C. The suite\ncontains about 1,800 test cases and takes roughly 5 hours.\n2. A **72-hour soak test** on a fleet of 20 internal drones running continuous simulated\nmissions.\n3. Field flight testing: at least **40 flight hours** across at least 3 different weather",
+          "missions.\n3. Field flight testing: at least **40 flight hours** across at least 3 different weather\nconditions, logged by the flight-test team.\nA release candidate that fails any step is discarded and a new `-rc` is cut.\n## Staged rollout\nApproved releases go out in four stages:\n| Stage | Share of fleet | Minimum duration |\n|-------|----------------|------------------|\n| Canary | 1% | 48 hours |\n| Early | 10% | 72 hours |\n| Broad | 50% | 72 hours |\n| General availability | 100% | \u2014 |\nCustomers enrolled in the \"Stable channel\" receive updates only at the General\navailability stage. Rollout is paused automatically if the crash-report rate in any stage\nexceeds **0.5%** of devices in that stage within 24 hours.\n## Rollback\nEvery device keeps the previous firmware image in a secondary partition (A/B\npartitioning). A rollback can be pushed to the fleet in under 30 minutes. Downgrading",
+          "partitioning). A rollback can be pushed to the fleet in under 30 minutes. Downgrading\nacross a MAJOR version is not supported because of log-format changes.\n## Sign-off\nA release needs sign-off from three people: the release captain, the QA lead and the\nhead of flight safety. The current head of flight safety is Tom\u00e1s Okafor.",
+          "SEV-2 requires a status-page update within 60 minutes. SEV-3 needs no\nstatus-page update.\n## First five minutes\n1. Acknowledge the page in PagerDuty so it does not escalate to the secondary on-call.\n2. Open the \"Ingest Overview\" Grafana dashboard and check the Kafka consumer lag panel.\n3. Check whether the broker cluster `kafka-telemetry-prod` is healthy. If two or more\nbrokers are offline, escalate immediately to the data-platform team.\n4. Check recent deploys in the #deploys channel. More than half of past ingestion\noutages were caused by a deploy in the preceding 2 hours.\n## Common causes and fixes\n**Bad deploy.** Roll back with `kctl rollback telemetry-ingest --to previous`. Rollbacks\ntake about 4 minutes to complete across all three regions.\n**Consumer group rebalance storm.** Symptoms: lag sawtooths and consumers restart\nrepeatedly. Fix: scale the consumer deployment down to 0, wait 60 seconds, then scale\nback to the normal 24 replicas.",
+          "Bulk exports larger than 500 GB are delivered as a download link valid for 7 days.\nWhat support hours do you offer?\nStandard support is available by email and chat, Monday to Friday, 08:00\u201318:00 US Eastern time, with a first-response target of 1 business day. Enterprise customers get 24/7 phone support with a 1-hour first-response target for critical issues.\nCan I use third-party batteries?\nNo. The KX-200 only accepts genuine KB-22 smart batteries; it will refuse to arm with any other battery. Using modified batteries voids the warranty.\nHow do I update firmware?\nFirmware updates are delivered over the air through the Kestrel Pilot app or the Vela gateway. Customers on the Stable channel receive updates only after they reach general availability. You can also install firmware manually from a USB drive."
+        ]
+      },
+      {
+        "id": "q11",
+        "type": "single",
+        "question": "What was Kestrel Labs' revenue in Q3 2026?",
+        "gold": "$18.4 million",
+        "answer": "Kestrel Labs generated $18.4\u202fmillion in revenue for Q3\u202f2026[1].",
+        "no_answer": false,
+        "no_answer_reason": null,
+        "citations": [
+          "finance/q3-2026-quarterly-report.pdf"
+        ],
+        "latency_ms": {
+          "embed_ms": 37.14,
+          "retrieval_ms": 8.8,
+          "generation_ms": 479.83,
+          "total_ms": 527.81
+        },
+        "usage": {
+          "prompt_tokens": 1464,
+          "completion_tokens": 49,
+          "total_tokens": 1513
+        },
+        "em": 0.0,
+        "contains_gold": 1.0,
+        "f1": 0.33333333333333337,
+        "citation_correct": true,
+        "judge": {
+          "faithfulness": 1.0,
+          "n_claims": 1,
+          "n_supported": 1,
+          "unsupported_claims": [],
+          "answer_relevance": 5,
+          "relevance_reason": "The answer directly and completely addresses the question about Q3 2026 revenue.",
+          "correctness": 5,
+          "correctness_reason": "The answer matches the reference answer exactly.",
+          "judge_error": null
+        },
+        "context_passages": [
+          "Kestrel Labs Quarterly Business Report \u2014 Q3 2026 (internal)\nSummary\nQ3 2026 revenue was $18.4 million, up 31% year over year and up 9% from Q2 2026. Gross margin was 58%, compared with 54% in Q3 2025. Operating loss narrowed to $1.2 million from $2.9 million a year earlier.\nRevenue by segment\nHardware (drones, gateways, payloads) generated $11.1 million. Cloud subscriptions generated $5.6 million, up 52% year over year. Services and Care+ plans generated $1.7 million.\nAnnual recurring revenue (ARR) from cloud subscriptions reached $23.8 million at the end of the quarter. Net revenue retention for cloud customers was 118%.\nCustomers and fleet\nKestrel ended the quarter with 1,240 paying customers, of which 86 are Enterprise customers. The active fleet reached 14,300 drones and 2,050 Vela gateways. The largest single deployment is 640 drones at an agricultural cooperative in Brazil.\nOperations\nAverage telemetry ingestion volume was 2.1 billion messages per day. There were two SEV-1 incidents in the quarter; neither caused customer data loss.",
+          "There were two SEV-1 incidents in the quarter; neither caused customer data loss. Cloud platform uptime was 99.96%.\nFirmware 4.2 reached general availability in August and reduced crash reports by 23% compared with firmware 4.1.\nHeadcount\nHeadcount was 412 at quarter end, including 188 in engineering. The company plans to hire 35 more engineers by the end of Q1 2027.\nOutlook\nFor Q4 2026, management expects revenue between $19.5 million and $20.5 million. The board approved a $6 million budget to open a European service center in Rotterdam in 2027.",
+          "Kestrel Labs Travel and Expense Policy (v3.2, effective 2026-01-01) 1. Purpose and scope\nThis policy applies to all Kestrel Labs employees and contractors who travel or incur expenses on company business. Expenses outside this policy are not reimbursed unless approved in writing by the employee's department head before they are incurred.\n2. Booking travel\nAll flights, hotels and rental cars must be booked through the company travel portal, Navan.\nBookings made outside the portal are reimbursed only if they are at least 10% cheaper than the cheapest comparable portal option, with a screenshot as proof.\nFlights must be booked at least 14 days in advance when possible. Economy class is the default.\nPremium economy is allowed for flights longer than 6 hours. Business class is allowed only for flights longer than 10 hours and requires VP approval.\n3. Hotels\nThe nightly hotel cap is $250 in standard cities and $375 in high-cost cities (New York, San\nFrancisco, London, Zurich, Tokyo and Singapore), excluding taxes.\n4. Meals and per diem\nEmployees on domestic travel receive a meal per diem of $75 per day. International travel per diem is $95 per day.",
+          "Kestrel Labs Leave and Time-Off Policy (effective 2026-01-01) 1. Paid time off (PTO)\nFull-time employees accrue paid time off at a rate of 1.67 days per month, which is 20 days per year. After 5 years of continuous service, the accrual increases to 25 days per year.\nUp to 5 unused PTO days may be carried over into the next calendar year. Carried-over days expire on March 31 if not used. Any remaining balance above the carry-over limit is forfeited on\nDecember 31.\nPTO requests of 3 days or more must be submitted at least 2 weeks in advance and approved by the employee's manager in Workday.\n2. Company holidays\nKestrel Labs observes 11 paid company holidays per year. The company also closes between\nDecember 24 and January 1 inclusive; these days do not count against PTO.\n3. Sick leave\nEmployees receive 10 days of paid sick leave per year, separate from PTO. Sick leave does not carry over. A doctor's note is required for an absence of more than 3 consecutive working days.\n4. Parental leave\nBirth parents receive 20 weeks of fully paid parental leave.",
+          "# Kestrel Cloud API \u2014 Rate Limits and Quotas\nThe Kestrel Cloud API is the public REST interface customers use to pull telemetry from\nKX-series drones and Vela gateways. This page is the source of truth for rate limits.\nIf a support article disagrees with this page, this page wins.\n## Plans and request limits\nRate limits are enforced per API key using a token-bucket algorithm. Each bucket refills\ncontinuously, so a client that waits will regain capacity gradually rather than all at once\nat the top of the minute.\n| Plan | Sustained rate | Burst capacity | Monthly request quota |\n|------------|-----------------------|----------------|-----------------------|\n| Starter | 60 requests / minute | 120 requests | 500,000 |\n| Team | 600 requests / minute | 1,200 requests | 10,000,000 |"
+        ]
+      },
+      {
+        "id": "q12",
+        "type": "single",
+        "question": "How much does Kestrel Care+ cost?",
+        "gold": "$1,490 per drone per year",
+        "answer": "Kestrel Care+ costs\u202f$1,490 per drone per year[1].",
+        "no_answer": false,
+        "no_answer_reason": null,
+        "citations": [
+          "support/warranty-and-repairs.html"
+        ],
+        "latency_ms": {
+          "embed_ms": 33.89,
+          "retrieval_ms": 8.41,
+          "generation_ms": 721.42,
+          "total_ms": 764.19
+        },
+        "usage": {
+          "prompt_tokens": 1512,
+          "completion_tokens": 52,
+          "total_tokens": 1564
+        },
+        "em": 0.0,
+        "contains_gold": 1.0,
+        "f1": 0.7692307692307693,
+        "citation_correct": true,
+        "judge": {
+          "faithfulness": 1.0,
+          "n_claims": 1,
+          "n_supported": 1,
+          "unsupported_claims": [],
+          "answer_relevance": 5,
+          "relevance_reason": "The answer directly and completely addresses the question about the cost of Kestrel Care+.",
+          "correctness": 5,
+          "correctness_reason": "The answer matches the reference answer exactly and is supported by the context.",
+          "judge_error": null
+        },
+        "context_passages": [
+          "Warranty and Repairs\nStandard limited warranty\nKX-200 drones and Vela gateways are covered by a 24-month limited warranty from the date of delivery. KB-22 batteries are covered for 12 months or 200 charge cycles, whichever comes first. Payloads (MS-5, TH-1 and LX-40) are covered for 12 months.\nThe warranty covers manufacturing defects and component failures under normal use. It does not cover crash damage, water damage beyond the device's IP rating, damage from unauthorized modifications, or normal wear of propellers.\nKestrel Care+\nKestrel Care+ extends the warranty to 36 months and adds accidental-damage coverage, including crashes. Care+ costs $1,490 per drone per year and must be purchased within 30 days of delivery. Each Care+ plan includes up to two accidental-damage replacements per year, each subject to a $350 service fee.\nHow to request a repair (RMA)\nOpen a support ticket with the device serial number and a description of the issue.\nUpload the flight logs for the last 3 flights; support cannot triage crashes without them.\nSupport issues a Return Merchandise Authorization (RMA) number, normally within 1 business day.\nShip the device using the prepaid label.",
+          "Kestrel Labs Travel and Expense Policy (v3.2, effective 2026-01-01) 1. Purpose and scope\nThis policy applies to all Kestrel Labs employees and contractors who travel or incur expenses on company business. Expenses outside this policy are not reimbursed unless approved in writing by the employee's department head before they are incurred.\n2. Booking travel\nAll flights, hotels and rental cars must be booked through the company travel portal, Navan.\nBookings made outside the portal are reimbursed only if they are at least 10% cheaper than the cheapest comparable portal option, with a screenshot as proof.\nFlights must be booked at least 14 days in advance when possible. Economy class is the default.\nPremium economy is allowed for flights longer than 6 hours. Business class is allowed only for flights longer than 10 hours and requires VP approval.\n3. Hotels\nThe nightly hotel cap is $250 in standard cities and $375 in high-cost cities (New York, San\nFrancisco, London, Zurich, Tokyo and Singapore), excluding taxes.\n4. Meals and per diem\nEmployees on domestic travel receive a meal per diem of $75 per day. International travel per diem is $95 per day.",
+          "Internal backup battery | 4 hours of operation\nOperating temperature | -30 \u00b0C to 60 \u00b0C\nIngress protection | IP67\nWeight | 2.4 kg\nSecurity\nAll traffic between Vela and Kestrel Cloud is encrypted with TLS 1.3 using mutual certificate authentication. Device certificates rotate automatically every 90 days. Firmware images are signed and verified at boot.\nPricing and subscription\nThe Vela gateway costs $3,200. A Kestrel Cloud connectivity subscription is required: $45 per gateway per month, which includes 50 GB of LTE data. Additional LTE data is billed at $6 per GB.",
+          "Kestrel Labs Quarterly Business Report \u2014 Q3 2026 (internal)\nSummary\nQ3 2026 revenue was $18.4 million, up 31% year over year and up 9% from Q2 2026. Gross margin was 58%, compared with 54% in Q3 2025. Operating loss narrowed to $1.2 million from $2.9 million a year earlier.\nRevenue by segment\nHardware (drones, gateways, payloads) generated $11.1 million. Cloud subscriptions generated $5.6 million, up 52% year over year. Services and Care+ plans generated $1.7 million.\nAnnual recurring revenue (ARR) from cloud subscriptions reached $23.8 million at the end of the quarter. Net revenue retention for cloud customers was 118%.\nCustomers and fleet\nKestrel ended the quarter with 1,240 paying customers, of which 86 are Enterprise customers. The active fleet reached 14,300 drones and 2,050 Vela gateways. The largest single deployment is 640 drones at an agricultural cooperative in Brazil.\nOperations\nAverage telemetry ingestion volume was 2.1 billion messages per day. There were two SEV-1 incidents in the quarter; neither caused customer data loss.",
+          "Kestrel Labs Leave and Time-Off Policy (effective 2026-01-01) 1. Paid time off (PTO)\nFull-time employees accrue paid time off at a rate of 1.67 days per month, which is 20 days per year. After 5 years of continuous service, the accrual increases to 25 days per year.\nUp to 5 unused PTO days may be carried over into the next calendar year. Carried-over days expire on March 31 if not used. Any remaining balance above the carry-over limit is forfeited on\nDecember 31.\nPTO requests of 3 days or more must be submitted at least 2 weeks in advance and approved by the employee's manager in Workday.\n2. Company holidays\nKestrel Labs observes 11 paid company holidays per year. The company also closes between\nDecember 24 and January 1 inclusive; these days do not count against PTO.\n3. Sick leave\nEmployees receive 10 days of paid sick leave per year, separate from PTO. Sick leave does not carry over. A doctor's note is required for an absence of more than 3 consecutive working days.\n4. Parental leave\nBirth parents receive 20 weeks of fully paid parental leave."
+        ]
+      },
+      {
+        "id": "q13",
+        "type": "single",
+        "question": "How long is telemetry data kept in Kestrel Cloud for Team plan customers?",
+        "gold": "13 months",
+        "answer": "Telemetry and flight logs are retained for 13\u202fmonths for customers on the Team plan[1].",
+        "no_answer": false,
+        "no_answer_reason": null,
+        "citations": [
+          "support/customer-faq.html"
+        ],
+        "latency_ms": {
+          "embed_ms": 36.21,
+          "retrieval_ms": 10.5,
+          "generation_ms": 710.54,
+          "total_ms": 757.61
+        },
+        "usage": {
+          "prompt_tokens": 1349,
+          "completion_tokens": 60,
+          "total_tokens": 1409
+        },
+        "em": 0.0,
+        "contains_gold": 1.0,
+        "f1": 0.25,
+        "citation_correct": true,
+        "judge": {
+          "faithfulness": 1.0,
+          "n_claims": 1,
+          "n_supported": 1,
+          "unsupported_claims": [],
+          "answer_relevance": 5,
+          "relevance_reason": "The answer directly and completely addresses the specific question about data retention for Team plan customers.",
+          "correctness": 5,
+          "correctness_reason": "The answer matches the reference answer and is fully supported by the context.",
+          "judge_error": null
+        },
+        "context_passages": [
+          "Frequently Asked Questions\nDo I need a pilot license to fly the KX-200?\nIn most countries, yes, for commercial use. In the United States, commercial operators need an FAA Part 107 remote pilot certificate. Kestrel does not provide licensing, but our training partners offer a 2-day course included free with every Enterprise order.\nCan the KX-200 fly in the rain?\nThe KX-200 is rated IP54, which means it tolerates light rain and splashing. Do not fly in heavy rain, snow or fog. Water damage from flying in heavy rain is not covered by the standard warranty.\nHow long is my flight data kept in Kestrel Cloud?\nTelemetry and flight logs are kept for 13 months on Starter and Team plans and for 7 years on Enterprise plans. Raw payload imagery is kept for 90 days unless you move it to archive storage, which costs $0.02 per GB per month.\nCan I export my data?\nYes. You can export telemetry as CSV or Parquet from the dashboard, or through the API. Payload imagery can be exported as GeoTIFF. Bulk exports larger than 500 GB are delivered as a download link valid for 7 days.\nWhat support hours do you offer?",
+          "# Kestrel Cloud API \u2014 Rate Limits and Quotas\nThe Kestrel Cloud API is the public REST interface customers use to pull telemetry from\nKX-series drones and Vela gateways. This page is the source of truth for rate limits.\nIf a support article disagrees with this page, this page wins.\n## Plans and request limits\nRate limits are enforced per API key using a token-bucket algorithm. Each bucket refills\ncontinuously, so a client that waits will regain capacity gradually rather than all at once\nat the top of the minute.\n| Plan | Sustained rate | Burst capacity | Monthly request quota |\n|------------|-----------------------|----------------|-----------------------|\n| Starter | 60 requests / minute | 120 requests | 500,000 |\n| Team | 600 requests / minute | 1,200 requests | 10,000,000 |",
+          "There were two SEV-1 incidents in the quarter; neither caused customer data loss. Cloud platform uptime was 99.96%.\nFirmware 4.2 reached general availability in August and reduced crash reports by 23% compared with firmware 4.1.\nHeadcount\nHeadcount was 412 at quarter end, including 188 in engineering. The company plans to hire 35 more engineers by the end of Q1 2027.\nOutlook\nFor Q4 2026, management expects revenue between $19.5 million and $20.5 million. The board approved a $6 million budget to open a European service center in Rotterdam in 2027.",
+          "Kestrel Labs Quarterly Business Report \u2014 Q3 2026 (internal)\nSummary\nQ3 2026 revenue was $18.4 million, up 31% year over year and up 9% from Q2 2026. Gross margin was 58%, compared with 54% in Q3 2025. Operating loss narrowed to $1.2 million from $2.9 million a year earlier.\nRevenue by segment\nHardware (drones, gateways, payloads) generated $11.1 million. Cloud subscriptions generated $5.6 million, up 52% year over year. Services and Care+ plans generated $1.7 million.\nAnnual recurring revenue (ARR) from cloud subscriptions reached $23.8 million at the end of the quarter. Net revenue retention for cloud customers was 118%.\nCustomers and fleet\nKestrel ended the quarter with 1,240 paying customers, of which 86 are Enterprise customers. The active fleet reached 14,300 drones and 2,050 Vela gateways. The largest single deployment is 640 drones at an agricultural cooperative in Brazil.\nOperations\nAverage telemetry ingestion volume was 2.1 billion messages per day. There were two SEV-1 incidents in the quarter; neither caused customer data loss.",
+          "Bulk exports larger than 500 GB are delivered as a download link valid for 7 days.\nWhat support hours do you offer?\nStandard support is available by email and chat, Monday to Friday, 08:00\u201318:00 US Eastern time, with a first-response target of 1 business day. Enterprise customers get 24/7 phone support with a 1-hour first-response target for critical issues.\nCan I use third-party batteries?\nNo. The KX-200 only accepts genuine KB-22 smart batteries; it will refuse to arm with any other battery. Using modified batteries voids the warranty.\nHow do I update firmware?\nFirmware updates are delivered over the air through the Kestrel Pilot app or the Vela gateway. Customers on the Stable channel receive updates only after they reach general availability. You can also install firmware manually from a USB drive."
+        ]
+      },
+      {
+        "id": "q14",
+        "type": "single",
+        "question": "What is the minimum password length required by the security policy?",
+        "gold": "14 characters",
+        "answer": "Passwords must be at least 14 characters long [1].",
+        "no_answer": false,
+        "no_answer_reason": null,
+        "citations": [
+          "policies/information-security-policy.pdf"
+        ],
+        "latency_ms": {
+          "embed_ms": 121.59,
+          "retrieval_ms": 11.82,
+          "generation_ms": 551.24,
+          "total_ms": 685.15
+        },
+        "usage": {
+          "prompt_tokens": 1425,
+          "completion_tokens": 48,
+          "total_tokens": 1473
+        },
+        "em": 0.0,
+        "contains_gold": 1.0,
+        "f1": 0.4,
+        "citation_correct": true,
+        "judge": {
+          "faithfulness": 1.0,
+          "n_claims": 1,
+          "n_supported": 1,
+          "unsupported_claims": [],
+          "answer_relevance": 5,
+          "relevance_reason": "The answer directly and completely answers the question about the minimum password length.",
+          "correctness": 5,
+          "correctness_reason": "The answer matches the reference answer exactly.",
+          "judge_error": null
+        },
+        "context_passages": [
+          "Kestrel Labs Information Security Policy (v5.0) 1. Data classification\nAll company data falls into one of four classes: Public, Internal, Confidential and Restricted.\nCustomer telemetry and flight logs are classified as Confidential. Cryptographic keys, device signing keys and employee personal data are Restricted.\nRestricted data may only be stored in the approved secrets manager or the HR system. It must never be sent over email or chat, even internally.\n2. Passwords and authentication\nPasswords must be at least 14 characters long. Multi-factor authentication is mandatory for every company system; hardware security keys are required for engineering and finance staff. Passwords are not rotated on a schedule, but must be changed immediately if a compromise is suspected.\n3. Devices\nCompany laptops must use full-disk encryption and the managed endpoint agent. Screens must lock automatically after 5 minutes of inactivity. Personal devices may access email and chat only, through the managed mobile app.\n4. Access reviews\nManagers review their team's access to Confidential systems every quarter. Access to Restricted systems is reviewed every month by the security team. Access is revoked within 4 hours of an employee's departure.\n5. Reporting incidents",
+          "Access to Restricted systems is reviewed every month by the security team. Access is revoked within 4 hours of an employee's departure.\n5. Reporting incidents\nSuspected security incidents, including lost devices and phishing emails that were clicked, must be reported to security@kestrel-labs.example or the #security-incidents channel within 1 hour of discovery. Employees are never penalized for reporting in good faith.\nIf a security incident involves customer data, the security team notifies affected customers within 72 hours of confirming the incident.\n6. Third-party software\nNew SaaS tools that will handle Internal data or above require a security review before purchase.\nReviews take about 10 business days. Open-source libraries are allowed if their license is on the approved list (MIT, Apache 2.0, BSD).",
+          "If an API key receives more than 10,000 HTTP 429 responses in a rolling 24-hour window,\nit is automatically placed in a \"cool-down\" state for 15 minutes, during which every\nrequest returns HTTP 403 with error code `KEY_COOLDOWN`. Repeated cool-downs page the\non-call API engineer.\n## Monthly quota overages\nStarter accounts that exhaust their monthly quota are hard-stopped until the first day\nof the next calendar month (UTC). Team accounts are never hard-stopped; overage is billed\nat $0.40 per additional 10,000 requests. Enterprise overage terms are defined in each\ncontract.\n## Requesting a limit increase\nTeam customers may request a temporary burst increase of up to 3x for a planned event\n(for example, a large survey flight) by opening a ticket at least 5 business days in\nadvance. Increases are approved by the API platform team lead, currently Priya Raman.\nPermanent increases require an upgrade to Enterprise.",
+          "# Runbook: Telemetry Ingestion Outage\nUse this runbook when the **telemetry-ingest** service stops accepting data from the\nfleet, or when ingestion lag exceeds the alert threshold.\n## Alert definition\nThe `TelemetryIngestLagHigh` alert fires when the 5-minute p95 ingestion lag exceeds\n**90 seconds** for 3 consecutive evaluation periods. A separate critical alert,\n`TelemetryIngestDown`, fires when the accepted-messages rate drops to zero for 2 minutes.\n## Severity\n- Lag above 90 seconds but data still flowing: **SEV-3**.\n- Lag above 10 minutes, or more than 25% of gateways disconnected: **SEV-2**.\n- `TelemetryIngestDown` firing, or any data loss confirmed: **SEV-1**.\nA SEV-1 requires an Incident Commander within 15 minutes and a status-page update within\n30 minutes. SEV-2 requires a status-page update within 60 minutes. SEV-3 needs no\nstatus-page update.\n## First five minutes\n1.",
+          "| Team | 600 requests / minute | 1,200 requests | 10,000,000 |\n| Enterprise | 3,000 requests / minute | 6,000 requests | Negotiated in contract |\nThe telemetry streaming endpoint (`/v2/streams`) is not counted against the per-minute\nlimit. Instead, each plan has a cap on concurrent open streams: Starter allows 2, Team\nallows 25 and Enterprise allows 200.\n## What happens when you exceed a limit\nWhen the bucket is empty the API returns HTTP **429 Too Many Requests**. The response\nalways includes a `Retry-After` header with the number of seconds to wait, and the\nheaders `X-RateLimit-Limit`, `X-RateLimit-Remaining` and `X-RateLimit-Reset`.\nClients must back off exponentially, starting at the `Retry-After` value and doubling up\nto a maximum wait of 64 seconds, with random jitter of up to 20%. The official Python and\nGo SDKs implement this automatically and give up after 6 retries.\nIf an API key receives more than 10,000 HTTP 429 responses in a rolling 24-hour window,"
+        ]
+      },
+      {
+        "id": "q15",
+        "type": "single",
+        "question": "How many drones can a single Vela gateway collect telemetry from at once?",
+        "gold": "16",
+        "answer": "A Vela gateway can collect telemetry from up to\u202f16\u202fKX-series drones simultaneously[1].",
+        "no_answer": false,
+        "no_answer_reason": null,
+        "citations": [
+          "product/vela-gateway.html"
+        ],
+        "latency_ms": {
+          "embed_ms": 44.65,
+          "retrieval_ms": 9.37,
+          "generation_ms": 631.54,
+          "total_ms": 685.89
+        },
+        "usage": {
+          "prompt_tokens": 1389,
+          "completion_tokens": 52,
+          "total_tokens": 1441
+        },
+        "em": 0.0,
+        "contains_gold": 1.0,
+        "f1": 0.15384615384615385,
+        "citation_correct": true,
+        "judge": {
+          "faithfulness": 1.0,
+          "n_claims": 1,
+          "n_supported": 1,
+          "unsupported_claims": [],
+          "answer_relevance": 5,
+          "relevance_reason": "The answer directly and completely addresses the question about the number of drones a single Vela gateway can handle.",
+          "correctness": 5,
+          "correctness_reason": "The answer correctly identifies the number 16, matching the reference answer and the source text.",
+          "judge_error": null
+        },
+        "context_passages": [
+          "Vela Field Gateway\nThe Vela gateway is a ruggedized edge device that collects telemetry from up to 16 KX-series drones at once and forwards it to Kestrel Cloud. It is designed for remote farms and construction sites with poor connectivity.\nConnectivity\nUplink: LTE Cat-12, Ethernet, or optional satellite modem (Iridium Certus).\nDrone link: 900 MHz long-range radio, range up to 10 km with the high-gain antenna.\nAutomatic failover between uplinks in under 5 seconds.\nLocal buffering\nWhen the uplink is lost, Vela stores telemetry on its internal 256 GB SSD. The buffer holds up to 6 hours of telemetry from a full fleet of 16 drones. When the buffer is full, the oldest data is overwritten first. Buffered data is uploaded automatically and in order once the uplink returns.\nPower and environment\nSpecification | Value\nPower input | 12\u201348 V DC or optional 120 W solar kit\nTypical power draw | 18 W\nInternal backup battery | 4 hours of operation\nOperating temperature | -30 \u00b0C to 60 \u00b0C\nIngress protection | IP67\nWeight | 2.4 kg\nSecurity",
+          "Internal backup battery | 4 hours of operation\nOperating temperature | -30 \u00b0C to 60 \u00b0C\nIngress protection | IP67\nWeight | 2.4 kg\nSecurity\nAll traffic between Vela and Kestrel Cloud is encrypted with TLS 1.3 using mutual certificate authentication. Device certificates rotate automatically every 90 days. Firmware images are signed and verified at boot.\nPricing and subscription\nThe Vela gateway costs $3,200. A Kestrel Cloud connectivity subscription is required: $45 per gateway per month, which includes 50 GB of LTE data. Additional LTE data is billed at $6 per GB.",
+          "Warranty and Repairs\nStandard limited warranty\nKX-200 drones and Vela gateways are covered by a 24-month limited warranty from the date of delivery. KB-22 batteries are covered for 12 months or 200 charge cycles, whichever comes first. Payloads (MS-5, TH-1 and LX-40) are covered for 12 months.\nThe warranty covers manufacturing defects and component failures under normal use. It does not cover crash damage, water damage beyond the device's IP rating, damage from unauthorized modifications, or normal wear of propellers.\nKestrel Care+\nKestrel Care+ extends the warranty to 36 months and adds accidental-damage coverage, including crashes. Care+ costs $1,490 per drone per year and must be purchased within 30 days of delivery. Each Care+ plan includes up to two accidental-damage replacements per year, each subject to a $350 service fee.\nHow to request a repair (RMA)\nOpen a support ticket with the device serial number and a description of the issue.\nUpload the flight logs for the last 3 flights; support cannot triage crashes without them.\nSupport issues a Return Merchandise Authorization (RMA) number, normally within 1 business day.\nShip the device using the prepaid label.",
+          "# Firmware Release Process\nThis document describes how firmware for the KX-200 drone and the Vela gateway moves\nfrom a merged pull request to the customer fleet.\n## Versioning\nFirmware uses semantic versioning: `MAJOR.MINOR.PATCH`. A MAJOR bump is required for any\nchange to the flight-control protocol or the on-disk log format. Release candidates are\ntagged with an `-rc.N` suffix, for example `4.2.0-rc.3`.\n## Release train\nKestrel ships a minor firmware release every **six weeks**. Code freeze happens on the\nMonday two weeks before the release date. After code freeze, only fixes approved by the\nrelease captain may be merged into the release branch.\n## Required testing\nEvery release candidate must pass, in order:\n1. The automated hardware-in-the-loop (HIL) suite on the test rack in Building C. The suite\ncontains about 1,800 test cases and takes roughly 5 hours.\n2. A **72-hour soak test** on a fleet of 20 internal drones running continuous simulated\nmissions.\n3. Field flight testing: at least **40 flight hours** across at least 3 different weather",
+          "# Kestrel Cloud API \u2014 Rate Limits and Quotas\nThe Kestrel Cloud API is the public REST interface customers use to pull telemetry from\nKX-series drones and Vela gateways. This page is the source of truth for rate limits.\nIf a support article disagrees with this page, this page wins.\n## Plans and request limits\nRate limits are enforced per API key using a token-bucket algorithm. Each bucket refills\ncontinuously, so a client that waits will regain capacity gradually rather than all at once\nat the top of the minute.\n| Plan | Sustained rate | Burst capacity | Monthly request quota |\n|------------|-----------------------|----------------|-----------------------|\n| Starter | 60 requests / minute | 120 requests | 500,000 |\n| Team | 600 requests / minute | 1,200 requests | 10,000,000 |"
+        ]
+      },
+      {
+        "id": "q16",
+        "type": "multi_doc",
+        "question": "If telemetry ingestion is down for 5 hours, will any customer data be lost?",
+        "gold": "No. Vela gateways buffer up to 6 hours of telemetry and replay it automatically when ingestion recovers.",
+        "answer": "No customer telemetry data will be lost; gateways buffer up to\u202f6\u202fhours and an outage lasting less than that (e.g., 5\u202fhours) allows the buffered data to be replayed automatically once ingestion recovers[2].",
+        "no_answer": false,
+        "no_answer_reason": null,
+        "citations": [
+          "engineering/runbook-telemetry-outage.md"
+        ],
+        "latency_ms": {
+          "embed_ms": 53.34,
+          "retrieval_ms": 9.93,
+          "generation_ms": 1054.15,
+          "total_ms": 1117.8
+        },
+        "usage": {
+          "prompt_tokens": 1423,
+          "completion_tokens": 125,
+          "total_tokens": 1548
+        },
+        "em": 0.0,
+        "contains_gold": 0.0,
+        "f1": 0.48000000000000004,
+        "citation_correct": true,
+        "judge": {
+          "faithfulness": 1.0,
+          "n_claims": 3,
+          "n_supported": 3,
+          "unsupported_claims": [],
+          "answer_relevance": 5,
+          "relevance_reason": "The answer directly addresses whether data will be lost during a 5-hour outage by citing the specific buffering limit and replay mechanism.",
+          "correctness": 5,
+          "correctness_reason": "The answer correctly identifies that no data is lost because the 5-hour outage is within the 6-hour buffer window, matching the reference answer.",
+          "judge_error": null
+        },
+        "context_passages": [
+          "# Runbook: Telemetry Ingestion Outage\nUse this runbook when the **telemetry-ingest** service stops accepting data from the\nfleet, or when ingestion lag exceeds the alert threshold.\n## Alert definition\nThe `TelemetryIngestLagHigh` alert fires when the 5-minute p95 ingestion lag exceeds\n**90 seconds** for 3 consecutive evaluation periods. A separate critical alert,\n`TelemetryIngestDown`, fires when the accepted-messages rate drops to zero for 2 minutes.\n## Severity\n- Lag above 90 seconds but data still flowing: **SEV-3**.\n- Lag above 10 minutes, or more than 25% of gateways disconnected: **SEV-2**.\n- `TelemetryIngestDown` firing, or any data loss confirmed: **SEV-1**.\nA SEV-1 requires an Incident Commander within 15 minutes and a status-page update within\n30 minutes. SEV-2 requires a status-page update within 60 minutes. SEV-3 needs no\nstatus-page update.\n## First five minutes\n1.",
+          "repeatedly. Fix: scale the consumer deployment down to 0, wait 60 seconds, then scale\nback to the normal 24 replicas.\n**Disk full on brokers.** Kafka retention is 72 hours. If disk usage exceeds 85%, reduce\nretention temporarily to 24 hours with the `retention-emergency` script. Never delete\nsegment files by hand.\n## Data loss and replay\nGateways buffer up to **6 hours** of telemetry locally (see the Vela gateway\nspecifications). If an outage lasts less than 6 hours, no data is lost: gateways replay\ntheir buffer automatically once ingestion recovers. Beyond 6 hours, the oldest buffered\ndata is overwritten and the incident must be treated as SEV-1 data loss.\n## After the incident\nA blameless post-mortem is required for every SEV-1 and SEV-2, due within 5 business\ndays. Post-mortems are filed in the Incident Reviews space and reviewed at the Thursday\nreliability meeting.",
+          "SEV-2 requires a status-page update within 60 minutes. SEV-3 needs no\nstatus-page update.\n## First five minutes\n1. Acknowledge the page in PagerDuty so it does not escalate to the secondary on-call.\n2. Open the \"Ingest Overview\" Grafana dashboard and check the Kafka consumer lag panel.\n3. Check whether the broker cluster `kafka-telemetry-prod` is healthy. If two or more\nbrokers are offline, escalate immediately to the data-platform team.\n4. Check recent deploys in the #deploys channel. More than half of past ingestion\noutages were caused by a deploy in the preceding 2 hours.\n## Common causes and fixes\n**Bad deploy.** Roll back with `kctl rollback telemetry-ingest --to previous`. Rollbacks\ntake about 4 minutes to complete across all three regions.\n**Consumer group rebalance storm.** Symptoms: lag sawtooths and consumers restart\nrepeatedly. Fix: scale the consumer deployment down to 0, wait 60 seconds, then scale\nback to the normal 24 replicas.",
+          "Access to Restricted systems is reviewed every month by the security team. Access is revoked within 4 hours of an employee's departure.\n5. Reporting incidents\nSuspected security incidents, including lost devices and phishing emails that were clicked, must be reported to security@kestrel-labs.example or the #security-incidents channel within 1 hour of discovery. Employees are never penalized for reporting in good faith.\nIf a security incident involves customer data, the security team notifies affected customers within 72 hours of confirming the incident.\n6. Third-party software\nNew SaaS tools that will handle Internal data or above require a security review before purchase.\nReviews take about 10 business days. Open-source libraries are allowed if their license is on the approved list (MIT, Apache 2.0, BSD).",
+          "Kestrel Labs Information Security Policy (v5.0) 1. Data classification\nAll company data falls into one of four classes: Public, Internal, Confidential and Restricted.\nCustomer telemetry and flight logs are classified as Confidential. Cryptographic keys, device signing keys and employee personal data are Restricted.\nRestricted data may only be stored in the approved secrets manager or the HR system. It must never be sent over email or chat, even internally.\n2. Passwords and authentication\nPasswords must be at least 14 characters long. Multi-factor authentication is mandatory for every company system; hardware security keys are required for engineering and finance staff. Passwords are not rotated on a schedule, but must be changed immediately if a compromise is suspected.\n3. Devices\nCompany laptops must use full-disk encryption and the managed endpoint agent. Screens must lock automatically after 5 minutes of inactivity. Personal devices may access email and chat only, through the managed mobile app.\n4. Access reviews\nManagers review their team's access to Confidential systems every quarter. Access to Restricted systems is reviewed every month by the security team. Access is revoked within 4 hours of an employee's departure.\n5. Reporting incidents"
+        ]
+      },
+      {
+        "id": "q17",
+        "type": "multi_doc",
+        "question": "What is the combined list price of a KX-200 base kit and one Vela gateway?",
+        "gold": "$18,100",
+        "answer": "The KX\u2011200 base kit is priced at $14,900 and the Vela gateway costs $3,200, giving a combined list price of $18,100[4][1].",
+        "no_answer": false,
+        "no_answer_reason": null,
+        "citations": [
+          "product/vela-gateway.html",
+          "product/kx200-specifications.html"
+        ],
+        "latency_ms": {
+          "embed_ms": 36.66,
+          "retrieval_ms": 3.2,
+          "generation_ms": 693.5,
+          "total_ms": 733.74
+        },
+        "usage": {
+          "prompt_tokens": 1447,
+          "completion_tokens": 101,
+          "total_tokens": 1548
+        },
+        "em": 0.0,
+        "contains_gold": 1.0,
+        "f1": 0.10526315789473684,
+        "citation_correct": true,
+        "judge": {
+          "faithfulness": 1.0,
+          "n_claims": 3,
+          "n_supported": 3,
+          "unsupported_claims": [],
+          "answer_relevance": 5,
+          "relevance_reason": "The answer directly calculates and states the combined list price requested in the question.",
+          "correctness": 5,
+          "correctness_reason": "The answer matches the reference answer exactly and is supported by the provided context.",
+          "judge_error": null
+        },
+        "context_passages": [
+          "Internal backup battery | 4 hours of operation\nOperating temperature | -30 \u00b0C to 60 \u00b0C\nIngress protection | IP67\nWeight | 2.4 kg\nSecurity\nAll traffic between Vela and Kestrel Cloud is encrypted with TLS 1.3 using mutual certificate authentication. Device certificates rotate automatically every 90 days. Firmware images are signed and verified at boot.\nPricing and subscription\nThe Vela gateway costs $3,200. A Kestrel Cloud connectivity subscription is required: $45 per gateway per month, which includes 50 GB of LTE data. Additional LTE data is billed at $6 per GB.",
+          "Vela Field Gateway\nThe Vela gateway is a ruggedized edge device that collects telemetry from up to 16 KX-series drones at once and forwards it to Kestrel Cloud. It is designed for remote farms and construction sites with poor connectivity.\nConnectivity\nUplink: LTE Cat-12, Ethernet, or optional satellite modem (Iridium Certus).\nDrone link: 900 MHz long-range radio, range up to 10 km with the high-gain antenna.\nAutomatic failover between uplinks in under 5 seconds.\nLocal buffering\nWhen the uplink is lost, Vela stores telemetry on its internal 256 GB SSD. The buffer holds up to 6 hours of telemetry from a full fleet of 16 drones. When the buffer is full, the oldest data is overwritten first. Buffered data is uploaded automatically and in order once the uplink returns.\nPower and environment\nSpecification | Value\nPower input | 12\u201348 V DC or optional 120 W solar kit\nTypical power draw | 18 W\nInternal backup battery | 4 hours of operation\nOperating temperature | -30 \u00b0C to 60 \u00b0C\nIngress protection | IP67\nWeight | 2.4 kg\nSecurity",
+          "Warranty and Repairs\nStandard limited warranty\nKX-200 drones and Vela gateways are covered by a 24-month limited warranty from the date of delivery. KB-22 batteries are covered for 12 months or 200 charge cycles, whichever comes first. Payloads (MS-5, TH-1 and LX-40) are covered for 12 months.\nThe warranty covers manufacturing defects and component failures under normal use. It does not cover crash damage, water damage beyond the device's IP rating, damage from unauthorized modifications, or normal wear of propellers.\nKestrel Care+\nKestrel Care+ extends the warranty to 36 months and adds accidental-damage coverage, including crashes. Care+ costs $1,490 per drone per year and must be purchased within 30 days of delivery. Each Care+ plan includes up to two accidental-damage replacements per year, each subject to a $350 service fee.\nHow to request a repair (RMA)\nOpen a support ticket with the device serial number and a description of the issue.\nUpload the flight logs for the last 3 flights; support cannot triage crashes without them.\nSupport issues a Return Merchandise Authorization (RMA) number, normally within 1 business day.\nShip the device using the prepaid label.",
+          "The drone refuses to arm if the battery reports more than 600 cycles.\nNavigation and communication\nGNSS: GPS, GLONASS, Galileo and BeiDou, with optional RTK module for 2 cm horizontal accuracy.\nObstacle sensing: forward, rear and downward stereo vision, effective range 0.5\u201330 m.\nControl link range: up to 8 km (FCC) or 5 km (CE) line of sight.\nTelemetry: 10 Hz position and health telemetry; payload data uploaded after landing or streamed if bandwidth allows.\nPayloads\nPayload | Weight | Use\nMS-5 multispectral camera | 0.6 kg | Crop health (NDVI)\nTH-1 thermal camera | 0.5 kg | Roof and solar panel inspection\nLX-40 LiDAR | 1.4 kg | Terrain and structure mapping\nPricing\nThe KX-200 base kit (drone, two KB-22 batteries, standard charger, controller) lists at $14,900. The RTK module is an additional $1,800.",
+          "KX-200 Survey Drone \u2014 Technical Specifications\nThe KX-200 is Kestrel Labs' quadcopter for agricultural and infrastructure surveying. It carries interchangeable sensor payloads and streams telemetry through a Vela gateway or directly over LTE.\nAirframe and flight performance\nSpecification | Value\nMaximum take-off weight | 6.8 kg\nEmpty weight (no battery, no payload) | 3.1 kg\nMaximum payload | 1.5 kg\nMaximum horizontal speed | 18 m/s\nMaximum wind resistance | 12 m/s\nOperating temperature | -10 \u00b0C to 45 \u00b0C\nIngress protection | IP54\nMaximum service ceiling | 4,000 m above sea level\nBattery and endurance\nThe KX-200 uses the KB-22 smart battery, a 22,000 mAh lithium-ion pack. Flight time is 42 minutes with no payload and 31 minutes with the maximum 1.5 kg payload, measured at sea level in calm conditions. A full charge with the standard charger takes 75 minutes; the fast charger reduces this to 45 minutes.\nKB-22 batteries are rated for 400 charge cycles before capacity falls below 80%. The drone refuses to arm if the battery reports more than 600 cycles.\nNavigation and communication"
+        ]
+      },
+      {
+        "id": "q18",
+        "type": "single",
+        "question": "How much notice is required before taking a sabbatical?",
+        "gold": "3 months",
+        "answer": "A sabbatical must be requested with at least three months\u2019 notice. [1]",
+        "no_answer": false,
+        "no_answer_reason": null,
+        "citations": [
+          "policies/leave-policy.pdf"
+        ],
+        "latency_ms": {
+          "embed_ms": 32.34,
+          "retrieval_ms": 15.11,
+          "generation_ms": 693.43,
+          "total_ms": 741.32
+        },
+        "usage": {
+          "prompt_tokens": 1473,
+          "completion_tokens": 57,
+          "total_tokens": 1530
+        },
+        "em": 0.0,
+        "contains_gold": 0.0,
+        "f1": 0.0,
+        "citation_correct": true,
+        "judge": {
+          "faithfulness": 1.0,
+          "n_claims": 1,
+          "n_supported": 1,
+          "unsupported_claims": [],
+          "answer_relevance": 5,
+          "relevance_reason": "The answer directly and completely addresses the question about the required notice period for a sabbatical.",
+          "correctness": 5,
+          "correctness_reason": "The answer matches the reference answer and is supported by the context passage stating that sabbaticals require 3 months' notice.",
+          "judge_error": null
+        },
+        "context_passages": [
+          "4. Parental leave\nBirth parents receive 20 weeks of fully paid parental leave. Non-birth parents, including adoptive and foster parents, receive 16 weeks of fully paid leave. Parental leave must be taken within 12 months of the birth or placement and may be split into up to two blocks.\n5. Sabbatical\nAfter 7 years of continuous service, employees are eligible for a 4-week paid sabbatical, in addition to normal PTO. Sabbaticals must be taken within 2 years of becoming eligible and require 3 months' notice.\n6. Other leave\nBereavement leave is 5 paid days for an immediate family member and 2 paid days for an extended family member. Jury duty is fully paid for its duration. Employees receive 2 paid volunteer days per year.",
+          "All code changes need at least **two approving reviews**, one of which must come from a\ncode owner of the files changed. Changes to flight-control code additionally require\napproval from the flight-safety team.\n## First tasks\nBy the end of week one, you should have merged a small change (a \"starter ticket\" tagged\n`good-first-issue`). By the end of week two, you should have shadowed one on-call shift.\n## On-call\nEngineers join the on-call rotation after **8 weeks**. Shifts are one week long, Monday\n10:00 to Monday 10:00 local time. On-call engineers receive a stipend of $500 per week of\nprimary on-call and $200 per week of secondary on-call. If you are paged between\nmidnight and 06:00, you may start work late the next day without using leave.\n## Learning budget\nEach engineer has an annual learning budget of **$2,000** for courses, books and\nconferences. Conference travel itself is covered by the travel and expense policy, not\nthe learning budget.",
+          "# Runbook: Telemetry Ingestion Outage\nUse this runbook when the **telemetry-ingest** service stops accepting data from the\nfleet, or when ingestion lag exceeds the alert threshold.\n## Alert definition\nThe `TelemetryIngestLagHigh` alert fires when the 5-minute p95 ingestion lag exceeds\n**90 seconds** for 3 consecutive evaluation periods. A separate critical alert,\n`TelemetryIngestDown`, fires when the accepted-messages rate drops to zero for 2 minutes.\n## Severity\n- Lag above 90 seconds but data still flowing: **SEV-3**.\n- Lag above 10 minutes, or more than 25% of gateways disconnected: **SEV-2**.\n- `TelemetryIngestDown` firing, or any data loss confirmed: **SEV-1**.\nA SEV-1 requires an Incident Commander within 15 minutes and a status-page update within\n30 minutes. SEV-2 requires a status-page update within 60 minutes. SEV-3 needs no\nstatus-page update.\n## First five minutes\n1.",
+          "Meals and per diem\nEmployees on domestic travel receive a meal per diem of $75 per day. International travel per diem is $95 per day. On the first and last day of travel, the per diem is 75% of the daily amount. Alcohol is not reimbursable except at approved client dinners.\nClient entertainment is capped at $120 per person, including the employee, and the names and companies of all attendees must be recorded on the expense report.\n5. Ground transport and mileage\nTaxis and ride-share are reimbursed for business trips. Personal car use is reimbursed at $0.67 per mile. Rental cars should be compact or intermediate class.\n6. Submitting expenses\nExpense reports must be submitted in Navan within 30 days of the expense date. Itemized receipts are required for every expense over $25. Reports submitted more than 60 days late are not reimbursed.\nExpense reports are approved by the employee's direct manager. Any single expense above $5,000 also requires approval from Finance. Approved reimbursements are paid in the next payroll run.\n7. Corporate cards\nEmployees who travel more than four times per year are issued a corporate card.",
+          "Kestrel Labs Leave and Time-Off Policy (effective 2026-01-01) 1. Paid time off (PTO)\nFull-time employees accrue paid time off at a rate of 1.67 days per month, which is 20 days per year. After 5 years of continuous service, the accrual increases to 25 days per year.\nUp to 5 unused PTO days may be carried over into the next calendar year. Carried-over days expire on March 31 if not used. Any remaining balance above the carry-over limit is forfeited on\nDecember 31.\nPTO requests of 3 days or more must be submitted at least 2 weeks in advance and approved by the employee's manager in Workday.\n2. Company holidays\nKestrel Labs observes 11 paid company holidays per year. The company also closes between\nDecember 24 and January 1 inclusive; these days do not count against PTO.\n3. Sick leave\nEmployees receive 10 days of paid sick leave per year, separate from PTO. Sick leave does not carry over. A doctor's note is required for an absence of more than 3 consecutive working days.\n4. Parental leave\nBirth parents receive 20 weeks of fully paid parental leave."
+        ]
+      },
+      {
+        "id": "q19",
+        "type": "single",
+        "question": "How quickly must an employee report a suspected security incident?",
+        "gold": "within 1 hour of discovery",
+        "answer": "Employees must report a suspected security incident within\u202f1\u202fhour of discovery\u202f[1].",
+        "no_answer": false,
+        "no_answer_reason": null,
+        "citations": [
+          "policies/information-security-policy.pdf"
+        ],
+        "latency_ms": {
+          "embed_ms": 38.19,
+          "retrieval_ms": 5.72,
+          "generation_ms": 619.17,
+          "total_ms": 663.51
+        },
+        "usage": {
+          "prompt_tokens": 1406,
+          "completion_tokens": 42,
+          "total_tokens": 1448
+        },
+        "em": 0.0,
+        "contains_gold": 1.0,
+        "f1": 0.625,
+        "citation_correct": true,
+        "judge": {
+          "faithfulness": 1.0,
+          "n_claims": 1,
+          "n_supported": 1,
+          "unsupported_claims": [],
+          "answer_relevance": 5,
+          "relevance_reason": "The answer directly and completely addresses the question regarding the reporting timeframe.",
+          "correctness": 5,
+          "correctness_reason": "The answer matches the reference answer exactly and is supported by the context.",
+          "judge_error": null
+        },
+        "context_passages": [
+          "Access to Restricted systems is reviewed every month by the security team. Access is revoked within 4 hours of an employee's departure.\n5. Reporting incidents\nSuspected security incidents, including lost devices and phishing emails that were clicked, must be reported to security@kestrel-labs.example or the #security-incidents channel within 1 hour of discovery. Employees are never penalized for reporting in good faith.\nIf a security incident involves customer data, the security team notifies affected customers within 72 hours of confirming the incident.\n6. Third-party software\nNew SaaS tools that will handle Internal data or above require a security review before purchase.\nReviews take about 10 business days. Open-source libraries are allowed if their license is on the approved list (MIT, Apache 2.0, BSD).",
+          "# Runbook: Telemetry Ingestion Outage\nUse this runbook when the **telemetry-ingest** service stops accepting data from the\nfleet, or when ingestion lag exceeds the alert threshold.\n## Alert definition\nThe `TelemetryIngestLagHigh` alert fires when the 5-minute p95 ingestion lag exceeds\n**90 seconds** for 3 consecutive evaluation periods. A separate critical alert,\n`TelemetryIngestDown`, fires when the accepted-messages rate drops to zero for 2 minutes.\n## Severity\n- Lag above 90 seconds but data still flowing: **SEV-3**.\n- Lag above 10 minutes, or more than 25% of gateways disconnected: **SEV-2**.\n- `TelemetryIngestDown` firing, or any data loss confirmed: **SEV-1**.\nA SEV-1 requires an Incident Commander within 15 minutes and a status-page update within\n30 minutes. SEV-2 requires a status-page update within 60 minutes. SEV-3 needs no\nstatus-page update.\n## First five minutes\n1.",
+          "Kestrel Labs Information Security Policy (v5.0) 1. Data classification\nAll company data falls into one of four classes: Public, Internal, Confidential and Restricted.\nCustomer telemetry and flight logs are classified as Confidential. Cryptographic keys, device signing keys and employee personal data are Restricted.\nRestricted data may only be stored in the approved secrets manager or the HR system. It must never be sent over email or chat, even internally.\n2. Passwords and authentication\nPasswords must be at least 14 characters long. Multi-factor authentication is mandatory for every company system; hardware security keys are required for engineering and finance staff. Passwords are not rotated on a schedule, but must be changed immediately if a compromise is suspected.\n3. Devices\nCompany laptops must use full-disk encryption and the managed endpoint agent. Screens must lock automatically after 5 minutes of inactivity. Personal devices may access email and chat only, through the managed mobile app.\n4. Access reviews\nManagers review their team's access to Confidential systems every quarter. Access to Restricted systems is reviewed every month by the security team. Access is revoked within 4 hours of an employee's departure.\n5. Reporting incidents",
+          "All code changes need at least **two approving reviews**, one of which must come from a\ncode owner of the files changed. Changes to flight-control code additionally require\napproval from the flight-safety team.\n## First tasks\nBy the end of week one, you should have merged a small change (a \"starter ticket\" tagged\n`good-first-issue`). By the end of week two, you should have shadowed one on-call shift.\n## On-call\nEngineers join the on-call rotation after **8 weeks**. Shifts are one week long, Monday\n10:00 to Monday 10:00 local time. On-call engineers receive a stipend of $500 per week of\nprimary on-call and $200 per week of secondary on-call. If you are paged between\nmidnight and 06:00, you may start work late the next day without using leave.\n## Learning budget\nEach engineer has an annual learning budget of **$2,000** for courses, books and\nconferences. Conference travel itself is covered by the travel and expense policy, not\nthe learning budget.",
+          "repeatedly. Fix: scale the consumer deployment down to 0, wait 60 seconds, then scale\nback to the normal 24 replicas.\n**Disk full on brokers.** Kafka retention is 72 hours. If disk usage exceeds 85%, reduce\nretention temporarily to 24 hours with the `retention-emergency` script. Never delete\nsegment files by hand.\n## Data loss and replay\nGateways buffer up to **6 hours** of telemetry locally (see the Vela gateway\nspecifications). If an outage lasts less than 6 hours, no data is lost: gateways replay\ntheir buffer automatically once ingestion recovers. Beyond 6 hours, the oldest buffered\ndata is overwritten and the incident must be treated as SEV-1 data loss.\n## After the incident\nA blameless post-mortem is required for every SEV-1 and SEV-2, due within 5 business\ndays. Post-mortems are filed in the Incident Reviews space and reviewed at the Thursday\nreliability meeting."
+        ]
+      },
+      {
+        "id": "q20",
+        "type": "single",
+        "question": "What is the maximum wind speed the KX-200 can handle?",
+        "gold": "12 m/s",
+        "answer": "The KX\u2011200 is rated to resist winds up to **12\u202fm/s**[1].",
+        "no_answer": false,
+        "no_answer_reason": null,
+        "citations": [
+          "product/kx200-specifications.html"
+        ],
+        "latency_ms": {
+          "embed_ms": 189.41,
+          "retrieval_ms": 25.62,
+          "generation_ms": 668.3,
+          "total_ms": 887.23
+        },
+        "usage": {
+          "prompt_tokens": 1409,
+          "completion_tokens": 51,
+          "total_tokens": 1460
+        },
+        "em": 0.0,
+        "contains_gold": 1.0,
+        "f1": 0.33333333333333337,
+        "citation_correct": true,
+        "judge": {
+          "faithfulness": 1.0,
+          "n_claims": 1,
+          "n_supported": 1,
+          "unsupported_claims": [],
+          "answer_relevance": 5,
+          "relevance_reason": "The answer directly and completely addresses the question about the maximum wind speed the drone can handle.",
+          "correctness": 5,
+          "correctness_reason": "The answer matches the reference answer exactly and is supported by the context.",
+          "judge_error": null
+        },
+        "context_passages": [
+          "KX-200 Survey Drone \u2014 Technical Specifications\nThe KX-200 is Kestrel Labs' quadcopter for agricultural and infrastructure surveying. It carries interchangeable sensor payloads and streams telemetry through a Vela gateway or directly over LTE.\nAirframe and flight performance\nSpecification | Value\nMaximum take-off weight | 6.8 kg\nEmpty weight (no battery, no payload) | 3.1 kg\nMaximum payload | 1.5 kg\nMaximum horizontal speed | 18 m/s\nMaximum wind resistance | 12 m/s\nOperating temperature | -10 \u00b0C to 45 \u00b0C\nIngress protection | IP54\nMaximum service ceiling | 4,000 m above sea level\nBattery and endurance\nThe KX-200 uses the KB-22 smart battery, a 22,000 mAh lithium-ion pack. Flight time is 42 minutes with no payload and 31 minutes with the maximum 1.5 kg payload, measured at sea level in calm conditions. A full charge with the standard charger takes 75 minutes; the fast charger reduces this to 45 minutes.\nKB-22 batteries are rated for 400 charge cycles before capacity falls below 80%. The drone refuses to arm if the battery reports more than 600 cycles.\nNavigation and communication",
+          "The drone refuses to arm if the battery reports more than 600 cycles.\nNavigation and communication\nGNSS: GPS, GLONASS, Galileo and BeiDou, with optional RTK module for 2 cm horizontal accuracy.\nObstacle sensing: forward, rear and downward stereo vision, effective range 0.5\u201330 m.\nControl link range: up to 8 km (FCC) or 5 km (CE) line of sight.\nTelemetry: 10 Hz position and health telemetry; payload data uploaded after landing or streamed if bandwidth allows.\nPayloads\nPayload | Weight | Use\nMS-5 multispectral camera | 0.6 kg | Crop health (NDVI)\nTH-1 thermal camera | 0.5 kg | Roof and solar panel inspection\nLX-40 LiDAR | 1.4 kg | Terrain and structure mapping\nPricing\nThe KX-200 base kit (drone, two KB-22 batteries, standard charger, controller) lists at $14,900. The RTK module is an additional $1,800.",
+          "Frequently Asked Questions\nDo I need a pilot license to fly the KX-200?\nIn most countries, yes, for commercial use. In the United States, commercial operators need an FAA Part 107 remote pilot certificate. Kestrel does not provide licensing, but our training partners offer a 2-day course included free with every Enterprise order.\nCan the KX-200 fly in the rain?\nThe KX-200 is rated IP54, which means it tolerates light rain and splashing. Do not fly in heavy rain, snow or fog. Water damage from flying in heavy rain is not covered by the standard warranty.\nHow long is my flight data kept in Kestrel Cloud?\nTelemetry and flight logs are kept for 13 months on Starter and Team plans and for 7 years on Enterprise plans. Raw payload imagery is kept for 90 days unless you move it to archive storage, which costs $0.02 per GB per month.\nCan I export my data?\nYes. You can export telemetry as CSV or Parquet from the dashboard, or through the API. Payload imagery can be exported as GeoTIFF. Bulk exports larger than 500 GB are delivered as a download link valid for 7 days.\nWhat support hours do you offer?",
+          "Bulk exports larger than 500 GB are delivered as a download link valid for 7 days.\nWhat support hours do you offer?\nStandard support is available by email and chat, Monday to Friday, 08:00\u201318:00 US Eastern time, with a first-response target of 1 business day. Enterprise customers get 24/7 phone support with a 1-hour first-response target for critical issues.\nCan I use third-party batteries?\nNo. The KX-200 only accepts genuine KB-22 smart batteries; it will refuse to arm with any other battery. Using modified batteries voids the warranty.\nHow do I update firmware?\nFirmware updates are delivered over the air through the Kestrel Pilot app or the Vela gateway. Customers on the Stable channel receive updates only after they reach general availability. You can also install firmware manually from a USB drive.",
+          "# Kestrel Cloud API \u2014 Rate Limits and Quotas\nThe Kestrel Cloud API is the public REST interface customers use to pull telemetry from\nKX-series drones and Vela gateways. This page is the source of truth for rate limits.\nIf a support article disagrees with this page, this page wins.\n## Plans and request limits\nRate limits are enforced per API key using a token-bucket algorithm. Each bucket refills\ncontinuously, so a client that waits will regain capacity gradually rather than all at once\nat the top of the minute.\n| Plan | Sustained rate | Burst capacity | Monthly request quota |\n|------------|-----------------------|----------------|-----------------------|\n| Starter | 60 requests / minute | 120 requests | 500,000 |\n| Team | 600 requests / minute | 1,200 requests | 10,000,000 |"
+        ]
+      },
+      {
+        "id": "q21",
+        "type": "single",
+        "question": "What is the daily meal per diem for international travel?",
+        "gold": "$95 per day",
+        "answer": "The daily meal per diem for international travel is $95 per day[1][2].",
+        "no_answer": false,
+        "no_answer_reason": null,
+        "citations": [
+          "policies/travel-and-expense-policy.pdf",
+          "policies/travel-and-expense-policy.pdf"
+        ],
+        "latency_ms": {
+          "embed_ms": 192.9,
+          "retrieval_ms": 31.26,
+          "generation_ms": 714.9,
+          "total_ms": 941.44
+        },
+        "usage": {
+          "prompt_tokens": 1158,
+          "completion_tokens": 44,
+          "total_tokens": 1202
+        },
+        "em": 0.0,
+        "contains_gold": 1.0,
+        "f1": 0.42857142857142855,
+        "citation_correct": true,
+        "judge": {
+          "faithfulness": 1.0,
+          "n_claims": 1,
+          "n_supported": 1,
+          "unsupported_claims": [],
+          "answer_relevance": 5,
+          "relevance_reason": "The answer directly and completely addresses the specific question about the international travel per diem.",
+          "correctness": 5,
+          "correctness_reason": "The answer matches the reference answer exactly and is supported by the provided context.",
+          "judge_error": null
+        },
+        "context_passages": [
+          "Meals and per diem\nEmployees on domestic travel receive a meal per diem of $75 per day. International travel per diem is $95 per day. On the first and last day of travel, the per diem is 75% of the daily amount. Alcohol is not reimbursable except at approved client dinners.\nClient entertainment is capped at $120 per person, including the employee, and the names and companies of all attendees must be recorded on the expense report.\n5. Ground transport and mileage\nTaxis and ride-share are reimbursed for business trips. Personal car use is reimbursed at $0.67 per mile. Rental cars should be compact or intermediate class.\n6. Submitting expenses\nExpense reports must be submitted in Navan within 30 days of the expense date. Itemized receipts are required for every expense over $25. Reports submitted more than 60 days late are not reimbursed.\nExpense reports are approved by the employee's direct manager. Any single expense above $5,000 also requires approval from Finance. Approved reimbursements are paid in the next payroll run.\n7. Corporate cards\nEmployees who travel more than four times per year are issued a corporate card.",
+          "Kestrel Labs Travel and Expense Policy (v3.2, effective 2026-01-01) 1. Purpose and scope\nThis policy applies to all Kestrel Labs employees and contractors who travel or incur expenses on company business. Expenses outside this policy are not reimbursed unless approved in writing by the employee's department head before they are incurred.\n2. Booking travel\nAll flights, hotels and rental cars must be booked through the company travel portal, Navan.\nBookings made outside the portal are reimbursed only if they are at least 10% cheaper than the cheapest comparable portal option, with a screenshot as proof.\nFlights must be booked at least 14 days in advance when possible. Economy class is the default.\nPremium economy is allowed for flights longer than 6 hours. Business class is allowed only for flights longer than 10 hours and requires VP approval.\n3. Hotels\nThe nightly hotel cap is $250 in standard cities and $375 in high-cost cities (New York, San\nFrancisco, London, Zurich, Tokyo and Singapore), excluding taxes.\n4. Meals and per diem\nEmployees on domestic travel receive a meal per diem of $75 per day. International travel per diem is $95 per day.",
+          "Approved reimbursements are paid in the next payroll run.\n7. Corporate cards\nEmployees who travel more than four times per year are issued a corporate card. Personal purchases on a corporate card are prohibited; any accidental personal charge must be repaid within 15 days.",
+          "Kestrel Labs Leave and Time-Off Policy (effective 2026-01-01) 1. Paid time off (PTO)\nFull-time employees accrue paid time off at a rate of 1.67 days per month, which is 20 days per year. After 5 years of continuous service, the accrual increases to 25 days per year.\nUp to 5 unused PTO days may be carried over into the next calendar year. Carried-over days expire on March 31 if not used. Any remaining balance above the carry-over limit is forfeited on\nDecember 31.\nPTO requests of 3 days or more must be submitted at least 2 weeks in advance and approved by the employee's manager in Workday.\n2. Company holidays\nKestrel Labs observes 11 paid company holidays per year. The company also closes between\nDecember 24 and January 1 inclusive; these days do not count against PTO.\n3. Sick leave\nEmployees receive 10 days of paid sick leave per year, separate from PTO. Sick leave does not carry over. A doctor's note is required for an absence of more than 3 consecutive working days.\n4. Parental leave\nBirth parents receive 20 weeks of fully paid parental leave."
+        ]
+      },
+      {
+        "id": "q22",
+        "type": "single",
+        "question": "Who has to sign off on a firmware release?",
+        "gold": "the release captain, the QA lead and the head of flight safety",
+        "answer": "A firmware release must be signed off by three people: the release captain, the QA lead, and the head of flight safety (currently Tom\u00e1s\u202fOkafor)[1].",
+        "no_answer": false,
+        "no_answer_reason": null,
+        "citations": [
+          "engineering/firmware-release-process.md"
+        ],
+        "latency_ms": {
+          "embed_ms": 424.46,
+          "retrieval_ms": 63.86,
+          "generation_ms": 724.92,
+          "total_ms": 1216.73
+        },
+        "usage": {
+          "prompt_tokens": 1265,
+          "completion_tokens": 74,
+          "total_tokens": 1339
+        },
+        "em": 0.0,
+        "contains_gold": 1.0,
+        "f1": 0.6,
+        "citation_correct": true,
+        "judge": {
+          "faithfulness": 1.0,
+          "n_claims": 5,
+          "n_supported": 5,
+          "unsupported_claims": [],
+          "answer_relevance": 5,
+          "relevance_reason": "The answer directly and completely identifies the specific individuals required to sign off on a firmware release.",
+          "correctness": 5,
+          "correctness_reason": "The answer contains all key facts from the reference answer and adds supported context without contradiction.",
+          "judge_error": null
+        },
+        "context_passages": [
+          "partitioning). A rollback can be pushed to the fleet in under 30 minutes. Downgrading\nacross a MAJOR version is not supported because of log-format changes.\n## Sign-off\nA release needs sign-off from three people: the release captain, the QA lead and the\nhead of flight safety. The current head of flight safety is Tom\u00e1s Okafor.",
+          "missions.\n3. Field flight testing: at least **40 flight hours** across at least 3 different weather\nconditions, logged by the flight-test team.\nA release candidate that fails any step is discarded and a new `-rc` is cut.\n## Staged rollout\nApproved releases go out in four stages:\n| Stage | Share of fleet | Minimum duration |\n|-------|----------------|------------------|\n| Canary | 1% | 48 hours |\n| Early | 10% | 72 hours |\n| Broad | 50% | 72 hours |\n| General availability | 100% | \u2014 |\nCustomers enrolled in the \"Stable channel\" receive updates only at the General\navailability stage. Rollout is paused automatically if the crash-report rate in any stage\nexceeds **0.5%** of devices in that stage within 24 hours.\n## Rollback\nEvery device keeps the previous firmware image in a secondary partition (A/B\npartitioning). A rollback can be pushed to the fleet in under 30 minutes. Downgrading",
+          "# Firmware Release Process\nThis document describes how firmware for the KX-200 drone and the Vela gateway moves\nfrom a merged pull request to the customer fleet.\n## Versioning\nFirmware uses semantic versioning: `MAJOR.MINOR.PATCH`. A MAJOR bump is required for any\nchange to the flight-control protocol or the on-disk log format. Release candidates are\ntagged with an `-rc.N` suffix, for example `4.2.0-rc.3`.\n## Release train\nKestrel ships a minor firmware release every **six weeks**. Code freeze happens on the\nMonday two weeks before the release date. After code freeze, only fixes approved by the\nrelease captain may be merged into the release branch.\n## Required testing\nEvery release candidate must pass, in order:\n1. The automated hardware-in-the-loop (HIL) suite on the test rack in Building C. The suite\ncontains about 1,800 test cases and takes roughly 5 hours.\n2. A **72-hour soak test** on a fleet of 20 internal drones running continuous simulated\nmissions.\n3. Field flight testing: at least **40 flight hours** across at least 3 different weather",
+          "Bulk exports larger than 500 GB are delivered as a download link valid for 7 days.\nWhat support hours do you offer?\nStandard support is available by email and chat, Monday to Friday, 08:00\u201318:00 US Eastern time, with a first-response target of 1 business day. Enterprise customers get 24/7 phone support with a 1-hour first-response target for critical issues.\nCan I use third-party batteries?\nNo. The KX-200 only accepts genuine KB-22 smart batteries; it will refuse to arm with any other battery. Using modified batteries voids the warranty.\nHow do I update firmware?\nFirmware updates are delivered over the air through the Kestrel Pilot app or the Vela gateway. Customers on the Stable channel receive updates only after they reach general availability. You can also install firmware manually from a USB drive.",
+          "Kestrel Labs Information Security Policy (v5.0) 1. Data classification\nAll company data falls into one of four classes: Public, Internal, Confidential and Restricted.\nCustomer telemetry and flight logs are classified as Confidential. Cryptographic keys, device signing keys and employee personal data are Restricted.\nRestricted data may only be stored in the approved secrets manager or the HR system. It must never be sent over email or chat, even internally.\n2. Passwords and authentication\nPasswords must be at least 14 characters long. Multi-factor authentication is mandatory for every company system; hardware security keys are required for engineering and finance staff. Passwords are not rotated on a schedule, but must be changed immediately if a compromise is suspected.\n3. Devices\nCompany laptops must use full-disk encryption and the managed endpoint agent. Screens must lock automatically after 5 minutes of inactivity. Personal devices may access email and chat only, through the managed mobile app.\n4. Access reviews\nManagers review their team's access to Confidential systems every quarter. Access to Restricted systems is reviewed every month by the security team. Access is revoked within 4 hours of an employee's departure.\n5. Reporting incidents"
+        ]
+      },
+      {
+        "id": "q23",
+        "type": "single",
+        "question": "What crash-report rate automatically pauses a firmware rollout?",
+        "gold": "0.5%",
+        "answer": "The rollout is automatically paused when the crash\u2011report rate in any stage exceeds\u202f0.5\u202f% of the devices in that stage within 24\u202fhours[1].",
+        "no_answer": false,
+        "no_answer_reason": null,
+        "citations": [
+          "engineering/firmware-release-process.md"
+        ],
+        "latency_ms": {
+          "embed_ms": 155.94,
+          "retrieval_ms": 41.58,
+          "generation_ms": 737.82,
+          "total_ms": 936.89
+        },
+        "usage": {
+          "prompt_tokens": 1317,
+          "completion_tokens": 92,
+          "total_tokens": 1409
+        },
+        "em": 0.0,
+        "contains_gold": 1.0,
+        "f1": 0.09523809523809523,
+        "citation_correct": true,
+        "judge": {
+          "faithfulness": 1.0,
+          "n_claims": 1,
+          "n_supported": 1,
+          "unsupported_claims": [],
+          "answer_relevance": 5,
+          "relevance_reason": "The answer directly and completely addresses the specific threshold and conditions for pausing the firmware rollout as asked.",
+          "correctness": 5,
+          "correctness_reason": "The answer correctly identifies the 0.5% threshold and matches the reference answer and context passage exactly.",
+          "judge_error": null
+        },
+        "context_passages": [
+          "missions.\n3. Field flight testing: at least **40 flight hours** across at least 3 different weather\nconditions, logged by the flight-test team.\nA release candidate that fails any step is discarded and a new `-rc` is cut.\n## Staged rollout\nApproved releases go out in four stages:\n| Stage | Share of fleet | Minimum duration |\n|-------|----------------|------------------|\n| Canary | 1% | 48 hours |\n| Early | 10% | 72 hours |\n| Broad | 50% | 72 hours |\n| General availability | 100% | \u2014 |\nCustomers enrolled in the \"Stable channel\" receive updates only at the General\navailability stage. Rollout is paused automatically if the crash-report rate in any stage\nexceeds **0.5%** of devices in that stage within 24 hours.\n## Rollback\nEvery device keeps the previous firmware image in a secondary partition (A/B\npartitioning). A rollback can be pushed to the fleet in under 30 minutes. Downgrading",
+          "# Firmware Release Process\nThis document describes how firmware for the KX-200 drone and the Vela gateway moves\nfrom a merged pull request to the customer fleet.\n## Versioning\nFirmware uses semantic versioning: `MAJOR.MINOR.PATCH`. A MAJOR bump is required for any\nchange to the flight-control protocol or the on-disk log format. Release candidates are\ntagged with an `-rc.N` suffix, for example `4.2.0-rc.3`.\n## Release train\nKestrel ships a minor firmware release every **six weeks**. Code freeze happens on the\nMonday two weeks before the release date. After code freeze, only fixes approved by the\nrelease captain may be merged into the release branch.\n## Required testing\nEvery release candidate must pass, in order:\n1. The automated hardware-in-the-loop (HIL) suite on the test rack in Building C. The suite\ncontains about 1,800 test cases and takes roughly 5 hours.\n2. A **72-hour soak test** on a fleet of 20 internal drones running continuous simulated\nmissions.\n3. Field flight testing: at least **40 flight hours** across at least 3 different weather",
+          "SEV-2 requires a status-page update within 60 minutes. SEV-3 needs no\nstatus-page update.\n## First five minutes\n1. Acknowledge the page in PagerDuty so it does not escalate to the secondary on-call.\n2. Open the \"Ingest Overview\" Grafana dashboard and check the Kafka consumer lag panel.\n3. Check whether the broker cluster `kafka-telemetry-prod` is healthy. If two or more\nbrokers are offline, escalate immediately to the data-platform team.\n4. Check recent deploys in the #deploys channel. More than half of past ingestion\noutages were caused by a deploy in the preceding 2 hours.\n## Common causes and fixes\n**Bad deploy.** Roll back with `kctl rollback telemetry-ingest --to previous`. Rollbacks\ntake about 4 minutes to complete across all three regions.\n**Consumer group rebalance storm.** Symptoms: lag sawtooths and consumers restart\nrepeatedly. Fix: scale the consumer deployment down to 0, wait 60 seconds, then scale\nback to the normal 24 replicas.",
+          "partitioning). A rollback can be pushed to the fleet in under 30 minutes. Downgrading\nacross a MAJOR version is not supported because of log-format changes.\n## Sign-off\nA release needs sign-off from three people: the release captain, the QA lead and the\nhead of flight safety. The current head of flight safety is Tom\u00e1s Okafor.",
+          "# Runbook: Telemetry Ingestion Outage\nUse this runbook when the **telemetry-ingest** service stops accepting data from the\nfleet, or when ingestion lag exceeds the alert threshold.\n## Alert definition\nThe `TelemetryIngestLagHigh` alert fires when the 5-minute p95 ingestion lag exceeds\n**90 seconds** for 3 consecutive evaluation periods. A separate critical alert,\n`TelemetryIngestDown`, fires when the accepted-messages rate drops to zero for 2 minutes.\n## Severity\n- Lag above 90 seconds but data still flowing: **SEV-3**.\n- Lag above 10 minutes, or more than 25% of gateways disconnected: **SEV-2**.\n- `TelemetryIngestDown` firing, or any data loss confirmed: **SEV-1**.\nA SEV-1 requires an Incident Commander within 15 minutes and a status-page update within\n30 minutes. SEV-2 requires a status-page update within 60 minutes. SEV-3 needs no\nstatus-page update.\n## First five minutes\n1."
+        ]
+      },
+      {
+        "id": "q24",
+        "type": "single",
+        "question": "What is each engineer's annual learning budget?",
+        "gold": "$2,000",
+        "answer": "Each engineer receives an annual learning budget of **$2,000** for courses, books, and conferences[1].",
+        "no_answer": false,
+        "no_answer_reason": null,
+        "citations": [
+          "engineering/engineering-onboarding.md"
+        ],
+        "latency_ms": {
+          "embed_ms": 116.81,
+          "retrieval_ms": 29.37,
+          "generation_ms": 409.36,
+          "total_ms": 556.98
+        },
+        "usage": {
+          "prompt_tokens": 724,
+          "completion_tokens": 51,
+          "total_tokens": 775
+        },
+        "em": 0.0,
+        "contains_gold": 1.0,
+        "f1": 0.14285714285714288,
+        "citation_correct": true,
+        "judge": {
+          "faithfulness": 1.0,
+          "n_claims": 2,
+          "n_supported": 2,
+          "unsupported_claims": [],
+          "answer_relevance": 5,
+          "relevance_reason": "The answer directly and completely answers the specific question about the annual learning budget amount.",
+          "correctness": 5,
+          "correctness_reason": "The answer matches the reference answer exactly and is fully supported by the context.",
+          "judge_error": null
+        },
+        "context_passages": [
+          "All code changes need at least **two approving reviews**, one of which must come from a\ncode owner of the files changed. Changes to flight-control code additionally require\napproval from the flight-safety team.\n## First tasks\nBy the end of week one, you should have merged a small change (a \"starter ticket\" tagged\n`good-first-issue`). By the end of week two, you should have shadowed one on-call shift.\n## On-call\nEngineers join the on-call rotation after **8 weeks**. Shifts are one week long, Monday\n10:00 to Monday 10:00 local time. On-call engineers receive a stipend of $500 per week of\nprimary on-call and $200 per week of secondary on-call. If you are paged between\nmidnight and 06:00, you may start work late the next day without using leave.\n## Learning budget\nEach engineer has an annual learning budget of **$2,000** for courses, books and\nconferences. Conference travel itself is covered by the travel and expense policy, not\nthe learning budget.",
+          "# Engineering Onboarding Guide\nWelcome to Kestrel Labs engineering. This guide covers your first two weeks.\n## Day one\n- Collect your laptop from IT on the 2nd floor of Building A. Engineers receive a 16-inch\nlaptop with 64 GB of RAM; if you work on the simulation team you may request a desktop\nworkstation with a GPU instead.\n- Enroll a hardware security key. Two keys are issued: one to carry, one to keep at home.\nPassword-only login is disabled for all engineering systems.\n- Join the #eng-announcements and #deploys Slack channels.\n## Your onboarding buddy\nEvery new engineer is paired with an onboarding buddy from a different team for their\nfirst **90 days**. Buddies meet with you at least once a week. Your manager will\nintroduce you on day one.\n## Development environment\nThe monorepo is hosted on the internal Git server. Clone it with the `kdev bootstrap`\ncommand, which installs the toolchain, pre-commit hooks and the local simulator. A clean\nbootstrap takes about 40 minutes on the standard laptop.\nAll code changes need at least **two approving reviews**, one of which must come from a"
+        ]
+      },
+      {
+        "id": "q25",
+        "type": "unanswerable",
+        "question": "What is Kestrel Labs' policy on working remotely from another country?",
+        "gold": null,
+        "answer": "I couldn't find information about this in the available documents.",
+        "no_answer": true,
+        "no_answer_reason": "llm_found_context_insufficient",
+        "citations": [],
+        "latency_ms": {
+          "embed_ms": 111.6,
+          "retrieval_ms": 31.06,
+          "generation_ms": 590.96,
+          "total_ms": 735.29
+        },
+        "usage": {
+          "prompt_tokens": 1453,
+          "completion_tokens": 25,
+          "total_tokens": 1478
+        }
+      },
+      {
+        "id": "q26",
+        "type": "unanswerable",
+        "question": "Who is the CEO of Kestrel Labs?",
+        "gold": null,
+        "answer": "I couldn't find information about this in the available documents.",
+        "no_answer": true,
+        "no_answer_reason": "llm_found_context_insufficient",
+        "citations": [],
+        "latency_ms": {
+          "embed_ms": 50.92,
+          "retrieval_ms": 19.5,
+          "generation_ms": 342.12,
+          "total_ms": 412.95
+        },
+        "usage": {
+          "prompt_tokens": 1421,
+          "completion_tokens": 30,
+          "total_tokens": 1451
+        }
+      },
+      {
+        "id": "q27",
+        "type": "unanswerable",
+        "question": "What is the maximum flight time of the KX-300 drone?",
+        "gold": null,
+        "answer": "I couldn't find information about this in the available documents.",
+        "no_answer": true,
+        "no_answer_reason": "llm_found_context_insufficient",
+        "citations": [],
+        "latency_ms": {
+          "embed_ms": 20.49,
+          "retrieval_ms": 2.73,
+          "generation_ms": 519.93,
+          "total_ms": 544.71
+        },
+        "usage": {
+          "prompt_tokens": 1480,
+          "completion_tokens": 28,
+          "total_tokens": 1508
+        }
+      }
+    ]
+  }
+}

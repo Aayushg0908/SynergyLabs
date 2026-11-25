@@ -34,6 +34,12 @@ class LLMClient:
             from groq import Groq
 
             self._client = Groq(api_key=api_key, max_retries=0)
+        elif self.provider == "mistral":
+            import httpx
+
+            # Mistral's chat API is OpenAI-compatible; plain httpx avoids another SDK dependency.
+            self._client = httpx.Client(base_url="https://api.mistral.ai/v1", timeout=120,
+                                        headers={"Authorization": f"Bearer {api_key}"})
         elif self.provider == "gemini":
             from google import genai
             from google.genai import types
@@ -65,6 +71,23 @@ class LLMClient:
                 text=(resp.choices[0].message.content or "").strip(),
                 prompt_tokens=u.prompt_tokens, completion_tokens=u.completion_tokens, total_tokens=u.total_tokens,
                 latency_ms=(time.perf_counter() - start) * 1000, provider=self.provider, model=self.model,
+            )
+
+        if self.provider == "mistral":
+            body = {"model": self.model, "temperature": self.temperature, "max_tokens": self.max_tokens,
+                    "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]}
+            if json_mode:
+                body["response_format"] = {"type": "json_object"}
+            r = self._client.post("/chat/completions", json=body)
+            if r.status_code >= 400:  # message includes the status code, so 429/503 are retried
+                raise RuntimeError(f"mistral HTTP {r.status_code}: {r.text[:300]}")
+            data = r.json()
+            u = data["usage"]
+            return LLMResult(
+                text=(data["choices"][0]["message"]["content"] or "").strip(),
+                prompt_tokens=u["prompt_tokens"], completion_tokens=u["completion_tokens"],
+                total_tokens=u["total_tokens"], latency_ms=(time.perf_counter() - start) * 1000,
+                provider=self.provider, model=self.model,
             )
 
         from google.genai import types

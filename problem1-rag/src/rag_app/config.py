@@ -18,9 +18,9 @@ class Settings(BaseSettings):
     llm_max_tokens: int = 1024
     llm_temperature: float = 0.0
 
-    # Judge LLM (used by the evaluation harness only)
-    judge_provider: str = "gemini"
-    judge_model: str = "gemini-2.5-flash"
+    # Judge LLM (used by the evaluation harness only): groq | gemini | mistral
+    judge_provider: str = "mistral"
+    judge_model: str = "mistral-medium-2604"
     judge_api_key: str = ""
 
     # Embeddings

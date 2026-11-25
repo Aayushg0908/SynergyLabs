@@ -1,0 +1,203 @@
+# Fixed evaluation set for the Kestrel RAG service.
+#
+# Each question has:
+#   gold      - short reference answer (used for EM / F1 and the judge's correctness check)
+#   evidence  - list of {doc, span}. A retrieved chunk is RELEVANT to the question iff it
+#               comes from `doc` and contains `span` (compared after lower-casing, removing
+#               markdown emphasis and collapsing whitespace). Defining relevance by text span
+#               rather than by chunk ID keeps the labels valid when chunk size changes.
+#   type      - single | multi_doc (needs >1 document) | unanswerable (not in the corpus)
+#   doc_type  - optional metadata filter passed to retrieval
+#
+# 24 answerable + 3 unanswerable = 27 questions.
+
+questions:
+  - id: q01
+    question: How long can the KX-200 fly when carrying its maximum payload?
+    gold: 31 minutes
+    type: single
+    evidence:
+      - {doc: product/kx200-specifications.html, span: "31 minutes with the maximum 1.5 kg payload"}
+
+  - id: q02
+    question: What is the nightly hotel cap in high-cost cities such as London?
+    gold: $375
+    type: single
+    evidence:
+      - {doc: policies/travel-and-expense-policy.pdf, span: "$375 in high-cost cities"}
+
+  - id: q03
+    question: How many concurrent open streams does the Team plan allow?
+    gold: "25"
+    type: single
+    evidence:
+      - {doc: engineering/api-rate-limits.md, span: "Team allows 25"}
+
+  - id: q04
+    question: What HTTP status code does the Kestrel API return when a client exceeds its rate limit?
+    gold: "429"
+    type: single
+    evidence:
+      - {doc: engineering/api-rate-limits.md, span: "429 Too Many Requests"}
+
+  - id: q05
+    question: How many weeks of paid parental leave do non-birth parents get?
+    gold: 16 weeks
+    type: single
+    evidence:
+      - {doc: policies/leave-policy.pdf, span: "receive 16 weeks of fully paid leave"}
+
+  - id: q06
+    question: How long is the warranty on KB-22 batteries?
+    gold: 12 months or 200 charge cycles, whichever comes first
+    type: single
+    evidence:
+      - {doc: support/warranty-and-repairs.html, span: "covered for 12 months or 200 charge cycles"}
+
+  - id: q07
+    question: How many approving code reviews does a code change need before merging?
+    gold: two
+    type: single
+    evidence:
+      - {doc: engineering/engineering-onboarding.md, span: "at least two approving reviews"}
+
+  - id: q08
+    question: What is the reimbursement rate for using a personal car on a business trip?
+    gold: $0.67 per mile
+    type: single
+    evidence:
+      - {doc: policies/travel-and-expense-policy.pdf, span: "$0.67 per mile"}
+
+  - id: q09
+    question: What severity is a telemetry incident where ingestion lag goes above 10 minutes?
+    gold: SEV-2
+    type: single
+    evidence:
+      - {doc: engineering/runbook-telemetry-outage.md, span: "Lag above 10 minutes, or more than 25% of gateways disconnected: SEV-2"}
+
+  - id: q10
+    question: How long is the soak test a firmware release candidate must pass?
+    gold: 72 hours
+    type: single
+    evidence:
+      - {doc: engineering/firmware-release-process.md, span: "72-hour soak test"}
+
+  - id: q11
+    question: What was Kestrel Labs' revenue in Q3 2026?
+    gold: $18.4 million
+    type: single
+    evidence:
+      - {doc: finance/q3-2026-quarterly-report.pdf, span: "Q3 2026 revenue was $18.4 million"}
+
+  - id: q12
+    question: How much does Kestrel Care+ cost?
+    gold: $1,490 per drone per year
+    type: single
+    evidence:
+      - {doc: support/warranty-and-repairs.html, span: "Care+ costs $1,490 per drone per year"}
+
+  - id: q13
+    question: How long is telemetry data kept in Kestrel Cloud for Team plan customers?
+    gold: 13 months
+    type: single
+    evidence:
+      - {doc: support/customer-faq.html, span: "kept for 13 months on Starter and Team plans"}
+
+  - id: q14
+    question: What is the minimum password length required by the security policy?
+    gold: 14 characters
+    type: single
+    evidence:
+      - {doc: policies/information-security-policy.pdf, span: "at least 14 characters long"}
+
+  - id: q15
+    question: How many drones can a single Vela gateway collect telemetry from at once?
+    gold: "16"
+    type: single
+    evidence:
+      - {doc: product/vela-gateway.html, span: "up to 16 KX-series drones"}
+
+  - id: q16
+    question: If telemetry ingestion is down for 5 hours, will any customer data be lost?
+    gold: No. Vela gateways buffer up to 6 hours of telemetry and replay it automatically when ingestion recovers.
+    type: multi_doc
+    evidence:
+      - {doc: engineering/runbook-telemetry-outage.md, span: "If an outage lasts less than 6 hours, no data is lost"}
+      - {doc: product/vela-gateway.html, span: "holds up to 6 hours of telemetry"}
+
+  - id: q17
+    question: What is the combined list price of a KX-200 base kit and one Vela gateway?
+    gold: $18,100
+    type: multi_doc
+    evidence:
+      - {doc: product/kx200-specifications.html, span: "lists at $14,900"}
+      - {doc: product/vela-gateway.html, span: "The Vela gateway costs $3,200"}
+
+  - id: q18
+    question: How much notice is required before taking a sabbatical?
+    gold: 3 months
+    type: single
+    evidence:
+      - {doc: policies/leave-policy.pdf, span: "require 3 months"}
+
+  - id: q19
+    question: How quickly must an employee report a suspected security incident?
+    gold: within 1 hour of discovery
+    type: single
+    evidence:
+      - {doc: policies/information-security-policy.pdf, span: "within 1 hour of discovery"}
+
+  - id: q20
+    question: What is the maximum wind speed the KX-200 can handle?
+    gold: 12 m/s
+    type: single
+    evidence:
+      - {doc: product/kx200-specifications.html, span: "Maximum wind resistance | 12 m/s"}
+
+  - id: q21
+    question: What is the daily meal per diem for international travel?
+    gold: $95 per day
+    type: single
+    doc_type: [policies]
+    evidence:
+      - {doc: policies/travel-and-expense-policy.pdf, span: "International travel per diem is $95 per day"}
+
+  - id: q22
+    question: Who has to sign off on a firmware release?
+    gold: the release captain, the QA lead and the head of flight safety
+    type: single
+    evidence:
+      - {doc: engineering/firmware-release-process.md, span: "the release captain, the QA lead and the head of flight safety"}
+
+  - id: q23
+    question: What crash-report rate automatically pauses a firmware rollout?
+    gold: 0.5%
+    type: single
+    evidence:
+      - {doc: engineering/firmware-release-process.md, span: "exceeds 0.5% of devices"}
+
+  - id: q24
+    question: What is each engineer's annual learning budget?
+    gold: $2,000
+    type: single
+    doc_type: [engineering]
+    evidence:
+      - {doc: engineering/engineering-onboarding.md, span: "annual learning budget of $2,000"}
+
+  - id: q25
+    question: What is Kestrel Labs' policy on working remotely from another country?
+    gold: null
+    type: unanswerable
+    evidence: []
+
+  - id: q26
+    question: Who is the CEO of Kestrel Labs?
+    gold: null
+    type: unanswerable
+    evidence: []
+
+  - id: q27
+    question: What is the maximum flight time of the KX-300 drone?
+    gold: null
+    type: unanswerable
+    evidence: []

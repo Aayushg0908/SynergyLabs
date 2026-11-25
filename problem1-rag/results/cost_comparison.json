@@ -1,0 +1,309 @@
+{
+  "measured_storage": {
+    "precision": "float32",
+    "from_vectors": 250000,
+    "sizes_measured": [
+      100000,
+      250000
+    ],
+    "index_bytes_per_vector": 2048.032768,
+    "heap_bytes_per_vector": 1639.972864,
+    "total_bytes_per_vector": 3718.119424,
+    "bytes_per_vector_spread_across_sizes": 0.0004
+  },
+  "measured_storage_halfvec": {
+    "precision": "halfvec",
+    "from_vectors": 250000,
+    "sizes_measured": [
+      250000
+    ],
+    "index_bytes_per_vector": 1170.341888,
+    "heap_bytes_per_vector": 1639.972864,
+    "total_bytes_per_vector": 2840.428544,
+    "bytes_per_vector_spread_across_sizes": 0.0
+  },
+  "latency": {
+    "measured": {
+      "100000": {
+        "p50_ms": 0.82,
+        "p95_ms": 1.35,
+        "recall_at_5": 0.98,
+        "n_queries": 300
+      },
+      "250000": {
+        "p50_ms": 1.15,
+        "p95_ms": 2.22,
+        "recall_at_5": 0.98,
+        "n_queries": 300
+      }
+    },
+    "projected": {
+      "100000": {
+        "p50_ms": 0.82,
+        "p95_ms": 1.35
+      },
+      "1000000": {
+        "p50_ms": 1.65,
+        "p95_ms": 3.54
+      },
+      "10000000": {
+        "p50_ms": 2.48,
+        "p95_ms": 5.72
+      }
+    },
+    "fit": {
+      "p50_ms": {
+        "a": -3.326,
+        "b_per_ln_n": 0.36
+      },
+      "p95_ms": {
+        "a": -9.581,
+        "b_per_ln_n": 0.949
+      }
+    }
+  },
+  "query_volume_sensitivity": [
+    {
+      "queries_per_month": 100000,
+      "100000": {
+        "pinecone_serverless": 50,
+        "pgvector": 13.89
+      },
+      "1000000": {
+        "pinecone_serverless": 50,
+        "pgvector": 26.35
+      },
+      "10000000": {
+        "pinecone_serverless": 62.98,
+        "pgvector": 164.05
+      }
+    },
+    {
+      "queries_per_month": 1000000,
+      "100000": {
+        "pinecone_serverless": 50,
+        "pgvector": 13.89
+      },
+      "1000000": {
+        "pinecone_serverless": 50,
+        "pgvector": 26.35
+      },
+      "10000000": {
+        "pinecone_serverless": 443.31,
+        "pgvector": 164.05
+      }
+    },
+    {
+      "queries_per_month": 10000000,
+      "100000": {
+        "pinecone_serverless": 50,
+        "pgvector": 13.89
+      },
+      "1000000": {
+        "pinecone_serverless": 424.67,
+        "pgvector": 26.35
+      },
+      "10000000": {
+        "pinecone_serverless": 4246.69,
+        "pgvector": 164.05
+      }
+    }
+  ],
+  "assumptions": {
+    "hours_per_month": 730,
+    "workload": {
+      "dim": 384,
+      "avg_chunk_text_bytes": 1100,
+      "queries_per_month": 100000,
+      "monthly_rewrite_fraction": 0.1,
+      "top_k": 5
+    },
+    "self_hosted_pgvector": {
+      "ram_headroom": 1.25,
+      "ram_overhead_gb": 1.5,
+      "disk_headroom": 1.5,
+      "ebs_gp3_per_gb_month": 0.08,
+      "snapshot_per_gb_month": 0.05,
+      "instances": [
+        {
+          "name": "t4g.small",
+          "ram_gb": 2,
+          "vcpu": 2,
+          "usd_per_hour": 0.0168
+        },
+        {
+          "name": "t4g.medium",
+          "ram_gb": 4,
+          "vcpu": 2,
+          "usd_per_hour": 0.0336
+        },
+        {
+          "name": "t4g.large",
+          "ram_gb": 8,
+          "vcpu": 2,
+          "usd_per_hour": 0.0672
+        },
+        {
+          "name": "r7g.large",
+          "ram_gb": 16,
+          "vcpu": 2,
+          "usd_per_hour": 0.1071
+        },
+        {
+          "name": "r7g.xlarge",
+          "ram_gb": 32,
+          "vcpu": 4,
+          "usd_per_hour": 0.2142
+        },
+        {
+          "name": "r7g.2xlarge",
+          "ram_gb": 64,
+          "vcpu": 8,
+          "usd_per_hour": 0.4284
+        }
+      ],
+      "ops_hours_per_month": 2,
+      "ops_usd_per_hour": 75
+    },
+    "pinecone_serverless": {
+      "plan_minimum_usd": 50,
+      "storage_per_gb_month": 0.33,
+      "read_unit_usd_per_million": 16,
+      "write_unit_usd_per_million": 4,
+      "ru_per_gb_queried": 1.0,
+      "ru_min_per_query": 0.25,
+      "wu_per_kb": 1.0,
+      "bytes_per_record_overhead": 200
+    },
+    "pinecone_pods": {
+      "p1_x1_usd_per_hour": 0.111,
+      "p1_capacity_at_768d": 1000000,
+      "replicas": 1
+    }
+  },
+  "rows": [
+    {
+      "vectors": 100000,
+      "pgvector": {
+        "instance": "t4g.small (2 GB RAM)",
+        "index_gb": 0.19,
+        "data_gb": 0.45,
+        "ram_needed_gb": 1.7,
+        "disk_gb": 20,
+        "compute_usd": 12.26,
+        "storage_usd": 1.62,
+        "infra_usd": 13.89,
+        "ops_usd": 150,
+        "total_with_ops_usd": 163.89
+      },
+      "pgvector_halfvec": {
+        "instance": "t4g.small (2 GB RAM)",
+        "index_gb": 0.11,
+        "data_gb": 0.37,
+        "ram_needed_gb": 1.6,
+        "disk_gb": 20,
+        "compute_usd": 12.26,
+        "storage_usd": 1.62,
+        "infra_usd": 13.88,
+        "ops_usd": 150,
+        "total_with_ops_usd": 163.88
+      },
+      "pinecone_serverless": {
+        "storage_gb": 0.26,
+        "ru_per_query": 0.26,
+        "read_units": 26412,
+        "write_units": 30000,
+        "usage_usd": 0.63,
+        "total_usd": 50
+      },
+      "pinecone_pods": {
+        "pods": 1,
+        "pod_type": "p1.x1",
+        "capacity_per_pod": 2000000,
+        "total_usd": 81.03
+      }
+    },
+    {
+      "vectors": 1000000,
+      "pgvector": {
+        "instance": "t4g.medium (4 GB RAM)",
+        "index_gb": 1.91,
+        "data_gb": 4.49,
+        "ram_needed_gb": 3.9,
+        "disk_gb": 20,
+        "compute_usd": 24.53,
+        "storage_usd": 1.82,
+        "infra_usd": 26.35,
+        "ops_usd": 150,
+        "total_with_ops_usd": 176.35
+      },
+      "pgvector_halfvec": {
+        "instance": "t4g.medium (4 GB RAM)",
+        "index_gb": 1.09,
+        "data_gb": 3.67,
+        "ram_needed_gb": 2.9,
+        "disk_gb": 20,
+        "compute_usd": 24.53,
+        "storage_usd": 1.78,
+        "infra_usd": 26.31,
+        "ops_usd": 150,
+        "total_with_ops_usd": 176.31
+      },
+      "pinecone_serverless": {
+        "storage_gb": 2.64,
+        "ru_per_query": 2.64,
+        "read_units": 264123,
+        "write_units": 300000,
+        "usage_usd": 6.3,
+        "total_usd": 50
+      },
+      "pinecone_pods": {
+        "pods": 1,
+        "pod_type": "p1.x1",
+        "capacity_per_pod": 2000000,
+        "total_usd": 81.03
+      }
+    },
+    {
+      "vectors": 10000000,
+      "pgvector": {
+        "instance": "r7g.xlarge (32 GB RAM)",
+        "index_gb": 19.07,
+        "data_gb": 44.87,
+        "ram_needed_gb": 25.3,
+        "disk_gb": 68,
+        "compute_usd": 156.37,
+        "storage_usd": 7.68,
+        "infra_usd": 164.05,
+        "ops_usd": 150,
+        "total_with_ops_usd": 314.05
+      },
+      "pgvector_halfvec": {
+        "instance": "r7g.large (16 GB RAM)",
+        "index_gb": 10.9,
+        "data_gb": 36.7,
+        "ram_needed_gb": 15.1,
+        "disk_gb": 56,
+        "compute_usd": 78.18,
+        "storage_usd": 6.31,
+        "infra_usd": 84.5,
+        "ops_usd": 150,
+        "total_with_ops_usd": 234.5
+      },
+      "pinecone_serverless": {
+        "storage_gb": 26.41,
+        "ru_per_query": 26.41,
+        "read_units": 2641231,
+        "write_units": 3000000,
+        "usage_usd": 62.98,
+        "total_usd": 62.98
+      },
+      "pinecone_pods": {
+        "pods": 5,
+        "pod_type": "p1.x1",
+        "capacity_per_pod": 2000000,
+        "total_usd": 405.15
+      }
+    }
+  ]
+}

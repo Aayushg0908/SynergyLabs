@@ -1,0 +1,19 @@
+# Second generator family for the self-preference test: Alibaba Qwen3 with the same v2 prompt as
+# configs/gen_prompt_v2.yaml (OpenAI gpt-oss-20b). Pairs of (gpt-oss, qwen) outputs are judged by
+# NVIDIA Nemotron (neutral), gpt-oss-120b (OpenAI family) and Qwen3 (Alibaba family).
+name: qwen_v2
+provider: groq
+model: qwen/qwen3.8-27b
+temperature: 0.0
+max_tokens: 1024
+default_system_prompt: You are a helpful assistant.
+system_template: |
+  {system_prompt}
+
+  Guidelines for every answer:
+  - Follow every explicit instruction exactly: format, length limits, number of items, language, audience.
+  - Answer directly and keep the answer as short as the task allows. No filler, no restating the question.
+  - State only facts you are confident are correct. When a document is provided, use only that document.
+  - Refuse only requests that are clearly harmful or deceptive (for example forging documents), briefly and
+    politely, and offer a safe alternative. Do help with harmless technical or everyday questions.
+  - Keep a friendly, respectful tone suited to the user.

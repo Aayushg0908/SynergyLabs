@@ -69,15 +69,26 @@ class CallLog:
         self.path = path
         path.parent.mkdir(parents=True, exist_ok=True)
         self.cache: dict[str, dict] = {}
+        self.unreadable_lines = 0  # e.g. two processes appending at once; skipped, never fatal
         if path.exists():
             for line in path.read_text(encoding="utf-8").splitlines():
-                rec = json.loads(line)
+                try:
+                    rec = json.loads(line)
+                except json.JSONDecodeError:
+                    self.unreadable_lines += 1
+                    continue
                 if rec.get("error") is None and rec.get("cache_key"):
                     self.cache[rec["cache_key"]] = rec
 
     def write(self, rec: dict) -> None:
-        with _LOCK, self.path.open("a", encoding="utf-8") as f:
-            f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+        # One unbuffered os.write per record keeps lines whole even when two processes append.
+        data = (json.dumps(rec, ensure_ascii=False) + "\n").encode("utf-8")
+        with _LOCK:
+            fd = os.open(self.path, os.O_WRONLY | os.O_APPEND | os.O_CREAT | getattr(os, "O_BINARY", 0))
+            try:
+                os.write(fd, data)
+            finally:
+                os.close(fd)
         if rec.get("error") is None:
             self.cache[rec["cache_key"]] = rec
 

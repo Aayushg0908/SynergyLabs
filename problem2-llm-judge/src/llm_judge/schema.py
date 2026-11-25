@@ -9,6 +9,7 @@ Label = Literal["good", "partial", "bad"]
 
 class TestCase(BaseModel):
     """One judging task: {input, system_prompt, model_output, expected_output?, criteria?}."""
+    __test__ = False  # not a pytest test class
     id: str
     category: str = "general"
     input: str

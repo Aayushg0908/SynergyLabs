@@ -17,7 +17,15 @@ Measured per size:
   * recall@5 of HNSW vs exact search (sequential scan) on a query sample
   * the same for a metadata-filtered query (doc_type, 20% selectivity)
 
-Usage:  python scripts/bench_scale.py --sizes 100000 1000000
+--halfvec builds the index on embedding::halfvec (16-bit floats) instead: the heap keeps
+full-precision vectors, the index is ~half the size, and recall is still measured against
+exact full-precision search, so any quantisation loss shows up in recall@5.
+
+Runs are merged into the results file keyed by (precision, vectors), so sizes can be
+measured in separate invocations.
+
+Usage:  python scripts/bench_scale.py --sizes 100000 250000
+        python scripts/bench_scale.py --sizes 250000 --halfvec
 Out:    results/scale_benchmark.json, results/scale_benchmark.md
 """
 
@@ -77,27 +85,29 @@ def load(conn: psycopg.Connection, n: int, seed: int) -> tuple[float, np.ndarray
     return time.perf_counter() - t0, np.concatenate(samples)
 
 
-def build_index(conn: psycopg.Connection) -> float:
+def build_index(conn: psycopg.Connection, half: bool, workers: int) -> float:
     t0 = time.perf_counter()
     conn.execute("SET maintenance_work_mem = '1GB'")
-    conn.execute("SET max_parallel_maintenance_workers = 4")
-    conn.execute("CREATE INDEX bench_hnsw ON bench_vectors USING hnsw (embedding vector_cosine_ops) "
-                 "WITH (m = 16, ef_construction = 64)")
+    conn.execute(f"SET max_parallel_maintenance_workers = {workers}")
+    target = f"(embedding::halfvec({DIM})) halfvec_cosine_ops" if half else "embedding vector_cosine_ops"
+    conn.execute(f"CREATE INDEX bench_hnsw ON bench_vectors USING hnsw ({target}) WITH (m = 16, ef_construction = 64)")
     conn.execute("CREATE INDEX bench_doc_type ON bench_vectors (doc_type)")
     conn.execute("ANALYZE bench_vectors")
     conn.commit()
     return time.perf_counter() - t0
 
 
-def search(conn, q: np.ndarray, doc_type: str | None) -> tuple[list[int], float]:
+def search(conn, q: np.ndarray, doc_type: str | None, half: bool = False) -> tuple[list[int], float]:
     where = "WHERE doc_type = %(t)s" if doc_type else ""
-    sql = f"SELECT id FROM bench_vectors {where} ORDER BY embedding <=> %(q)s LIMIT {K}"
+    # the ORDER BY expression must match the index expression for the planner to use it
+    order = f"embedding::halfvec({DIM}) <=> %(q)s::halfvec({DIM})" if half else "embedding <=> %(q)s"
+    sql = f"SELECT id FROM bench_vectors {where} ORDER BY {order} LIMIT {K}"
     t0 = time.perf_counter()
     ids = [r[0] for r in conn.execute(sql, {"q": q, "t": doc_type}).fetchall()]
     return ids, (time.perf_counter() - t0) * 1000
 
 
-def measure(conn, exact_conn, queries: np.ndarray, n_recall: int) -> dict:
+def measure(conn, exact_conn, queries: np.ndarray, n_recall: int, half: bool) -> dict:
     out = {}
     qtypes = [DOC_TYPES[i % len(DOC_TYPES)] for i in range(len(queries))]
 
@@ -116,17 +126,17 @@ def measure(conn, exact_conn, queries: np.ndarray, n_recall: int) -> dict:
     conn.execute("SET hnsw.iterative_scan = relaxed_order")
     # Cold pass: the first queries after a restart read HNSW pages from disk. Report it,
     # then measure steady state (all queries once more after a full warm-up pass).
-    cold = [search(conn, q, None)[1] for q in queries]
+    cold = [search(conn, q, None, half)[1] for q in queries]
     out["cold_first_pass"] = {"p50_ms": round(percentile(cold, 50), 2), "p95_ms": round(percentile(cold, 95), 2)}
     for ef in (40, 100):
         conn.execute(f"SET hnsw.ef_search = {ef}")
         for i, q in enumerate(queries):  # warm-up pass, untimed
-            search(conn, q, None)
-            search(conn, q, qtypes[i])
+            search(conn, q, None, half)
+            search(conn, q, qtypes[i], half)
         for label, filt in (("unfiltered", False), ("filtered_20pct", True)):
             lat, rec = [], []
             for i, q in enumerate(queries):
-                ids, ms = search(conn, q, qtypes[i] if filt else None)
+                ids, ms = search(conn, q, qtypes[i] if filt else None, half)
                 lat.append(ms)
                 if i < n_recall:
                     gt = truth_f[i] if filt else truth[i]
@@ -148,6 +158,8 @@ def main() -> None:
     ap.add_argument("--queries", type=int, default=300)
     ap.add_argument("--recall-queries", type=int, default=50)
     ap.add_argument("--keep", action="store_true", help="keep the bench table after the last size")
+    ap.add_argument("--halfvec", action="store_true", help="index embedding::halfvec (16-bit) instead of vector")
+    ap.add_argument("--workers", type=int, default=2, help="parallel index-build workers (lower = laptop stays usable)")
     args = ap.parse_args()
 
     dsn = get_settings().database_url
@@ -166,14 +178,15 @@ def main() -> None:
     for n in args.sizes:
         print(f"== {n:,} vectors")
         load_s, samples = load(conn, n, seed=42)
-        build_s = build_index(conn)
+        build_s = build_index(conn, args.halfvec, args.workers)
         rng = np.random.default_rng(7)
         picks = samples[rng.integers(0, len(samples), args.queries)]
         queries = unit(picks + QUERY_NOISE * rng.standard_normal(picks.shape) / np.sqrt(DIM))  # cos ~0.96 to source
         sz = sizes(conn)
-        res = {"vectors": n, "load_seconds": round(load_s, 1), "index_build_seconds": round(build_s, 1), **sz,
+        res = {"vectors": n, "precision": "halfvec" if args.halfvec else "float32",
+               "build_workers": args.workers, "load_seconds": round(load_s, 1), "index_build_seconds": round(build_s, 1), **sz,
                "bytes_per_vector_total": round(sz["total_bytes"] / n, 1),
-               **measure(conn, exact_conn, queries, args.recall_queries)}
+               **measure(conn, exact_conn, queries, args.recall_queries, args.halfvec)}
         runs.append(res)
         print(json.dumps(res, indent=2), flush=True)
         save(server, runs)  # after every size, so an interrupted long run keeps finished sizes
@@ -183,6 +196,12 @@ def main() -> None:
 
 
 def save(server: dict, runs: list[dict]) -> None:
+    path = RESULTS / "scale_benchmark.json"
+    key = lambda r: (r.get("precision", "float32"), r["vectors"])  # noqa: E731
+    previous = json.loads(path.read_text(encoding="utf-8"))["runs"] if path.exists() else []
+    merged = {key(r): r for r in previous}
+    merged.update({key(r): r for r in runs})
+    runs = [merged[k] for k in sorted(merged)]
     report = {"hardware": {"host_cpu": platform.processor(), "docker_vm": "20 vCPU, 3.9 GB RAM (Docker Desktop, WSL2)",
                            "os": platform.platform()},
               "postgres": server, "dim": DIM, "k": K, "index": "hnsw m=16 ef_construction=64, cosine", "runs": runs}
@@ -197,19 +216,22 @@ def render(r: dict) -> str:
              f"Synthetic clustered {r['dim']}-d vectors, {r['index']}, k={r['k']}. Postgres {r['postgres'].get('server_version')} "
              f"+ pgvector {r['postgres']['pgvector']} in Docker ({r['hardware']['docker_vm']}); "
              f"shared_buffers={r['postgres'].get('shared_buffers')}. Latency is client-measured per SQL query.", "",
-             "| Vectors | Load s | Index build s | Table+index | Bytes/vector | Exact scan p50 ms |", "|---|---|---|---|---|---|"]
+             "| Vectors | Index precision | Load s | Index build s | Table+index | Bytes/vector | Exact scan p50 ms |",
+             "|---|---|---|---|---|---|---|"]
     for x in r["runs"]:
-        lines.append(f"| {x['vectors']:,} | {x['load_seconds']} | {x['index_build_seconds']} | {mb(x['total_bytes'])} "
+        lines.append(f"| {x['vectors']:,} | {x.get('precision', 'float32')} | {x['load_seconds']} | {x['index_build_seconds']} | {mb(x['total_bytes'])} "
                      f"(index {mb(x['hnsw_index_bytes'])}) | {x['bytes_per_vector_total']:,.0f} | {x['exact_scan_ms']['p50']} |")
     lines += ["", "Steady-state latency (after one untimed warm-up pass over the query set):", "",
-              "| Vectors | ef_search | Query | p50 ms | p95 ms | Recall@5 vs exact |", "|---|---|---|---|---|---|"]
+              "| Vectors | Index precision | ef_search | Query | p50 ms | p95 ms | Recall@5 vs exact |",
+              "|---|---|---|---|---|---|---|"]
     for x in r["runs"]:
-        lines.append(f"| {x['vectors']:,} | 40 | cold first pass (pages read from disk) | {x['cold_first_pass']['p50_ms']} "
+        prec = x.get("precision", "float32")
+        lines.append(f"| {x['vectors']:,} | {prec} | 40 | cold first pass (pages read from disk) | {x['cold_first_pass']['p50_ms']} "
                      f"| {x['cold_first_pass']['p95_ms']} | — |")
         for ef in (40, 100):
             for label in ("unfiltered", "filtered_20pct"):
                 m = x[f"ef{ef}_{label}"]
-                lines.append(f"| {x['vectors']:,} | {ef} | {label.replace('_', ' ')} | {m['p50_ms']} | {m['p95_ms']} | {m['recall_at_5']} |")
+                lines.append(f"| {x['vectors']:,} | {prec} | {ef} | {label.replace('_', ' ')} | {m['p50_ms']} | {m['p95_ms']} | {m['recall_at_5']} |")
     return "\n".join(lines) + "\n"
 
 

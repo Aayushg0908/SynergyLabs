@@ -154,7 +154,7 @@ def sizes(conn) -> dict:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--sizes", type=int, nargs="+", default=[100_000, 1_000_000])
+    ap.add_argument("--sizes", type=int, nargs="+", default=[100_000, 250_000])
     ap.add_argument("--queries", type=int, default=300)
     ap.add_argument("--recall-queries", type=int, default=50)
     ap.add_argument("--keep", action="store_true", help="keep the bench table after the last size")

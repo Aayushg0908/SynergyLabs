@@ -110,6 +110,12 @@ a cache key. Calls already in the log are served from it, so re-running costs no
 `$env:LLM_JUDGE_REPLAY = "only"` rebuilds every report offline. `scripts/show_evidence.py` prints a
 logged prompt and response, a pair judged in both orders, or a probe verdict.
 
+**Evidence screenshots** (`docs/screenshots/`, rendered from `scripts/show_evidence.py` output over the
+committed log and results):
+- [Raw judge prompt + raw response](docs/screenshots/p2_judge_prompt_and_raw_response.png)
+- [Position-bias check: one pair in both orders, plus flip rates](docs/screenshots/p2_position_bias_check.png)
+- [Adversarial probe verdict (verbose-but-wrong)](docs/screenshots/p2_adversarial_probe.png)
+
 ## 3. Judging modes and rubric
 
 **Implemented:**

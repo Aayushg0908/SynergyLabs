@@ -56,15 +56,15 @@ def main() -> None:
     results.mkdir(exist_ok=True)
     (results / "sweep_results.json").write_text(json.dumps(out, indent=2), encoding="utf-8")
 
-    hdr = "| " + " | ".join(METRICS) + " | multi-doc recall |"
-    sep = "|" + "---|" * (len(METRICS) + 1)
+    hdr = " | ".join(METRICS) + " | multi-doc recall |"
+    sep = "---|" * (len(METRICS) + 1)
     lines = ["# Retrieval sweeps (k=5 unless stated; no LLM involved)", "",
-             "## Chunk size / overlap (tokens)", "", "| size/overlap | vectors | mean tokens " + hdr[1:],
-             "|---|---|" + sep]
+             "## Chunk size / overlap (tokens)", "", "| size/overlap | vectors | mean tokens | " + hdr,
+             "|---|---|---|" + sep]
     for r in out["chunking"]:
         lines.append(f"| {r['chunk_size']}/{r['chunk_overlap']} | {r['vectors']} | {r['mean_chunk_tokens']} | "
                      + " | ".join(f"{r[m]:.3f}" for m in METRICS) + f" | {r['multi_doc_recall']:.3f} |")
-    lines += ["", f"## k (chunking {default[0]}/{default[1]})", "", "| k " + hdr, "|---" + sep]
+    lines += ["", f"## k (chunking {default[0]}/{default[1]})", "", "| k | " + hdr, "|---|" + sep]
     for r in out["k"]:
         lines.append(f"| {r['k']} | " + " | ".join(f"{r[m]:.3f}" for m in METRICS) + f" | {r['multi_doc_recall']:.3f} |")
     (results / "sweep_report.md").write_text("\n".join(lines) + "\n", encoding="utf-8")

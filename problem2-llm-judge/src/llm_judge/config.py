@@ -34,7 +34,9 @@ class Settings(BaseSettings):
     judge2_provider: str = "groq"
     judge2_model: str = "qwen/qwen3.8-27b"
 
-    max_concurrency: int = 4          # parallel judge calls (NVIDIA free tier ~40 req/min)
+    # Parallel judge calls. Nemotron reasons for ~25 s per call (p50), so 8 in flight is ~20 req/min,
+    # under the NVIDIA free tier's ~40 req/min.
+    max_concurrency: int = 8
     log_dir: Path = PROJECT_ROOT / "logs"
     results_dir: Path = PROJECT_ROOT / "results"
 

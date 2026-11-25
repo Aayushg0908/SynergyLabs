@@ -26,7 +26,9 @@ def make_judge_client(spec: str, usage: Usage | None = None, temperature: float 
     else:
         provider, _, model = spec.partition(":")
     t = s.judge_temperature if temperature is None else temperature
-    return ChatClient(provider, model, temperature=t, max_tokens=4096, role="judge", usage=usage)
+    # 8192: Nemotron's hidden reasoning occasionally used the whole 4096-token budget, leaving an
+    # empty answer (1 of 112 A/B calls). max_tokens is not part of the replay-cache key.
+    return ChatClient(provider, model, temperature=t, max_tokens=8192, role="judge", usage=usage)
 
 
 def cmd_run(args) -> None:

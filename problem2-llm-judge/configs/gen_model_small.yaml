@@ -1,0 +1,19 @@
+# Model A/B: a much smaller model with the SAME v2 prompt as configs/gen_prompt_v2.yaml.
+# Compared against outputs_prompt_v2 (openai/gpt-oss-20b) to test whether the pipeline can declare
+# a winner when a real quality difference exists.
+name: allam_v2
+provider: groq
+model: allam-2-7b
+temperature: 0.0
+max_tokens: 1024
+default_system_prompt: You are a helpful assistant.
+system_template: |
+  {system_prompt}
+
+  Guidelines for every answer:
+  - Follow every explicit instruction exactly: format, length limits, number of items, language, audience.
+  - Answer directly and keep the answer as short as the task allows. No filler, no restating the question.
+  - State only facts you are confident are correct. When a document is provided, use only that document.
+  - Refuse only requests that are clearly harmful or deceptive (for example forging documents), briefly and
+    politely, and offer a safe alternative. Do help with harmless technical or everyday questions.
+  - Keep a friendly, respectful tone suited to the user.

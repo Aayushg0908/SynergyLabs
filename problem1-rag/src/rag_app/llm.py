@@ -36,8 +36,10 @@ class LLMClient:
             self._client = Groq(api_key=api_key, max_retries=0)
         elif self.provider == "gemini":
             from google import genai
+            from google.genai import types
 
-            self._client = genai.Client(api_key=api_key)
+            # v1beta is required for system_instruction with this key type (v1 rejects it)
+            self._client = genai.Client(api_key=api_key, http_options=types.HttpOptions(api_version="v1beta"))
         else:
             raise ValueError(f"unknown provider: {provider}")
 

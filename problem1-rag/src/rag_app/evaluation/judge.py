@@ -89,7 +89,12 @@ class AnswerJudge:
 
         verdict, raw, error = None, "", None
         for attempt in range(2):  # one retry if the JSON is malformed
-            result = self.client.complete(JUDGE_SYSTEM, prompt, json_mode=True)
+            try:
+                result = self.client.complete(JUDGE_SYSTEM, prompt, json_mode=True)
+            except Exception as exc:  # API failure after retries: record it, don't abort the whole eval
+                error = f"api_error: {type(exc).__name__}: {str(exc)[:300]}"
+                self._log(qid, attempt, prompt, error, 0)
+                break
             self.calls += 1
             self.tokens += result.total_tokens
             raw = result.text

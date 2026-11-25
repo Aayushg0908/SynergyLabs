@@ -7,6 +7,15 @@
       POSTGRES_DB: rag
     ports:
       - "5544:5432"   # 5544 on the host so it doesn't clash with a locally installed Postgres
+    # Parallel HNSW builds keep the graph in shared memory, so /dev/shm must exceed
+    # maintenance_work_mem (Docker's default shm is only 64 MB).
+    shm_size: 2gb
+    command: >
+      postgres
+      -c shared_buffers=512MB
+      -c maintenance_work_mem=1GB
+      -c max_parallel_maintenance_workers=4
+      -c effective_cache_size=2GB
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:

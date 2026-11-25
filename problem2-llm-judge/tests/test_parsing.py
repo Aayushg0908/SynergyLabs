@@ -68,12 +68,22 @@ def test_pairwise_choice_normalisation():
     assert pairwise_choice({"winner": "TIE"})[0] == "tie"
 
 
+def test_suite_loads_full_outputs():
+    """Regression: an unquoted ' #' in YAML starts a comment and silently truncated an output."""
+    from llm_judge.suite import load_suite
+    cases = {c.id: c for c in load_suite()}
+    assert cases["sm06"].model_output.startswith("Order #4471 for two blue mugs")
+    assert len(cases) == 30 and all(c.model_output.strip() for c in cases.values())
+
+
 def test_overall_is_weighted_and_skips_null():
     s = {"correctness": CriterionScore(score=5), "faithfulness": CriterionScore(score=None),
          "instruction_following": CriterionScore(score=2)}
     # weights 0.35 and 0.20 -> (0.35*5 + 0.2*2) / 0.55
     assert overall(s) == pytest.approx(round((0.35 * 5 + 0.2 * 2) / 0.55, 3))
-    assert not passed(s, overall(s))                       # a criterion at the fail floor (2) fails the case
+    assert not passed(s, overall(s))                       # a criterion at/below the fail floor fails the case
+    three = {"correctness": CriterionScore(score=5), "instruction_following": CriterionScore(score=3)}
+    assert not passed(three, overall(three))               # one broken constraint (3) is not a pass
     good = {k: CriterionScore(score=4) for k in ("correctness", "completeness")}
     assert passed(good, overall(good)) and label(overall(good)) == "good"
     assert label(3.0) == "partial" and label(2.0) == "bad"

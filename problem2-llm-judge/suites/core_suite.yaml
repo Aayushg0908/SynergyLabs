@@ -173,7 +173,7 @@ cases:
 
       "Hello, your order #4471 (two blue mugs) has shipped today and should arrive within 3-5
       business days. You can track it with the link in your account."
-    model_output: Order #4471 for two blue mugs shipped today, should arrive in 3-5 business days, and can be tracked from your account.
+    model_output: "Order #4471 for two blue mugs shipped today, should arrive in 3-5 business days, and can be tracked from your account."
     gold_label: good
 
   # ------------------------------------------------------------------ instruction following

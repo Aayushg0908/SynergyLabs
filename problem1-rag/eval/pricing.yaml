@@ -1,0 +1,56 @@
+# Pricing and workload assumptions for scripts/cost_model.py.
+# All prices are USD list prices (on-demand, no discounts), as checked in November 2026.
+# Prices change and vary by region: re-check the sources before quoting the numbers.
+
+hours_per_month: 730
+
+workload:
+  dim: 384                       # bge-small-en-v1.5
+  avg_chunk_text_bytes: 1100     # ~256 tokens of English text stored with each vector (both systems)
+  queries_per_month: 100000      # "large but lightly queried" index (~2.3 queries/minute)
+  monthly_rewrite_fraction: 0.10 # share of vectors re-embedded and re-written each month
+  top_k: 5
+
+self_hosted_pgvector:
+  # Sizing rule: the whole HNSW index plus 25% headroom and 1.5 GB for Postgres/OS must fit in RAM,
+  # so p95 latency stays at the measured steady-state (index served from memory).
+  ram_headroom: 1.25
+  ram_overhead_gb: 1.5
+  disk_headroom: 1.5             # free space for VACUUM, index rebuilds, WAL
+  ebs_gp3_per_gb_month: 0.08     # https://aws.amazon.com/ebs/pricing/
+  snapshot_per_gb_month: 0.05    # daily EBS snapshots (incremental; charged on stored size)
+  # AWS EC2 on-demand, us-east-1, Linux. https://aws.amazon.com/ec2/pricing/on-demand/
+  # (r7g.large $0.1071/h also listed by https://www.doit.com/compute/spot/us-east-1/r7g.large)
+  instances:
+    - {name: t4g.small,  ram_gb: 2,  vcpu: 2, usd_per_hour: 0.0168}
+    - {name: t4g.medium, ram_gb: 4,  vcpu: 2, usd_per_hour: 0.0336}
+    - {name: t4g.large,  ram_gb: 8,  vcpu: 2, usd_per_hour: 0.0672}
+    - {name: r7g.large,  ram_gb: 16, vcpu: 2, usd_per_hour: 0.1071}
+    - {name: r7g.xlarge, ram_gb: 32, vcpu: 4, usd_per_hour: 0.2142}
+    - {name: r7g.2xlarge, ram_gb: 64, vcpu: 8, usd_per_hour: 0.4284}
+  # Engineering time to run it (patching, backups, monitoring, upgrades). Shown separately.
+  ops_hours_per_month: 2
+  ops_usd_per_hour: 75
+
+pinecone_serverless:
+  # https://www.pinecone.io/pricing/  (Standard plan; rates vary slightly by cloud/region)
+  plan_minimum_usd: 50           # monthly minimum, usage is credited against it
+  storage_per_gb_month: 0.33
+  read_unit_usd_per_million: 16
+  write_unit_usd_per_million: 4
+  # Pinecone docs: a query costs 1 RU per GB of namespace size, minimum 0.25 RU.
+  ru_per_gb_queried: 1.0
+  ru_min_per_query: 0.25
+  # A write costs ~1 WU per KB of record (vector + metadata).
+  wu_per_kb: 1.0
+  bytes_per_record_overhead: 200 # id + metadata keys
+
+pinecone_pods:
+  # https://www.pinecone.io/pricing/pods/  p1.x1 on Standard: $0.1110/h.
+  # https://docs.pinecone.io/guides/indexes/pods/understanding-pod-based-indexes
+  #   p1 capacity: ~1.25M vectors @512-d, ~1M @768-d -> ~1.67M @384-d (capacity ~ 1/dim).
+  # Pods are always on (billed per minute regardless of traffic) and are closed to new
+  # customers since Aug 2025, but they are the "always-on pods" model the assignment describes.
+  p1_x1_usd_per_hour: 0.111
+  p1_capacity_at_768d: 1000000
+  replicas: 1

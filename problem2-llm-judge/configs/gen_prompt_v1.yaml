@@ -1,0 +1,8 @@
+# Generator config A: the task's own system prompt only (the "before" prompt).
+name: prompt_v1
+provider: groq
+model: openai/gpt-oss-20b      # OpenAI family; judge is NVIDIA Nemotron (different family)
+temperature: 0.0
+max_tokens: 1024
+default_system_prompt: You are a helpful assistant.
+system_template: "{system_prompt}"

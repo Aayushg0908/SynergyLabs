@@ -23,6 +23,15 @@ def main(argv: list[str] | None = None) -> None:
     q.add_argument("--doc-type", action="append", help="metadata filter; repeatable")
     q.add_argument("--full", action="store_true", help="print the full JSON response")
 
+    e = sub.add_parser("eval", help="run the 3-layer evaluation on eval/questions.yaml")
+    e.add_argument("-k", type=int)
+    e.add_argument("--no-judge", action="store_true", help="skip the LLM judge")
+    e.add_argument("--retrieval-only", action="store_true", help="retrieval + latency layers only (no LLM calls)")
+    e.add_argument("--latency-reps", type=int, default=10)
+    e.add_argument("--gen-interval", type=float, default=2.0, help="seconds between generator calls (rate limits)")
+    e.add_argument("--judge-interval", type=float, default=7.0, help="seconds between judge calls (rate limits)")
+    e.add_argument("--tag", default="eval", help="output file prefix in results/")
+
     sub.add_parser("stats", help="show document/vector counts")
     r = sub.add_parser("reset", help="drop all tables")
     r.add_argument("--yes", action="store_true")
@@ -49,6 +58,13 @@ def main(argv: list[str] | None = None) -> None:
         result = svc.ingest(Path(args.path) if args.path else None, args.chunk_size, args.chunk_overlap, args.prune)
         result.pop("documents") if len(result["documents"]) > 30 else None
         print(json.dumps(result, indent=2))
+    elif args.cmd == "eval":
+        from .evaluation.harness import run
+
+        result = run(svc, args.k, use_judge=not args.no_judge, retrieval_only=args.retrieval_only,
+                     latency_reps=args.latency_reps, gen_interval=args.gen_interval,
+                     judge_interval=args.judge_interval, tag=args.tag)
+        print(json.dumps({k: v for k, v in result.items() if k != "config"}, indent=2, default=float))
     elif args.cmd == "stats":
         print(json.dumps(svc.store.stats(), indent=2))
     elif args.cmd == "query":

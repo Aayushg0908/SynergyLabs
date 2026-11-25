@@ -141,6 +141,13 @@ class VectorStore:
             ).fetchall()
         return [Hit(**{**r, "score": float(r["score"])}) for r in rows]
 
+    def all_chunks(self) -> list[dict]:
+        """Every chunk's id, doc and text (used by the evaluator to label relevance)."""
+        with self.pool.connection() as conn:
+            return conn.cursor(row_factory=dict_row).execute(
+                "SELECT chunk_id, doc_id, chunk_index, content FROM chunks ORDER BY doc_id, chunk_index"
+            ).fetchall()
+
     # ---------- admin ----------
     def stats(self) -> dict:
         with self.pool.connection() as conn:
